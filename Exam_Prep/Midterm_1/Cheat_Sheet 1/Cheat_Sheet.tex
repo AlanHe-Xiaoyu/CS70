@@ -1,0 +1,116 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=3cm]{geometry}
+\usepackage{amssymb}
+\begin{document}
+
+\noindent{\Large Quantifiers}
+\begin{itemize}
+\item $\forall x\forall y, P(x,y)\equiv\forall y\forall x, P(x,y)$ 
+\item $\exists x\exists y, P(x,y)\equiv\exists y\exists x, P(x,y)$ 
+\item $\forall x\exists y, P(x,y)\not\equiv\exists y\forall x, P(x,y)$
+\begin{itemize}
+	\item $\forall x\exists y, P(x,y)\not\Longrightarrow \exists y\forall x, P(x,y)$
+	\item $\exists y\forall x, P(x,y)\Longrightarrow \forall x\exists y, P(x,y)$
+\end{itemize}
+\item $\forall x \big(P(x)\land Q(x)\big)\equiv\big(\forall x, P(x)\big)\land\big(\forall x, Q(x)\big)$
+\item $\forall x \big(P(x)\lor Q(x)\big)\not\equiv\big(\forall x, P(x)\big)\lor\big(\forall x, Q(x)\big)$ \\
+Let $P(1) = Q(2) = True, P(2) = Q(1) = False,$ then LHS $= True$, RHS $= False.$
+\item $\exists x \big(P(x)\land Q(x)\big)\not\equiv\big(\exists x, P(x)\big)\land\big(\exists x, Q(x)\big)$ \\
+Let $P(1) = Q(2) = True,$ all other cases $= False,$ then LHS $= False$, RHS $= True.$
+\item $\exists x \big(P(x)\lor Q(x)\big)\equiv\big(\exists x, P(x)\big)\lor\big(\exists x, Q(x)\big)$ \\
+\end{itemize}
+
+\noindent{\large Note 2}\\
+(Direct Proof, Proof by Contraposition, Proof by Contradiction, Proof by Cases)
+\begin{itemize}
+\item Theorem 2.1: For any $a, b, c\in\mathbb{Z}$ if $a\mid b$ and $a\mid c,$ then $a\mid(b + c)$.
+\item Theorem 2.2. Let $0 < n < 1000$ be an integer. If the sum of the digits of $n$ is divisible by 9, then $n$ is divisible by 9.
+\item Theorem 2.3 (Converse of Theorem 2.2). Let $0 < n < 1000$ be an integer. If $n$ is divisible by 9, then the sum of the digits of $n$ is divisible by 9.
+\item Theorem 2.4. Let $n\in\mathbb{Z^+}$ and let $d\mid n$. If n is odd then d is odd.
+\item Theorem 2.5 (Pigeonhole Principle). Let $n, k\in\mathbb{Z^+}$ be positive integers. Place $n$ objects into $k$ boxes. If $n > k$, then at least one box must contain more than one object.
+\item Theorem 2.6. There are infinitely many prime numbers.
+\item Lemma 2.1. Every natural number greater than one is either prime or has a prime divisor.
+\item Theorem 2.7. $\sqrt{2}$ is irrational.
+\item Lemma 2.2. If $a^2$ is even, then $a$ is even.
+\item Theorem 2.8. There exist irrational numbers x and y such that $x^y$ is rational. \\
+\end{itemize}
+
+\noindent{\large Note 3}\\
+(Base Case, Inductive Hypothesis, Inductive Step)
+\begin{itemize}
+\item Theorem 3.1: $\forall n\in\mathbb{N}, \sum\limits_{i=0}^{n} i = \frac{n(n+1)}{2}$
+\item Theorem 3.2: $(\forall n\in\mathbb{N})\ \big(3\mid(n^3-n)\big)$
+\item Theorem 3.3: Let $P(n)$ denote the statement ``Any map with $n$ lines is two-colorable''. Then, it holds that $(\forall n\in\mathbb{N})\ \big(P(n)\big)$
+\item Theorem 3.4: $\forall n\geq1$, the sum of the first $n$ odd numbers is $n^2.$
+\item Theorem 3.5: $(\forall n\geq1)\ \big(\sum\limits_{i=1}^{n} \frac{1}{i^2}\leq(2 - \frac{1}{n})\big)$
+\item Theorem 3.6: For every natural number $n\geq12$, it holds that $n = 4x + 5y$ for some $x, y\in\mathbb{N}$.
+\item Theorem 3.7: Every natural number $n>1$ can be written as a product of primes.
+\end{itemize}
+
+\noindent {\large Note 4}\\
+(Stable Marriage Algorithm)
+\begin{itemize}
+	\item Lemma 4.1: The stable marriage algorithm always halts.
+	\item Lemma 4.2 (Improvement Lemma): If man $M$ proposes to woman $W$ on the $k^{th}$ day, then on every subsequent day $W$ has someone on a string whom she likes at least as much as $M$.
+	\item Definition 4.1 (Well-ordering principle): If $S\subseteq N$ and $S\neq\emptyset$, then $S$ has a smallest element.
+	\item Lemma 4.3: The stable marriage algorithm always terminates with a pairing.
+	\item Theorem 4.1: The pairing produced by the algorithm is always stable.
+	\item Definition 4.2 (Optimal woman for a man): For a given man $M$, the optimal woman for $M$ is the highest woman on $M$'s preference list that $M$ is paired with in any stable pairing.
+	\item Theorem 4.2: The pairing output by the Stable Marriage algorithm (with relaxed proposal as well) is male optimal, and (Proved in HW:) no two men can have the same optimal partner.
+	\item Theorem 4.3: If a pairing is male optimal, then it is also female pessimal.
+	\item There always exists some woman who receives a single proposal, and she always receives it on the last day of the algorithm. (Proved both in discussion and homework)
+	\item Extra (need proof by induction on exam): The most rejections that can occur on $k^{th}$ day is $n - k.$
+	\item Extra (good as counterexample): Consider rotational preferences, Man $A: 1>2>3; B:2>3>1; C:3>1>2$ and Woman $1: B>C>A; 2: C>A>B; 3: A>B>C$, which has 3 stable pairings.
+\end{itemize}
+
+\noindent {\large Note 5} \\
+(Planar Graph, Tree, Complete Graph, Hypercube)
+\begin{itemize}
+\item path - simple (no repeating vertex)
+\item cycle - closed path
+\item walk - path w/ possibly repeating vertex
+\item tour - closed walk with NO repeating edge
+\item Eulerian - every edge once
+\item Hamiltonian - every vertex once
+\item Theorem 5.1 (Euler’s Theorem): An undirected graph $G$ = $(V,E)$ has an Eulerian tour $\iff G$ is even degree, and connected (except possibly for isolated vertices).
+\end{itemize}
+Function $EULER(G,s)$: \\
+\indent $T = FINDTOUR(G,s);$ \\
+\indent Let $G_1,...,G_k$ be the connected components when the edges in $T$ are removed from $G$, and let $s_i$ be the first vertex in $T$ that intersects $G_i$; \\
+\indent Output $SPLICE(T,EULER(G_1,s_1),...,EULER(G_k,s_k))$ \\
+end $EULER$
+\begin{itemize}
+	\item Theorem 5.2 (Euler’s formula): For every connected planar graph, $v + f = e + 2\ (\equiv e\leq 3v - 6)$
+	\item Theorem 5.3: A graph is non-planar $\iff$ it contains $K_5$ or $K_{3,3}$.
+	\item (Prove tree properties with induction.) $G = (V, E)$ is a Tree $\iff$:
+	\begin{enumerate}
+		\item $G$ is connected and contains no cycles.
+		\item $G$ is connected and has $n-1$ edges (where $n = |V|$ is the number of vertices).
+		\item $G$ is connected, and the removal of any single edge disconnects $G$.
+		\item $G$ has no cycles, and the addition of any single edge creates a cycle.
+	\end{enumerate}
+	\item Theorem 5.4: The statements ``$G$ is connected and contains no cycles'' and ``$G$ is connected and has $n-1$ edges'' are equivalent.
+	\item Lemma 5.1: The total number of edges in an $n$-dimensional hypercube is $n2^{n-1}.$
+	\item Theorem 5.5: Let $S\subseteq V$ be such that $|S|\subseteq|V-S|$ (i.e., that $|S|\leq2^{n-1}$), and let $E_S$ denote the set of edges connecting $S$ to $V-S$, (i.e., $E_S := \big\{\{u, v\}\in E \mid (u\in S) \land (v\in V-S) \big\}$). Then, it holds that $|E_S|\geq|S|$.
+	\item $\sum\limits_{v\in V} deg(v) = 2|E|$ (sum of all degrees = twice the number of edges) (Proved earlier in class)
+	\item Extra (Proved in HW): A graph is bipartite $\iff$ it has no tours of odd length, and $\forall n\in\mathbb{Z^+},$ the $n$-dimensional hypercube is bipartite (so a hypercube has no tours of odd length and can be two-colored).
+	\item Extra (need proof): A graph with $k$ edges has $\geq|V| - k$ connected components.
+	\item Extra (proof by PHP): In any (simple) graph, there are always two vertices of the same degree.
+	\item Extra (need proof): $K_n$ can be vertex colored with $n$ colors.
+\end{itemize}
+
+\noindent {\large Note 6, 7} \\
+(Modular and FLT)
+\begin{itemize}
+	\item Theorem 6.1: If $a\equiv c$ and $b\equiv d\pmod{m}$, then $(a+b)\equiv(c+d)$ and $(ab)\equiv(cd)\pmod{m}$
+	\item Theorem 6.2: Let $m,x$ be positive integers such that gcd$(m,x) = 1$. Then $x$ has a multiplicative inverse, $x^{-1}\pmod{m}$, and it is unique (mod $m$).
+	\item Theorem 6.3: Let $x\geq y > 0$. Then gcd$(x, y)$ = gcd$(y, x$ mod $y)$.
+	\item Theorem 7.2 [Fermat's Little Theorem]: For any prime $p$ and any $a\in\{1,2,...,p-1\}$, we have $a^{p-1}\equiv1\pmod{p}.$ (Extra: and so, $a^y = a^{y\pmod{p-1}}\pmod{p}$
+	\item Extra (need proof by ???): If $ax+bm = d$, gcd$(x,m) = d, xu\equiv v\pmod{m},$ then it has a solution $\iff d\mid v$; if so, one such solution is $u\equiv\frac{va}{d}\pmod{\frac{m}{d}}$, (in essence, $a = (\frac{x}{d})^{-1}\pmod{\frac{m}{d}}$,) and there are exactly {\large$d$}-many solutions (of the form $u = \frac{va}{d} + i\cdot\frac{m}{d}\pmod{m}).$
+	\item Extra (Proved in HW): If $a\equiv b\pmod{m_1\land m_2}$ and gcd$(m_1, m_2) = 1$, then $a\equiv b\pmod{m_1m_2}.$
+	\item Extra (Proved in HW, FLT entended to composite): If $n = p_1p_2\cdot\cdot\cdot p_k$ where $p_i$ are distinct primes and $(p_i - 1)\mid(n - 1)\ \forall i$, then $a^{n-1}\equiv1\pmod{n}\ \forall a\in\{i\ |\ 1\leq i\leq n\ \land$ gcd$(n,i) = 1\}.$
+	\item Extra: $(p-1)!\equiv(p-1)\pmod{p}$: Proof by the fact that $2,...,p-2$ will pair up with their own inverse, and only ones that map back to themselves are $1, -1$.
+
+\end{itemize}
+
+\end{document}
