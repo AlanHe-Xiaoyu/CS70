@@ -1,0 +1,18 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=3cm]{geometry}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\begin{document}
+
+I worked alone without getting any help, except asking questions on Piazza and reading the Notes of this course. \\[1cm]
+{\Large 1 Modular Arithmetic Solutions} \\[.5cm]
+(a) $x = 10$ \\[.3cm]
+\indent Since $2, 15\in\mathbb{Z^+}$ and gcd(2, 15) = 1, using Theorem 6.2, we have that 2 has a multiplicative inverse, $2^{-1} \pmod{15}$, and it is unique (in the modular setting). Since we have that $2 * 8 = 16\equiv1 \pmod{15},$ so $2^{-1} = 8\pmod{15}.$ Then, to compute the solution to $2x\equiv5\pmod{15},$ we have that $x = 2^{-1} * 5 = 8 * 5 = 40\equiv10\pmod{15},$ and this solution would be unique modulo 15 as well. Thus, $x = 10$ is the only solution. \\[.5cm]
+(b) No solution. \\[.3cm]
+We proceed by contradiction. Assume that $x\in\mathbb{Z}$ is a solution to the equation, such that $2x = y\equiv5\pmod{16},$ so $y\in\mathbb{Z}.$\\[.1cm]
+Since $x\in\mathbb{Z},$ so we have that $2x$ is an even number. On the other hand, consider the right side of the equation, since $y\equiv5\pmod{16},$ so $y = 16k + 5, k\in\mathbb{Z}.$ Then, since $y = 16k + 5 = 2(8k+2) + 1$ where $8k+2\in\mathbb{Z},$ so we have that $y$ is an odd number, which implies that $x\neq y,$ and we reach a contradiction. Therefore, we conclude that there is no solution to this equation. \\[.5cm]
+(c) $x = 2, 7, 12, 17, 22$ \\[.3cm]
+\indent Let $x$ be a solution to the equation. By definition of modular arithmetic, so we have that $0\leq x < 25$ and $x\in\mathbb{N}$. Using the given equation, let $5x = y\equiv10\pmod{25},$ so $y\in\mathbb{N}.$ Then, let $y = 25k + 10,$ so $k\in\mathbb{N}.$ Now, we have that $5x = 25k + 10,$ and dividing both sides by 5, we would get $x = 5k + 2.$ Since $x < 25,$ so $x = 5k + 2 < 25,$ so $k < \frac{23}{5}.$ Since $k\in\mathbb{N},$ so $k$ can only be = 0, 1, 2, 3 and 4, with $x$ being 2, 7, 12, 17 and 22, respectively. Thus, the only solutions are $x = 2, 7, 12, 17, 22.$
+
+
+\end{document}

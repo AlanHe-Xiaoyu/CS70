@@ -1,0 +1,58 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=3cm]{geometry}
+\usepackage{amssymb}
+\begin{document}
+{\Large 6 Preserving Set Operations} \\[.3cm]
+(a) \\[.15cm]
+\indent We would show two parts: (1) $f^{-1}(A\cup B)\subseteq(f^{-1}(A)\cup f^{-1}(B))$; and (2) $(f^-1(A)\cup f^{-1}(B))\subseteq f^{-1}(A\cup B)$.\\[.1cm]
+\indent Part (1): For any element $e\in f^{-1}(A\cup B)$, by definition of inverse images, so $f(e)\in A\cup B$, so $f(e)\in A$ or $f(e)\in B$. We proceed by cases. Let us divide our proof into two cases, exactly one of which must be true: (i) $f(e)\in A$; or (ii) $f(e)\notin A$.\\[.1cm]
+\indent\indent Case (i): Since $f(e)\in A$, so by definition, $e\in f^{-1}(A)$, so $e\in (f^{-1}(A)\cup f^{-1}(B))$\\[.1cm]
+\indent\indent\indent So $f^{-1}(A\cup B)\subseteq(f^{-1}(A)\cup f^{-1}(B))$\\[.1cm]
+\indent\indent Case (ii): Since $f(e)\notin A$, and since $f(e)\in A$ or $f(e)\in B$, so $f(e)\in B$.\\[.1cm]
+\indent\indent\indent So by definition, $e\in f^{-1}(B)$, so $e\in (f^{-1}(A)\cup f^{-1}(B))$\\[.1cm]
+\indent\indent\indent So $f^{-1}(A\cup B)\subseteq(f^{-1}(A)\cup f^{-1}(B))$\\[.1cm]
+\indent Thus, we have that $f^{-1}(A\cup B)\subseteq(f^{-1}(A)\cup f^{-1}(B)).$\\[.15cm]
+\indent Part (2): For any element $e\in (f^{-1}(A)\cup f^{-1}(B))$, so $e\in f^{-1}(A)$ or $e\in f^{-1}(B)$. We proceed by cases. Let us divide our proof into two cases, exactly one of which must be true: (i) $e\in f^{-1}(A)$; or (ii) $e\notin f^{-1}(A)$.\\[.1cm]
+\indent\indent Case (i): Since $e\in f^{-1}(A)$, so by definition, $f(e)\in A$, so $f(e)\in A\cup B$.\\[.1cm]
+\indent\indent\indent So by definition, $e\in f^{-1}(A\cup B)$.\\[.1cm]
+\indent\indent Case (ii): Since $e\notin f^{-1}(A)$, and since $e\in f^{-1}(A)$ or $e\in f^{-1}(B)$, so $e\in f^{-1}(B)$.\\[.1cm]
+\indent\indent\indent So by definition, $f(e)\in B$, so $f(e)\in A\cup B$.\\[.1cm]
+\indent\indent\indent So by definition, $e\in f^{-1}(A\cup B)$.\\[.1cm]
+\indent Thus, we have that $(f^{-1}(A)\cup f^{-1}(B))\subseteq f^{-1}(A\cup B)$.\\[.15cm]
+\indent Since $f^{-1}(A\cup B)\subseteq(f^{-1}(A)\cup f^{-1}(B))$ and $(f^{-1}(A)\cup f^{-1}(B))\subseteq f^{-1}(A\cup B)$, so we have that $f^{-1}(A\cup B) = (f^{-1}(A)\cup f^{-1}(B))$.\\[.15cm]
+\indent Q.E.D.\\[.3cm]
+(b) \\[.15cm]
+\indent We would show two parts: (1) $f^{-1}(A\cap B)\subseteq(f^{-1}(A)\cap f^{-1}(B))$; and (2) $(f^-1(A)\cap f^{-1}(B))\subseteq f^{-1}(A\cap B)$.\\[.1cm]
+\indent Part (1): For any element $e\in f^{-1}(A\cap B)$, by definition of inverse images, so $f(e)\in A\cap B$, so $f(e)\in A$ and $f(e)\in B$. Since $f(e)\in A$, by definition, so $e\in f^{-1}(A)$. Similarly, $e\in f^{-1}(B)$. So we have $e\in (f^{-1}(A)\cap f^{-1}(B))$, which implies that $f^{-1}(A\cap B)\subseteq(f^{-1}(A)\cap f^{-1}(B))$.\\[.1cm]
+\indent Part (2): For any element $e\in (f^{-1}(A)\cap f^{-1}(B))$, so $e\in f^{-1}(A)$ and $e\in f^{-1}(B)$. Since $e\in f^{-1}(A)$, so by definition of inverse images, $f(e)\in A$. Similarly, $f(e)\in B$. So $f(e)\in A\cap B$. So by definition, $e\in f^{-1}(A\cap B)$, which implies that $(f^-1(A)\cap f^{-1}(B))\subseteq f^{-1}(A\cap B)$.\\[.1cm]
+\indent Since $f^{-1}(A\cap B)\subseteq(f^{-1}(A)\cap f^{-1}(B))$ and $(f^{-1}(A)\cap f^{-1}(B))\subseteq f^{-1}(A\cap B)$, so we have that $f^{-1}(A\cap B) = (f^{-1}(A)\cap f^{-1}(B))$.\\[.15cm]
+\indent Q.E.D.\\[.3cm]
+(c)\\[.15cm]
+\indent We would show two parts: (1) $f^{-1}(A\setminus B)\subseteq(f^{-1}(A)\setminus f^{-1}(B))$; and (2) $(f^-1(A)\setminus f^{-1}(B))\subseteq f^{-1}(A\setminus B)$.\\[.1cm]
+\indent Part (1): For any element $e\in f^{-1}(A\setminus B)$, by definition of inverse images, so $f(e)\in A\setminus B$, so $f(e)\in A$ and $f(e)\notin B$. Since $f(e)\in A$, by definition, so $e\in f^{-1}(A)$. Similarly, $e\notin f^{-1}(B)$. So we have $e\in (f^{-1}(A)\setminus f^{-1}(B))$, which implies that $f^{-1}(A\setminus B)\subseteq(f^{-1}(A)\setminus f^{-1}(B))$.\\[.1cm]
+\indent Part (2): For any element $e\in (f^{-1}(A)\setminus f^{-1}(B))$, so $e\in f^{-1}(A)$ and $e\notin f^{-1}(B)$. Since $e\in f^{-1}(A)$, so by definition of inverse images, $f(e)\in A$. Similarly, $f(e)\notin B$. So $f(e)\in A\setminus B$. So by definition, $e\in f^{-1}(A\setminus B)$, which implies that $(f^-1(A)\setminus f^{-1}(B))\subseteq f^{-1}(A\setminus B)$.\\[.1cm]
+\indent Since $f^{-1}(A\setminus B)\subseteq(f^{-1}(A)\setminus f^{-1}(B))$ and $(f^{-1}(A)\setminus f^{-1}(B))\subseteq f^{-1}(A\setminus B)$, so we have that $f^{-1}(A\setminus B) = (f^{-1}(A)\setminus f^{-1}(B))$.\\[.15cm]
+\indent Q.E.D.\\[.3cm]
+(d) \\[.15cm]
+\indent We would show two parts: (1) $f(A\cup B)\subseteq(f(A)\cup f(B))$; and (2) $(f(A)\cup f(B))\subseteq f(A\cup B)$.\\[.1cm]
+\indent Part (1): Consider any element $e\in f(A\cup B)$. By definition of images, so there exists some $x\in A\cup B$ such that $e = f(x)$. WLOG, let $x\in A$. So by definition, $e\in f(A)$, so $e\in f(A)\cup f(B)$, which implies that $f(A\cup B)\subseteq(f(A)\cup f(B))$. \\[.1cm]
+\indent Part (2): Consider any element $e\in f(A)\cup f(B)$. WLOG, let $e\in f(A)$. By definition, so $\exists x\in A$ such that $e = f(x)$. Since $x\in A$, so $x\in A\cup B$, so by definition, $e\in f(A\cup B)$, which implies that $(f(A)\cup f(B))\subseteq f(A\cup B)$. \\[.1cm]
+\indent Thus, we have that $f(A\cup B) = (f(A)\cup f(B))$.\\[.15cm]
+\indent Q.E.D.\\[.3cm]
+(e) \\[.15cm]
+\indent For any element $e\in f(A\cap B)$, by definition of images, so there exists some $x\in A\cap B$ such that $e = f(x)$, so $x\in A$ and $x\in B$. Since $e = f(x)$ and $x\in A$, again by definition, we have $e\in f(A)$. Similarly, $e\in f(B)$, so $e\in f(A)\cap f(B)$, which implies that $f(A\cap B)\in f(A)\cap f(B)$.\\[.15cm]
+\indent An example where the equality does not hold:\\[.1cm]
+\indent\indent Consider $f(x) = x^2, A = \{0, 2\}, B = \{0, -2\}$.\\[.1cm]
+\indent\indent So $A\cap B = \{0\}$. By definition of images, we have $f(A\cap B) = \{0\}, f(A) = \{0, 4\}, f(B) = \{0, 4\}$,\\
+\indent\indent so $f(A)\cap f(B) = \{0, 4\}$, which gives that $f(A\cap B)\ne f(A)\cap f(B)$.\\[.15cm]
+\indent Q.E.D.\\[.3cm]
+(f) \\[.15cm]
+\indent For any element $e\in f(A)\setminus f(B)$, so $e\in f(A)$ and $e\notin f(B)$. By definition of images, there exists some $x\in A$ such that $e = f(x)$. Similarly, there's no such $y\in B$ such that $e = f(y)$, which implies that $x\notin B$, which means that $x\in A\setminus B$. And since $e = f(x)$, so by definition, $e\in f(A\setminus B)$, which implies that $f(A\setminus B)\supseteq f(A)\setminus f(B)$.
+\\[.15cm]
+\indent An example where the equality does not hold:\\[.1cm]
+\indent\indent Consider $f(x) = x^2, A = \{0, 2\}, B = \{-2\}$.\\[.1cm]
+\indent\indent So $A\setminus B = \{0, 2\}$. By definition of images, we have $f(A\setminus B) = \{0, 4\}, f(A) = \{0, 4\}, f(B) = \{4\}$,\\
+\indent\indent so $f(A)\setminus f(B) = \{0\}$, which gives that $f(A\setminus B)\ne f(A)\setminus f(B)$.\\[.15cm]
+\indent Q.E.D.
+
+\end{document}

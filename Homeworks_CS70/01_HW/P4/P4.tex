@@ -1,0 +1,23 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=3cm]{geometry}
+\usepackage{amssymb}
+\begin{document}
+{\Large 4 Proof by?} \\[.3cm]
+(a) \\[.15cm]
+We proceed by contradiction. Assume that the proposition is false, which means that for some $x,y\in\mathbb{Z}, (10\nmid xy)$, and that $((10\mid x)$ or $(10\mid y))$. Let our assertion $R$ state that $10\nmid xy$.\\[.1cm]
+Without loss of generality, let $10\mid x$, so let $x = 10k,\ k\in\mathbb{Z}$. So $xy = 10ky = 10(ky)$ where $ky\in\mathbb{Z}$, which by definition, means that $10\mid xy$. This implies $\neg R$.\\[.1cm]
+We conclude that $R\land\neg R$ holds; thus, we have a contradiction, as desired.\\[.1cm]
+Q.E.D.\\[.15cm]
+I used Proof by Contradiction.\\[.3cm]
+(b) \\[.15cm]
+Prove. The contrapositive proposition is: $(\forall x,y\in\mathbb{Z})\ ((10\mid x)\lor (10\mid y))\Longrightarrow (10\mid xy)$.\\[.15cm]
+As shown in part (a) above, if $((10\mid x)\lor (10\mid y))$, then $10\mid xy$. Thus, the contrapositive is true.\\[.1cm]
+Q.E.D.\\[.3cm]
+(c) \\[.15cm]
+Disprove. The converse proposition is: $(\forall x,y\in\mathbb{Z})\ ((10\nmid x)\land (10\nmid y))\Longrightarrow (10\nmid xy)$.\\[.15cm]
+Consider $x = 2, y = 5,$ so $x,y\in\mathbb{Z}$. Since there's no such integer $m,n$ such that $10 * m = 2$ or $10 * n = 5$, so by definition, $x, y$ is not divisble by 10. So $((10\nmid x)\land (10\nmid y))$ is true.\\[.1cm]
+Now, $xy = 2*5 = 10 = 1*10$ where $1\in\mathbb{Z}$, so by definition, $10\mid xy$. So $(10\nmid xy)$ is false.//[.1cm]
+So we have $True\Longrightarrow False$, which shows that the converse is false.\\[.1cm]
+Q.E.D.
+
+\end{document}

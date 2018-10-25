@@ -1,0 +1,18 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=3cm]{geometry}
+\usepackage{amssymb}
+\begin{document}
+
+{\Large 2 A Coin Game} \\[.5cm]
+\textit{Proof.} We proceed by induction on $n.$ \\[.3cm]
+\textit{Base case} $(n = 1)$: Nothing could be split, so the score is always 0, and we have $0 = \frac{1*(1-1)}{2} = 0$.\\
+\textit{Base case} $(n = 2)$: There is only one splitting strategy: splitting 2 coins into two stacks of 1.\\
+\indent\indent\indent\indent\indent\indent So, the score is always $1 * 1 = 1$, and we have $1 = \frac{2*(2-1)}{2} = 1$.\\
+Thus, the base cases are correct.\\[.3cm]
+\textit{Inductive Hypothesis:} Assume that the claim, the score is always $\frac{n(n-1)}{2}$, is true for all $1\leq n\leq k$ for $k\geq 2.$\\[.3cm]
+\textit{Inductive Step:} We prove the claim for $n = k + 1\geq 3.$ Since there is only one stack initially, assume the first turn split it into $x$ and $(n - x)$ coins, with $1\leq x\leq n - 1$, so the score of the first turn is $x(n - x)$ and $x, n - x\leq n - 1 = k$. Thus, the Inductive Hypothesis implies that the stack with $x$ coins would eventually score $\frac{x(x-1)}{2}$, and the stack with $n - x$ coins would eventually score $\frac{(n-x)(n-x-1)}{2}.$ Therefore, the total score would be: $x(n - x) + \frac{x(x-1)}{2} + \frac{(n-x)(n-x-1)}{2} = xn - x^2 + \frac{(x^2 - x) + (n^2 - nx - n - nx + x^2 + x)}{2} =\\=xn - x^2 + \frac{2x^2 + n^2 - 2nx - n}{2} = xn - x^2 + x^2 - nx + \frac{n^2 - n}{2} = \frac{n(n-1)}{2}$, which means that the score is always $\frac{n(n - 1)}{2}.$\\[.3cm]
+Thus, by the principle of mathematical induction, the claim holds.\\[.3cm]
+Q.E.D.
+
+
+\end{document}

@@ -1,0 +1,35 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=3cm]{geometry}
+\usepackage{amssymb}
+\begin{document}
+
+{\Large 2 RSA Practice} \\[.5cm]
+(a) 77 \\[.2cm]
+\indent By the definition of RSA, since $p = 7, q = 11,$ so $N = pq = 7\cdot11 = 77.$ \\[.5cm]
+(b) 60 \\[.2cm]
+\indent By the definition of RSA, $e$ is relatively prime to $(p-1)(q-1)$. Since $p = 7, q = 11,$ so $e$ is relatively prime to $(7-1)(11-1) = 6\cdot10 = 60$ \\[.5cm]
+(c) 7 \\[.2cm]
+\indent Consider the list of primes from the smallest, which is the sequence $2, 3, 5, 7,\cdot\cdot\cdot$. Now, since $e$ needs to be relatively prime to $60 = 2^2\cdot3\cdot5$, so none of $2, 3, 5$ is relatively prime to 60, and with $7$ being relatively prime to 60, so the smallest possible prime is $e = 7.$ \\[.5cm]
+(d) 1 \\[.2cm]
+\indent Since by definition of RSA, $e$ and $(p-1)(q-1)$ are relatively prime, so it's equivalent to that gcd$(e, (p-1)(q-1)) = 1.$ \\[.5cm]
+(e) 43 \\[.2cm]
+Since we have $7\cdot17 = 119 = 120 - 1 = 60\cdot2 - 1,$ so $7\cdot17\equiv-1\pmod{60}$. With $7\cdot60\equiv0\pmod{60}$, so we have $7\cdot43 = 7\cdot60-7\cdot17\equiv0-(-1)\equiv1\pmod{60},$ which means that $7^{-1}\equiv43\pmod{60}.$ By definition of RSA, $d$ is the inverse of $e$ mod $(p-1)(q-1)$, so $d = 43.$ \\[.5cm]
+(f) 2 \\[.2cm]
+By definition of RSA, when Alice wants to send Bob the message 30, where we have $e = 7, N = 77$ from parts (a) and (c), then she computes and sends $E(30) = 30^7$ mod 77. Now, since: \\[.1cm]
+$ 30^1\equiv30\pmod{77}, \\[.1cm]
+30^2 = 900 = 77\cdot12 - 24\equiv-24\pmod{77}, \\[.1cm]
+30^4\equiv(-24)^2 = 576 = 77\cdot7 + 37\equiv37\pmod{77},$ \\[.1cm]
+so we have that $30^7 = 30\cdot30^2\cdot30^4\equiv 30\cdot(-24)\cdot37 = (-720)\cdot37 = (77\cdot(-11) + 50)\cdot37\equiv 50\cdot37 = 1850 = 77\cdot24 + 2\equiv 2 \pmod{77},$ which means that Alice would send 2. \\[.5cm]
+(g) 30. \\[.2cm]
+By definition of RSA, the message Bob recover from the encrypted message should be exactly the same as the original message of Alice, 30. I'll show below that this works as intended. \\[.1cm]
+If $y = 2$ is the message Bob received, and with the $d = 43$ calculated in part (e) and $N = 77$, then by applying $D(y) = y^d = 2^{43}$ mod 77, he could recover the original message ($x = 30$). Now, since: \\[.1cm]
+$2^1\equiv2\pmod{77},\ 
+2^2 = 4\equiv4\pmod{77},\ 
+2^4 = 16\equiv16\pmod{77}, \\[.1cm]
+2^8\equiv16^2 = 256 = 77\cdot3 + 25\equiv25\pmod{77}, \\[.1cm]
+2^16\equiv25^2 = 625 = 77\cdot8 + 9\equiv9\pmod{77}, \\[.1cm]
+2^32\equiv9^2 = 81 = 77 + 4\equiv4\pmod{77}, $ \\[.1cm]
+so we have that $2^{43} = 2^{32+8+2+1} = 2^{32}\cdot2^8\cdot2^2\cdot2^1\equiv 4\cdot25\cdot4\cdot2 = 800 = 77\cdot10 + 30\equiv30\pmod{77}$. \\[.1cm]
+Thus, with $y = 2,$ then $D(y) = 30 = x$, as desired.
+
+\end{document}

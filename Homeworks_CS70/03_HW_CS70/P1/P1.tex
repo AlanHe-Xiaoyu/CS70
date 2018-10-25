@@ -1,0 +1,22 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=3cm]{geometry}
+\usepackage{amssymb}
+\begin{document}
+
+I worked alone without getting any help, except asking questions on Piazza and reading the Notes of this course. \\[1cm]
+{\Large 1 Short Answer: Graphs} \\[.5cm]
+(a) 3 \\[.3cm]
+\indent Since there is no loop in a tree by definition, so a degree 3 node $n$ would be connecting to 3 other nodes, $n_1, n_2, n_3$, such that no two nodes among $n_1, n_2, n_3$ would be connected after $n$ is removed (or else there would be a loop). Thus, $n_1, n_2, n_3$ are in three different parts, and since a tree is connected by definition, so the 3 parts $n_1, n_2, n_3$ are in, respectively, must be the only 3 connected components. \\[.5cm]
+(b) 7 \\[.3cm]
+\indent For a $n$-vertex tree, $G$, by definition, $G$ is connected and has $n - 1$ edges. So, after Bob's and Alice's movements, there would be $n - 1 + 10 - 5 = n + 4$ edges in $G.$ On the other hand, since the resulting graph has three connected components, $C_1, C_2, C_3$ and assume each component has $n_1, n_2, n_3$ vertices, respectively. WLOG, consider component $C_1$, which has $n_1$ vertices. Since we want to remove all cycles in the resulting graph (with minimum removal), by the fourth equivalent definition of a tree, the optimal option is to turn $C_1$ into a tree, which would make it have $n_1 - 1$ edges. Similarly, the final $C_2$ and $C_3$ should have $n_2 - 1$ and $n_3 - 1$ edges, respectively. \\[.3cm]
+\indent Then, since we are considering graph $G,$ so the number of vertices remains the same, which means that $n_1 + n_2 + n_3 = n.$ Thus, the total number edges after removing all cycles would be $n_1 - 1 + n_2 - 1 + n_3 - 1 = n_1 + n_2 + n_3 - 3 = n - 3$ edges. Thus, this implies that we need to remove $(n + 4) - (n - 3) = 7$ edges.
+\\[.5cm]
+(c) False \\[.3cm]
+\indent Consider $n = 3$ as a counterexample. For $K_3$, the complete graph on 3 vertices forms a triangle, so $K_3$ has 3 edges. On the other hand, using Lemma 5.1, the number of edges in a 3-dimensional hypercube is $3 * 2^{3-1} = 3 * 2^2 = 12.$ Since when $n = 3, 3 < 12,$ so the proposition is false. \\[.5cm]
+(d) $\frac{n - 1}{2}$ \\[.3cm]
+\indent For a complete graph with $n$ vertices, by definition, every pair of vertices is connected, so we have that the degree of every vertex is $n - 1$, and since there are $n$ vertices, with each edge connecting 2 vertices (or contributing 2 degrees), so there are $\frac{n(n - 1)}{2}$ edges in the graph. On the other hand, by definition of a Hamiltonian cycle, since each vertex appears exactly once and that there is a final edge connecting the first and last same vertex, so there would be $n - 1 + 1 = n$ edges in each Hamiltonian cycle. Then, desiring the least number of Hamiltonian cycles, we expect them to all be edge-disjoint. Therefore, $x$, the number of Hamiltonian cycles needed to cover the complete graph is at least $\frac{\frac{n(n - 1)}{2}}{n} = \frac{n(n - 1)}{2}.$ \\[.5cm]
+(e) A set of \textbf{two} Hamiltonian cycles, $H_1$ and $H_2.$ \\[.3cm]
+\indent $H_1 = \Big\{ \big(0, 1\big), \big(1, 2\big), \big(2, 3\big), \big(3, 4\big), \big(4, 0\big) \Big\}$ \\[.3cm]
+\indent $H_2 = \Big\{ \big(0, 2\big), \big(2, 4\big), \big(4, 1\big), \big(1, 3\big), \big(3, 0\big) \Big\}$
+
+\end{document}

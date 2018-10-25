@@ -1,0 +1,15 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=3cm]{geometry}
+\usepackage{amssymb}
+\begin{document}
+
+{\Large 3 Grid Induction} \\[.5cm]
+\textit{Proof.} We proceed by induction on $n$, where $n = i + j,$ and we call it the ``distance'' between Pacman and $(0,0).$ \\[.3cm]
+\textit{Base case} $(n = 0)$: Considering the restraints, so $i = j = 0$, so Pacman ends at $(0,0)$ \\
+Thus, the base case is correct.\\[.3cm]
+\textit{Inductive Hypothesis:} Assume that, for arbitrary $n = k \geq 0$, the claim, Pacman would reach $(0,0)$ in finite time, is true.\\[.3cm]
+\textit{Inductive Step:} We prove the claim for $n = k + 1\geq 1.$ Let Pacman be at position $(i_1, j_1), i_1 + j_1 = k + 1.$ Since Pacman only has two options, either walk one step down or walk one step to the left, which means that his position after one unit time is either $(i_1, j_1 - 1)$ or $(i_1 - 1, j_1)$. Moreover, Pacman's constraints tell us that he has to stay in the first quadrant, which means that at any time, let his location be $(i^*, j^*)$, then $i^*, j^* >= 0$. So, after one unit time, his ``distance'' is always $i_1 + j_1 - 1 = k + 1 - 1 = k$. Thus, the Inductive Hypothesis implies that he'll reach $(0,0)$ from here within finite time. Therefore, Pacman would reach $(0,0)$ in finite time for $n = k + 1$.\\[.3cm]
+Thus, by the principle of mathematical induction, the claim holds.\\[.3cm]
+Q.E.D.
+
+\end{document}

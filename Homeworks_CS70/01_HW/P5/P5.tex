@@ -1,0 +1,39 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=3cm]{geometry}
+\usepackage{amssymb}
+\begin{document}
+{\Large 5 Proof or Disprove} \\[.3cm]
+(a) Prove. Direct Proof\\[.15cm]
+\indent Let $n\in\mathbb{N}$ be an odd number, so let $n = 2k + 1, k\in\mathbb{N}$.\\[.1cm]
+\indent So $n^2 + 2n = (2k + 1)^2 + 2 * (2k + 1) = 4k^2 + 4k + 1 + 4k + 2 = 4k^2 + 8k + 3 = 2 * (2k^2 + 4k + 1) + 1$
+\indent Since $k\in\mathbb{N}$, so $(2k^2 + 4k + 1)\in\mathbb{N}$, so $n^2 + 2n$ is odd.\\[.1cm]
+\indent Thus, the proposition is true.\\[.1cm]
+\indent Q.E.D.\\[.15cm]
+(b) Prove. Proof by Cases\\[.15cm]
+\indent Let $x, y\in\mathbb{R}$. We proceed by cases. Let us divide our proof into two cases, exactly one of which must be true: (1) $x >= y$; or (2) $x < y$.\\[.1cm]
+\indent Case (1): Since $x >= y,$ so $|x - y| = x - y$ and min$(x, y) = y.$\\[.1cm]
+\indent\indent So $(x + y - |x - y|)/2 = (x + y - x + y)/2 = (2y)/2 = y = $ min$(x,y)$\\[.1cm]
+\indent Case (2): Since $x < y$, so $|x - y| = - x + y$, and min$(x,y) = x$\\[.1cm]
+\indent\indent So $(x + y - |x - y|)/2 = (x + y + x - y)/2 = (2x)/2 = x = $ min$(x,y)$\\[.1cm]
+\indent Thus, min$(x,y) = (x + y - |x - y|)/2$\\[.1cm]
+\indent Q.E.D.\\[.15cm]
+(c) Prove. Proof by Contradiction\\[.15cm]
+\indent We proceed by contradiction. Assume that the proposition is false, which means that for some $a,b\in\mathbb{R}, (a + b <= 10)$, and that $((a <= 7)$ or $(b <= 3))$ is false. Let our assertion $R$ state that $(a + b <= 10)$.\\[.1cm]
+\indent Since $((a <= 7)$ or $(b <= 3))$ is false, so $(a > 7)$ and $(b > 3)$. So $a + b > 7 + 3 > 10$.\\[.1cm]
+\indent This implies $\neg R$. We conclude that $R\land\neg R$ holds; thus, we have a contradiction, as desired.\\[.1cm]
+\indent Thus, the proposition is true.\\[.1cm]
+\indent Q.E.D.\\[.15cm]
+(d) Prove. Proof by Contradiction\\[.15cm]
+\indent We proceed by contradiction. Assume that the proposition is false, which means that for some $r\in\mathbb{R}$, $r$ is irrational and $r + 1$ is rational. Let our assertion $R$ state that $r$ is irrational.
+Since $r + 1$ is rational, by definition, let $r + 1 = \frac{p}{q}$ such that $p,q\in\mathbb{Z}$. So $r = r + 1 - 1 = \frac{p}{q} - 1 = \frac{p - q}{q}$. Since $p - q, q\in\mathbb{Z}$, so by definition, $r$ is rational.\\[.1cm]
+\indent This implies $\neg R$. We conclude that $R\land\neg R$ holds; thus, we have a contradiction, as desired.\\[.1cm]
+\indent Thus, the proposition is true.\\[.1cm]
+\indent Q.E.D.\\[.15cm]
+(e) Disprove.\\[.15cm]
+\indent Consider $n = 6\in\mathbb{Z^+}$.\\[.1cm]
+\indent So $10n^2 = 10*6^2 = 360$, and $n! = 6! = 720$.\\[.1cm]
+\indent Since $360 < 720$, so $10n^2 > n!$ is false for $n = 6\in\mathbb{Z^+}$.\\[.1cm]
+\indent Thus, the proposition is false.\\[.1cm]
+\indent Q.E.D.
+
+\end{document}

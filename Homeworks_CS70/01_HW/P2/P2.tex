@@ -1,0 +1,73 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=3cm]{geometry}
+\usepackage{amssymb}
+\begin{document}
+{\Large 2 Miscellaneous Logic} \\[.3cm]
+(a)\\
+
+(i) Possibly true. \\[.15cm]
+\indent\indent false example:\\
+\indent\indent\indent\indent
+Let $G(x, y): y = x + 2$, so $(\forall x\in \mathbb{R})(\exists y\in \mathbb{R})$ is true for $G(x, y)$.\\
+\indent\indent\indent\indent
+However, since $3 + 2 = 5 \ne 4$, so $G(3, 4)$ is false.
+
+\indent\indent true example:\\
+\indent\indent\indent\indent
+Let $G(x, y): y = x + 1$, so $(\forall x\in \mathbb{R})(\exists y\in \mathbb{R})$ is true for $G(x, y)$.\\
+\indent\indent\indent\indent
+And, since $3 + 2 = 4$, so $G(3, 4)$ is true.\\[.15cm]
+
+(ii) Possibly true. \\[.15cm]
+\indent\indent false example:\\
+\indent\indent\indent\indent
+Let $G(x, y): y = x + 2$, so $(\forall x\in \mathbb{R})(\exists y\in\mathbb{R})$ is true for $G(x, y)$.\\
+\indent\indent\indent\indent
+However, consider $x = 0$.\\
+\indent\indent\indent\indent
+Since $0 + 2 = 2 \ne 3$, so $(\forall x\in\mathbb{R})\ G(x, 3)$ is false.
+
+\indent\indent true example:\\
+\indent\indent\indent\indent
+Let $G(x, y): y = 3$, so $(\forall x\in \mathbb{R})(\exists y\in \mathbb{R})$ is true for $G(x, y)$.\\
+\indent\indent\indent\indent
+Since the statement given indicates that $y$ is always 3,\\
+\indent\indent\indent\indent
+So, $(\forall x\in\mathbb{R})\ G(x, 3)$ is true. \\[.15cm]
+
+(iii) Certainly true. \\[.15cm]
+\indent\indent
+Since the statement given, $(\forall x\in \mathbb{R})(\exists y\in \mathbb{R})\ G(x, y)$, is true, and since\\
+\indent
+$3\in\mathbb{R}$, so there must exist a $y\in\mathbb{R}$ such that $G(3, y)$ is true. Thus, $\exists y\ G(3,y)$\\
+\indent
+is a true statement.\\[.15cm]
+
+(iv) Certainly false. \\[.15cm]
+\indent\indent
+Since the statement given, $(\forall x\in \mathbb{R})(\exists y\in \mathbb{R})\ G(x, y)$, is true, and since\\
+\indent
+$3\in\mathbb{R}$, so there must exist a $y\in\mathbb{R}$ such that $G(3, y)$ is true, which means that $\forall y\ \neg G(3,y)$ is a \indent false statement.\\[.15cm]
+
+(v) Possibly true. \\[.15cm]
+\indent\indent false example:\\
+\indent\indent\indent\indent
+Let $G(x, y): y = 3$, so $(\forall x\in \mathbb{R})(\exists y\in\mathbb{R})$ is true for $G(x, y)$.\\
+\indent\indent\indent\indent
+So $\forall x\in\mathbb{R},\ y = 3 $, which means that there's no $x$ such that $y = 4$.\\
+\indent\indent\indent\indent
+So $\exists x\ G(x, 4)$ is false.
+
+\indent\indent true example:\\
+\indent\indent\indent\indent
+Let $G(x, y): y = x + 2$, so $(\forall x\in \mathbb{R})(\exists y\in \mathbb{R})$ is true for $G(x, y)$.\\
+\indent\indent\indent\indent
+Consider $x = 2, x \in\mathbb{R}$.\\
+\indent\indent\indent\indent
+Since 2 + 2 = 4, so $\exists x\ G(x, 4)$ is true. \\[.3cm]
+(b)\\
+
+$\Big(X\lor Y\lor Z\Big) \land \Big(\ \neg\ (X\land Y)\lor(Y\land Z)\lor(Z\land X) \Big)$
+
+
+\end{document}

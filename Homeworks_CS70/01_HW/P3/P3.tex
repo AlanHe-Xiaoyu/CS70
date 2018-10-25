@@ -1,0 +1,36 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=3cm]{geometry}
+\usepackage{amssymb}
+\begin{document}
+{\Large 3 Propositional Practice} \\[.3cm]
+(a) $(\exists x\in\mathbb{R})\ (x\notin\mathbb{Q})$\\[.15cm]
+\indent True.\\
+\indent Consider $x = \pi$. $\pi\in\mathbb{R}$, and $\pi\notin\mathbb{Q}$, so the proposition is true.\\[.3cm]
+(b) $(\forall x\in\mathbb{Z})\ \bigg(\Big((x\in\mathbb{N})\lor(x<0)\Big)\land \Big(\neg\big((x\in\mathbb{N})\land(x<0)\big)\Big) \bigg)$\\[.15cm]
+\indent True.\\
+\indent Let $x\in\mathbb{Z}$, so $x>=0$ or $x<0$, but not both.\\
+\indent If $x>=0$, then x is a natural number; if $x<0$, then x is negative; $x$ can't be both.\\
+\indent Thus, the proposition is true.\\[.3cm]
+(c) $(\forall x\in\mathbb{N})\ \big((6\mid x)\Longrightarrow((2\mid x)\lor (3\mid x))\big)$\\[.15cm]
+\indent True.\\
+\indent Let $x\in\mathbb{N}$, $x = 6*k$, so $k\in\mathbb{N}$\\
+\indent So $x = 2*(3k)$ where $3k\in\mathbb{N}$, which means that $2\mid x$\\
+\indent So $((2\mid x)\lor (3\mid x))$ is true, which means that the proposition is true.\\[.3cm]
+(d) All real numbers are complex numbers.\\[.15cm]
+\indent True.\\
+\indent Let $x\in\mathbb{R}$, so $x = x + 0*i$, and since $x, 0\in\mathbb{R}$,\\
+\indent So by definition of complex numbers, $x$ is a complex number.\\[0.3cm]
+(e) If an integer is divisible by 2 or is divisble by 3, then it is divisible by 6.\\[.15cm]
+\indent False.\\
+\indent Consider $x$ = 2, so $x$ is an integer.\\
+\indent Since $x$ is divisible by 2, so it is divisible by 2 or by 3.\\
+\indent However, there's no such integer $a$ such that $2 * a = 6$\\
+\indent So by definition, $x$ is not divisble by 6, so the proposition is false.\\[0.3cm]
+(f) If a natural number is greater than 7, then it can be expressed as the sum of two natural numbers.\\[.15cm]
+\indent True.\\
+\indent Let $x\in\mathbb{N}, x > 7$\\
+\indent Consider $a = 0, b = x$, so $a, b\in\mathbb{N}$\\
+\indent Thus, since $a + b = 0 + x = x$, so the proposition is true.
+
+
+\end{document}

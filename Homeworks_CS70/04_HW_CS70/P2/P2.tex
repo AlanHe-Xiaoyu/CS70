@@ -1,0 +1,51 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=3cm]{geometry}
+\usepackage{amssymb}
+\begin{document}
+
+{\Large 2 Euclid's Algorithm} \\[.5cm]
+(a) gcd(527, 323) = \textbf{17} \\[.3cm]
+\begin{tabular}{ | c || c | c | }
+\hline
+Step (Recursive Call) & x & y \\
+\hline
+1 & 527 & 323 \\
+\hline
+2 & 323 & 204 \\
+\hline
+3 & 204 & 119 \\
+\hline
+4 & 119 & 85 \\
+\hline
+5 & 85 & 34 \\
+\hline
+6 & 34 & 17 \\
+\hline
+7 & 17 & 0 \\
+\hline
+\end{tabular}\\[.3cm]
+And then 17 would be returned, so the greatest common divisor is 17. \\[.5cm]
+(b) $5^{-1}\equiv\textbf{11}\pmod{27}$ \\[.3cm]
+We would like to implement the extended Euclid's algorithm on 27 and 5. \\[.3cm]
+\begin{tabular}{ | c || c | c | c | }
+\hline
+Step (Recursive Call) & x & y & Return \\
+\hline
+1 & 27 & 5 & $(1, -2, 11)$ \\
+\hline
+2 & 5 & 2 & $(1, 1, -2)$ \\
+\hline
+3 & 2 & 1 & $(1, 0, 1)$ \\
+\hline
+4 & 1 & 0 & $(1, 1, 0)$ \\
+\hline
+\end{tabular}\\[.3cm]
+And then $(1, -2, 11)$ would be returned, so we have that gcd$(27, 5) = 1 = -2 * 27 + 11 * 5.$ \\[.1cm]
+Thus, $5^{-1}\equiv11\pmod{27}.$ \\[.5cm]
+(c) $x = \textbf{17}$ \\[.3cm]
+Since we have that $5x + 26\equiv3\pmod{27},$ so we have that $5x\equiv-23\equiv4\pmod{27}.$ Then, since we have from part (b) that $5^{-1}\equiv11\pmod{27},$ which is equivalent to $5*11\equiv1\pmod{27},$ so we have that $5 * 11 * 4\equiv4\pmod{27}.$ Thus, $x = 11 * 4 = 44\equiv17\pmod{27},$ so $x = 17.$ \\[.5cm]
+(d) Disprove \\[.3cm]
+I will proceed by providing a counterexample. Consider $a = 1, b = 0, c = 1, x = 0.$ \\[.1cm]
+For any $x\in\mathbb{Z},$ we have that $ax = 1x = cx + 0,$ which means that $ax$ mod $c$ would always be 0, which implies that $a$ has no multiplicative inverse mod $c,$ as indicated by the hypothesis of our preposition. Then, consider $x = 0,$ by definition of modular arithmetic, we have that $ax = 1*0 = 0\equiv b\pmod{c},$ so $x = 0$ is a solution to the equation $ax\equiv b\pmod{c}.$ Thus, $a = 1, b = 0, c = 1, x = 0$ is a counterexample.
+
+\end{document}

@@ -1,0 +1,44 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=3cm]{geometry}
+\usepackage{amssymb}
+\begin{document}
+
+{\Large 4 Stable Marriage} \\[.5cm]
+(a)\\[.3cm]
+\begin{tabular}{ | c | c | c | }
+\hline
+Stages & Women & Men \\
+\hline
+& 1 & {\large\textbf{A}}, B, C \\
+1 & 2 & \\
+& 3 & {\large\textbf{D}} \\
+& 4 & \\
+\hline
+& 1 & {\large\textbf{A}} \\
+2 & 2 & \\
+& 3 & {\large\textbf{B}}, C, D \\
+& 4 & \\
+\hline
+& 1 & {\large\textbf{D}}, A \\
+3 & 2 & {\large\textbf{C}}\\
+& 3 & {\large\textbf{B}} \\
+& 4 & \\
+\hline
+& 1 & {\large\textbf{D}} \\
+4 & 2 & {\large\textbf{A}} \\
+& 3 & {\large\textbf{B}} \\
+& 4 & {\large\textbf{C}} \\
+\hline
+\end{tabular}\\[.3cm]
+Thus, the algorithm outputs the stable pairing: \{(A, 2), (B, 3), (C, 4), (D, 1)\}.\\[.5cm]
+(b) \\[.3cm]
+\indent Under the traditional Stable Matching algorithm, using Theorem 4.2, which states that ''the pairing output by the Stable Marriage algorithm is male optimal,'' and using my proof and results from Problem 5, which gives that ``no two men can have the same optimal partner,'' so we have that the pairing $P$ produced by the traditional algorithm is unique, and is male optimal.\\[.2cm]
+\indent Now, consider a new algorithm with the relaxed rules. We claim that it is also male optimal.\\[.2cm]
+\indent Suppose for sake of contradiction that the pairing is not male optimal. We first define that the $k^{th}$ round of proposal for a man means that this is his $k^{th}$ proposal. Then, there exists a round of proposal during which some man was rejected by his optimal woman; let round $k$ be the first such round. On this round of proposal, let man $M$ be rejected by his optimal partner, $W$, who chose man $M^*$ instead. Yet, by the definition of optimal partner, so there must exist a stable pairing $T$ in which $M$ and $W$ are paired together. Suppose $T$ looks like this: $\{..., (M, W), ..., (M^*, W'), ...\}.$ We will argue that $(M^*, W)$ is a rogue couple in $T$, thus contradicting stability.\\[.2cm]
+\indent First, by our assumption, $W$ prefers $M$ to $M^*$ since she chose $M^*$ over $M$. Moreover, since the $k^{th}$ round is the first round when some man got rejected by his optimal woman, so by the $k^{th}$ round, $M^*$ hasn't been rejected by his optimal woman, which means that $M^*$ prefers $W$ to his optimal partner. Thus, by definition of optimal partner for a man, $M^*$ prefers $W$ to $W'$ (his partner in the stable pairing $T$).\\[.3cm]
+\indent Therefore, $(M^*, W)$ will form a rogue couple in $T$, and so $T$ is not stable. Thus, we have a contradiction, implying that the pairing by this new algorithm (relaxed rules for men) is still male optimal.\\[.3cm]
+\indent Again, using my proof and results from Problem 5, which gives that ``no two men can have the same optimal partner,'' so we have that the pairing $P^*$ produced by the new algorithm is unique, and is male optimal, which implies that pairing $P$ is the same as $P^*.$ Thus, the modification will not change what pairing the algorithm outputs.\\[.5cm]
+Q.E.D.
+
+
+\end{document}

@@ -1,0 +1,30 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=3cm]{geometry}
+\usepackage{amssymb}
+\begin{document}
+
+{\Large 2 Eulerian Tour and Eulerian Walk} \\[.5cm]
+(a) No, there isn't. \\[.3cm]
+\indent Consider vertex 3, which has a degree of 3, so it's not even degree, which means that the graph $G$ is not even degree. Using Theorem 5.1, an undirected graph $G$ has an Eulerian tour if and only if $G$ is even degree and connected, so there isn't an Eulerian tour in the graph. \\[.5cm]
+(b) Yes, there is. \\[.3cm]
+\indent Consider a walk $W$: \{3, 4\}, \{4, 2\}, \{2, 3\}, \{3, 1\}, \{1, 4\}, \{4, 8\}, \{8, 1\}, \{1, 2\}, \{2, 6\}, \{6, 1\}, \{1, 7\}, \{7, 8\}, \{8, 6\}, \{6, 7\}. \\[.3cm]
+\indent Since $W$ is a walk that uses each edge exactly once, so by definition, $W$ is an Eulerian walk in the graph. \\[.5cm]
+(c) The condition is that there is exactly zero or exactly two vertices with odd degree, and $G$ is connected.\\[.5cm]
+\textit{Proof.} In other words, there is an Eulerian walk in an undirected graph $G$ if and only if there is exactly zero or exactly two vertices with odd degree, and $G$ is connected. To prove this, we must establish two directions: if, and only if.\\[.3cm]
+\textit{Only if.} We give a proof by cases for this situation, i.e., given the assumption that $G$ is connected, and that there is exactly zero or exactly two vertices with odd degree, so there would be two cases: either (1) $G$ has exactly zero odd vertices, or (2) $G$ has exactly two odd vertices. \\[.3cm]
+\indent\textit{Case 1:} Let $G$ have exactly zero odd vertices, which means that $G$ is even degree, then using Theorem 5.1, $G$ has an Eulerian tour. Since by definition, an Eulerian tour is an Eulerian walk, so $G$ has an Eulerian walk. \\[.3cm]
+\indent\textit{Case 2:} Let $u, v$ be the two odd vertices. Just like our proof for Theorem 5.1, we can use a recursive algorithm for finding an Eulerian walk. \\[.1cm]
+\indent Start with $u_0$, we claim a walk $W$ that doesn't use an edge twice, would always get stuck at $v_0$. Just like our proof for the claim in Theorem 5.1, after we leave $u_0$ initially, every vertex in $G$ except for $v_0$ has even degree, which means that whenever we enter a vertex $v^*\neq v_0,$ there is at least one edge we haven't used that's incident to $v^*,$ which means that the walk wouldn't be stuck at $v^*.$
+Thus, the walk would always get stuck at $v_0.$ This walk would not always be an Eulerian walk. However, after the initial walk, the "unused" degrees of all vertices in $G$ is even, so similar to our proof in Theorem 5.1, a walk that starts at an arbitrary vertex $v$ and doesn't use an edge twice would be a cycle that gets stuck at $v.$ Thus, again, similar to our proof in Theorem 5.1, we could always find a set of \textbf{edge disjoint} tours, $T_1, T_2, ..., T_k, k\geq 1$, along with our initial walk $W$ from $u_0$ to $v_0$ that covers all the edges in $G.$ \\[.1cm]
+\indent Then, since $G$ is connected by assumption, so again, similar to our proof in Theorem 5.1, we could splice together $W$ and $T_1, T_2, ..., T_k$ so that it forms an Eulerian walk. \\[.3cm]
+\textit{If.} We give a direct proof for the forward direction, i.e., if an undirected graph $G$ has an Eulerian walk, then $G$ is connected and has exactly 0 or exactly 2 odd degree vertices. \\[.3cm]
+\indent Assume that $G$ has an Eulerian walk $W.$ By definition of Eulerian tours, so every vertex must have an edge adjacent to it, which implies that $G$ is connected. \\[.3cm]
+\indent Then, let $W$ traverse the vertices in this way: $v_0, v_1, ..., v_w.$ Excluding the first and last vertices, for any vertex $v_i, 0<v<w,$ the edges $\{v_{i-1}, v_i\}$ and $\{v_{i}, v_{i+1}\}$ can be paired up. So every time a vertex is reached in the middle of $W,$ there would always be two edges adjacent to it, which implies that all the vertices (except $v_0, v_w$) are even vertices. Now, we divide the situation into two cases, and exactly one of which must be true: (1) $v_0 = v_w$; or (2) $v_0\neq v_w.$ \\[.3cm]
+\indent Case (1): If $v_0 = v_w,$ then by definition, $W$ is a tour, which means that $W$ is an Eulerian tour. Using Theorem 5.1, we have that $G$ is even, which implies that there is 0 odd vertices in $G.$ \\[.3cm]
+\indent Case (2): If $v_0\neq v_w,$ then consider $v_0.$ Suppose it has appeared $k, k\in\mathbb{N}$ times in the walk besides being the initial vertex, then using our proof above, so it has a degree of $2k + 1,$ which is an odd number, so $v_0$ is an odd vertex. Similarly, $v_w$ is also an odd vertex, and they're the only two odd vertices in $G,$ which implies that $G$ has exactly two odd vertices. \\[.3cm]
+\indent Thus, we have proved that if $G$ has an Eulerian walk, then $G$ is connected, and $G$ has exactly zero or exactly two odd vertices. \\[.5cm]
+Therefore, the condition is that there is exactly zero or exactly two vertices with odd degree, and $G$ is connected. \\[.3cm]
+Q.E.D.
+
+\end{document}
+

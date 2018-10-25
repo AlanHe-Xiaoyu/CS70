@@ -1,0 +1,34 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=3cm]{geometry}
+\usepackage{amssymb}
+\begin{document}
+
+{\Large 3 Modular Exponentiation} \\[.5cm]
+(a) 1 \\[.3cm]
+Since $13 = 1 * 12 + 1,$ so we have that $13\equiv1\pmod{12},$ and that $1^{2018} = 1.$ \\[.1cm]
+So, $13^{2018}\equiv1^{2018}\equiv1\pmod{12}.$ \\[.5cm]
+(b) 8 \\[.3cm]
+Since $8^2 = 64 = 7 * 9 + 1,$ so we have that $8^2\equiv1\pmod{9},$ and that again, any power of 1 is 1. \\[.1cm]
+So, $8^{11111} = 8^{2 * 5550 + 1} = (8^2)^{5550} * 8\equiv1*8\equiv8\pmod{9}.$ \\[.5cm]
+(c) 4 \\[.3cm]
+Since we have that: \\[.1cm]
+$7^2 = 49\equiv5\pmod{11}, \\[.1cm]
+7^4\equiv5^2 = 25\equiv3\pmod{11}, \\[.1cm]
+7^8\equiv3^2 = 9\equiv9\pmod{11}, \\[.1cm]
+7^{16}\equiv9^2 = 81\equiv4\pmod{11}, \\[.1cm]
+7^{32}\equiv4^2 = 16\equiv5\pmod{11}, \\[.1cm]
+7^{64}\equiv5^2 = 25\equiv3\pmod{11}, \\[.1cm]
+7^{128}\equiv3^2 = 9\equiv9\pmod{11},$ \\[.1cm]
+Thus, $7^{256}\equiv9^2 = 81\equiv4\pmod{11}.$ \\[.5cm]
+(d) 16 \\[.3cm]
+Since we have that: \\[.1cm]
+$3^2 = 9\equiv9\pmod{23}, \\[.1cm]
+3^4 = 9^2 = 81\equiv12\pmod{23}, \\[.1cm]
+3^8 = 12^2 = 144\equiv6\pmod{23}, \\[.1cm]
+3^{16} = 6^2 = 36\equiv13\pmod{23}, \\[.1cm]
+3^{32} = 13^2 = 169\equiv8\pmod{23}, \\[.1cm]
+3^{64} = 8^2 = 64\equiv18\pmod{23}, \\[.1cm]
+3^{128} = 18^2 = 324 = 14 * 23 + 2\equiv2\pmod{23}.$ \\[.1cm]
+Thus, $3^{160} = 3^{128 + 32} = 3^{128} * 3^{32}\equiv2 * 8\equiv16\pmod{23}.$
+
+\end{document}

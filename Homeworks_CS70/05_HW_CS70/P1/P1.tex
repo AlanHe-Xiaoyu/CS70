@@ -1,0 +1,19 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=3cm]{geometry}
+\usepackage{amssymb}
+\begin{document}
+
+{\Large 1 Quick Computes} \\[.5cm]
+(a) 5 \\[.3cm]
+Since 11 is a prime and $1\leq3\leq11-1=10$, which means that $3\in\{1,2,...,11-1\}$, so using Fermat's Little Theorem, we have that $3^10\equiv1\pmod{11}.$ \\[.1cm]
+Thus, $3^{33} = 3^{10\cdot3+3} = (3^{10})^3\cdot3^3\equiv1^3\cdot27 = 27\equiv5\pmod{11}$ \\[.5cm]
+(b) 5 \\[.3cm]
+Since $10001 = 17\cdot588 + 5$, so $10001^{10001}\equiv5^{10001}\pmod{17}$.
+Again, since 17 is prime and $5\in\{1,2,...,17-1\}$, so using Fermat's Little Theorem, we have that $5^16\equiv1\pmod{17}.$ \\[.1cm]
+Thus, $10001^{10001}\equiv5^{10001}\pmod{17} = 5^{16\cdot625+1} = (5^{16})^{625}\cdot5^1\equiv1^{625}\cdot5\equiv5\pmod{17}$ \\[.5cm]
+(c) 1 \\[.3cm]
+Since $10 = 7\cdot1 + 3, 20 = 7\cdot2 + 6, 30 = 7\cdot4 + 2, 40 = 7\cdot5 + 5$, so $10^{10} + 20^{20} + 30^{30} + 40^{40}\equiv 3^{10} + 6^{20} + 2^{30} + 5^{40}\pmod{7}$ \\[.1cm]
+Then again, since 7 is prime and $3, 6, 2, 5\in\{1,2,...,7-1\}$, so using Fermat's Little Theorem, we have that $3^6\equiv6^6\equiv2^6\equiv5^6\equiv1\pmod{7}$ \\[.1cm]
+Thus, $10^{10} + 20^{20} + 30^{30} + 40^{40}\equiv3^{10} + 6^{20} + 2^{30} + 5^{40}\equiv3^6\cdot3^4 + (6^6)^3\cdot6^2 + (2^6)^5 + (5^6)^6\cdot5^4\equiv1\cdot81 + 1^3\cdot 36 + 1^5 + 1^6\cdot625 = 81 + 36 + 1 + 625 = 743 = 7\cdot106 + 1\cdot1\pmod{7}$ \\[.1cm]
+
+\end{document}

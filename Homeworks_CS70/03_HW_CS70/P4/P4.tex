@@ -1,0 +1,14 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=3cm]{geometry}
+\usepackage{amssymb}
+\begin{document}
+
+{\Large 4 Hypercubes} \\[.5cm]
+(b) Direct Proof \\[.3cm]
+\indent \textit{Proof.} We give a direct proof by providing a bipartition on the set of vertices of $G$ where $G$ is an $n$-dimensional hypercube with $n\geq1.$ We claim that this assignment of vertices would create a valid bipartition: let $L,R$ be two disjoint sets of vertices of $G.$ Let $s_0 = 0^n$ (the $n$-bit string that is entirely comprised of 0) be in $L.$ Then, for any $\{0,1\}^n$ string $s_1$ that has an even number of different bit position compared to $s_0,$ we would have $s_1\in L;$ for any $\{0,1\}^n$ string $s_2$ that has an odd number of different bit position compared to $s_0,$ we would have $s_2\in R.$ \\[.3cm]
+\indent Since by definition of hypercubes, two vertices $x$ and $y$ are connected by edge $\{x, y\}$ if and only if $x$ and $y$ differ in exactly one bit position, and since in our assignment of vertices, WLOG, consider the set $L.$ For any two vertices $u,v\in L,$ we have that $u$ and $v$ would always differ in an even number of bit positions, which implies that $u$ and $v$ would not differ in exactly one bit position, and thus, they wouldn't be connected by an edge. Similarly, for any two vertices in $R$, they wouldn't be connected by an edge. Thus, this assignment of vertices would create vertex disjoint sets $L$ and $R$ such that no 2 vertices in the same set have an edge between them. \\[.3cm]
+Therefore, for any $n\geq1$, the $n$-dimensional hypercube is bipartite.\\[.3cm]
+Q.E.D.
+
+\end{document}
+
