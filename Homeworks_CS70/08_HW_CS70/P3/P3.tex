@@ -1,0 +1,57 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=3cm]{geometry}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{xcolor}
+\begin{document}
+
+{\Large 3 Minesweeper} \\[.5cm]
+{\color{red} (a) (i) $\frac{5}{32}$} \\
+
+The event space of revealing a mine on first click is that the rest $8^2-1 = 63$ squares only have $10-1=9$ mines, and the entire sample space is having 10 mines randomly in 64 squares, so$\mathbb{P}_\text{{mine}} = \frac{\text{Having 9 mines in the rest 63 squares}}{\text{Having 10 mines in 64 squares}}
+= \frac{\binom{63}{9}}{\binom{64}{10}} = \frac{\frac{63!}{9!54!}}{\frac{64!}{10!54!}}
+= \frac{63!\cdot10!}{64!\cdot9!} = \frac{10}{64} = \frac{5}{32}$ \\
+
+Alternatively, the probability should be equivalent to randomly picking one of the 10 squares with a mine in a total 64 squares, so $\mathbb{P} = \frac{10}{64} = \frac{5}{32}$ \\
+
+{\color{red} (ii) $\frac{\binom{55}{10}}{\binom{64}{10}}$ } \\
+
+The probability of revealing a blank space means the 9 squares (with this one as the center) does not contain any mines; in other words, the rest $64-9=55$ squares contain all 10 mines, so
+$\mathbb{P}_\text{{blank}} = \frac{\text{Having 10 mines in the rest 55 squares}}{\text{Having 10 mines in the 64 squares}}
+= \frac{\binom{55}{10}}{\binom{64}{10}}$, which could be further simplied, but will be omitted here. \\
+
+{\color{red} (iii) $\frac{\binom{55}{10-k}\binom{8}{k}}{\binom{64}{10}}$ if $k\in[1, 8]$; and 0 otherwise} \\
+
+Similarly, the probability of revealing a blank space means that the 9 squares (with this one as the center) contains exactly $k$ mines, in other words, the rest $64-9=55$ squares contain the rest of the $(10-k)$ mines, AND that the 8 squares surrounding the square we picked have exactly $k$ mines. Thus, we can consider two cases: (1) $k\in[1, 8]$, or (2) all other values of $k$. Case (1) will be discussed below; and Case (2), by definition of our game, is not possible, and thus have a probability $\mathbb{P} = 0$. \\
+
+Case (1): \\
+
+$\mathbb{P}_k = \frac{\text{Having } (10-k) \text{ mines in the rest 55 squares AND having } k \text{ mines in the 8 surrounding squares}}{\text{Having 10 mines in the 64 squares}} = \frac{\binom{55}{10-k}\binom{8}{k}}{\binom{64}{10}}$ \\[.5cm]
+{\color{red} (b) If $k=1$, then pick a square next to the first pick; if $k\in[2,8]$, then pick another square.} \\
+
+Here, $k\in[1, 8]$. Since the first square you picked revealed the number $k$, so there are exactly $k$ mines in the 8 surrounding squares and $(10-k)$ mines in the rest $64-9=55$ squares. We'll discuss the probability of two choices next. \\
+
+Case (1): Picking a square adjacent to the first pick. So, the probability of picking a mine in this step is just $\frac{k}{8}$. \\
+
+Case (2): Picking a different square (not the surrounding 8). So, the probability of picking a mine in this step is just $\frac{10-k}{55}$. \\
+
+We compare the two choices. We notice that only when $k=1$ do we have $\frac{k}{8} = \frac{1}{8} < \frac{9}{55} = \frac{10-k}{55}$; and in all other cases (i.e. $k\in[2, 8]$), with $k\geq2$, so we have $\frac{10-k}{55} \leq \frac{10-2}{55} < \frac{1}{4} = \frac{2}{8} \leq \frac{k}{8}$. \\
+
+Thus, I should pick a square next to the first pick if $k=1$, and I should pick a different square otherwise, i.e. if $k\in[2,8]$. \\[.5cm]
+{\color{red} (c) $\mathbb{P} = \frac{\binom{52}{6}}{\binom{55}{9}\cdot2}$} \\
+
+First, given that the first square we picked reveals 1, which means that in the 8 surrounding squares, there's one and only one mine. \\
+
+Now, we label the first square we picked as (0,0), and utilize the Cartesian coordinate system, i.e. our second square is (1,0). We divide the problem into two cases, exactly one of them must be true: (1) the mine indicated by our first pick (0,0) is in one of the four squares at $(-1,1), (-1,0), (-1,-1), (1,0)$; or (2) the mine indicated is not in these three positions. \\
+
+Case (1): In this case, our second pick could not reveal the number 4, because a mine at $(-1,1), (-1,0)$ or $(-1,-1)$ means that there's no mine at $(0,1), (1,1), (0,-1), (1,-1)$, and thus, there is a maximum of 3 mines around our second pick, so it couldn't reveal the number 4. Also, a mine at $(1,0)$ means that our second pick will hit the mine, and thus not reveal a number. \\
+
+Case (2): This case has 4 possibilities itself, with the mine at $(0, 1), (0, -1), (1, 1), (1, -1)$. Then, for our second pick to reveal 4, as discussed in Case (1) also, all three squares to the right of our second pick must be mines, i.e. $(2,1), (2,0), (2,-1)$ must all be mines, and that the rest $64-12=52$ squares contain exactly $10-4=6$ mines. Thus, the total number of possible events for our second pick to be 4 with our first pick being 1 is \# of 6 mines in the rest 52 squares times the 4 possible arangements of mines in the 12 focused squares, so $|\omega| = \binom{52}{6}\cdot4$. \\
+
+Now, our $|\omega| = \binom{52}{6}\cdot4$, but our $|\Omega|$ is limited to the situations where our first pick reveals number 1, which is \# 9 mines in the rest $64-9=55$ squares times the 8 possibilities of the mine in the 8 surrounding squares, so $|\Omega| = \binom{55}{9}\cdot8$. \\
+
+Thus, $$\mathbb{P} = \frac{|\omega|}{|\Omega|} = \frac{\binom{52}{6}\cdot4}{\binom{55}{9}\cdot8} = \frac{\binom{52}{6}}{\binom{55}{9}\cdot2}$$
+
+
+\end{document}

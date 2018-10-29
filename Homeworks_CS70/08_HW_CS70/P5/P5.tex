@@ -1,0 +1,66 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=3cm]{geometry}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{xcolor}
+\begin{document}
+
+{\Large 5 Weathermen} \\[.5cm]
+{\color{red} (a) $60.9\%$} \\
+
+We represent snowing as ``S'', not snowing as ``NS'', Tom predicting snow as ``TS'', Tom predicting no snowing as ``TNS''. So, using the given information, we have that the probability of actually snowing in New York is $\mathbb{P}[\text{S}] = 0.1$, and $\mathbb{P}[TS|S] = 0.7, \mathbb{P}[TNS|NS] = 0.95$. \\
+
+Since days that snow and days that don't snow form a partition, and the days that Tom predicts to snow and the days that Tom predicts to not snow form another partition, so we have that
+$$\mathbb{P}[\text{NS}] = 1 - \mathbb{P}[\text{S}] = 0.9$$
+$$\mathbb{P}[TNS|S] = \mathbb{P}[\overline{TS}|S] = 1 - \mathbb{P}[TS|S] = 0.3$$
+$$\mathbb{P}[TS|NS] = \mathbb{P}[\overline{TNS}|NS] = 1 - \mathbb{P}[TNS|NS] = 0.05$$.
+
+So, $\mathbb{P}[TS] =
+\mathbb{P}[TS|S]\mathbb{P}[S] + \mathbb{P}[TS|\overline{S}](1-\mathbb{P}[S]) =
+\mathbb{P}[TS|S]\mathbb{P}[S] + \mathbb{P}[TS|NS](1-\mathbb{P}[S]) =
+0.7\cdot0.1 + 0.05\cdot0.9 = 0.115$ \\
+
+Thus, this problem is asking for the probability $\mathbb{P}[S|TS] = \frac{\mathbb{P}[TS|S]\cdot\mathbb{P}[S]}{\mathbb{P}[TS]} = \frac{0.7\cdot0.1}{0.115} = 0.609 = 60.9\%$, which means that if Tom says that it is going to snow, then the probability it will actually snow is 60.9\%. \\[.5cm]
+{\color{red} (b) 92.5\%} \\
+
+We first have that $\mathbb{P}[TNS] = \mathbb{P}[\overline{TS}] = 1 - \mathbb{P}[TS] = 1 - 0.115 = 0.885$. Then, using the same strategy, we could calculate Tom's accuracy when he predicts no snow: $$\mathbb{P}[NS|TNS] = \frac{\mathbb{P}[TNS|NS]\cdot \mathbb{P}[NS]}{\mathbb{P}[TNS]} = 
+\frac{0.95\cdot0.9}{0.885} = 0.966$$
+
+Thus, $\mathbb{P}[\text{Tom}] = \mathbb{P}[S|TS]\cdot\mathbb{P}[TS] + \mathbb{P}[S|\overline{TS}](1 - \mathbb{P}[TS]) = 
+\mathbb{P}[S|TS]\cdot\mathbb{P}[TS] + \mathbb{P}[S|TNS](1 - \mathbb{P}[TS]) = 
+0.609\cdot0.115 + 0.966\cdot0.885 = 0.925 = 92.5\%$, which means that Tom's overall accuracy is 92.5\%. \\[.5cm]
+{\color{red} (c) Example} \\
+
+Consider this situation for Jerry: Let Alaska be snowy 90\% of the days, and that she predicts snow correctly 75\% of the actual snowy days, and she predicts no snow (sunny) correctly 100\% of the actual no snow (sunny) days. \\
+
+So for Jerry,
+$\mathbb{P}[S] = 0.9,
+\mathbb{P}[JS|S] = 0.75 > \mathbb{P}[TS|S] = 0.7,
+\mathbb{P}[JNS|NS] = 1 > \mathbb{P}[TNS|NS] = 0.95$,
+which means that Jerry is indeed better than Tom at predicting snow on snowy days and sun on sunny days. Yet, let's now calculate Jerry's overall accuracy. \\
+
+Using similar logic as we did in parts (a) and (b), so $$\mathbb{P}[NS] = \mathbb{P}[\overline{S}] = 1 - \mathbb{P}[S] = 0.1$$
+$$\mathbb{P}[JNS|S] = \mathbb{P}[\overline{JS}|S] = 1 - \mathbb{P}[JS|S] = 1 - 0.75 = 0.25$$
+$$\mathbb{P}[JS|NS] = \mathbb{P}[\overline{JS}|NS] = 1 - \mathbb{P}[JNS|NS] = 1 - 1 = 0$$
+
+Thus, we have that:
+$\mathbb{P}[JS] =
+\mathbb{P}[JS|S]\cdot\mathbb{P}[S] + \mathbb{P}[JS|NS]\cdot\mathbb{P}[NS] =
+0.75\cdot0.9 + 0\cdot0.1 = 0.675$, which means that when Jerry says it's going to snow, the probability that it will actually snow is
+$\mathbb{P}[S|JS] = \frac{\mathbb{P}[JS|S]\cdot\mathbb{P}[S]}{\mathbb{P}[JS]} = \frac{0.75\cdot0.9}{0.675} = 1$. \\
+
+Similarly, with $\mathbb{P}[JNS] = 1 - \mathbb{P}[JS] = 0.325$, so when Jerry says it's going to not snow, the probability that it will actually not snow is
+$\mathbb{P}[NS|JNS] = \frac{\mathbb{P}[JNS|NS]\cdot\mathbb{P}[NS]}{\mathbb{P}[JNS]} = 
+\frac{1\cdot0.1} {0.325} = 0.308$. \\
+
+Thus, Jerry's overall accuracy is
+$$\mathbb{P}[\text{Jerry}] =
+\mathbb{P}[S|JS]\cdot\mathbb{P}[JS] + \mathbb{P}[NS|JNS]\cdot\mathbb{P}[JNS] = 
+1\cdot0.675 + 0.308\cdot0.325 = 0.775 = 77.5\%$$
+
+Here, we could see that $\mathbb{P}[\text{Jerry}] < \mathbb{P}[\text{Tom}]$ even though $\mathbb{P}[JS|S] > \mathbb{P}[TS|S]$ and $\mathbb{P}[JNS|NS] > \mathbb{P}[TNS|NS]$, which gives an examples to the situation described in the problem. \\
+
+More generally, since both weatherman predicts no snow much better than snow days, so a weatherman in a region that snows a lot (i.e. Alaska compared to New York) will have much lower overall accuracy (given the weight of abundant snowy days) even if she/he is better at predicting snow on snow days and no snow on sunny days.
+
+\end{document}

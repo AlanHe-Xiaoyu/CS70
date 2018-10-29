@@ -1,0 +1,34 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=3cm]{geometry}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{xcolor}
+\begin{document}
+
+{\Large 2 Airport Revisited} \\[.5cm]
+{\color{red} (a) $\frac{n}{4}$ } \\
+
+Let $X_n$ denote the number of empty airports after all planes have landed. Then, we can first write $$X_n = I_1 + I_2 + \dots + I_n$$
+
+where $I_i = 1$ if neither of the planes from airports $i-1, i+1$ landed at airport $i$ (i.e. both chose the other direction); and $I_i = 0$ otherwise. \\
+
+Then, specifically, $\mathbb{E}[I_i] = 0\cdot\mathbb{P}[I_i=0] + 1\cdot\mathbb{P}[I_i=1] = \mathbb{P}[I_i=1] = \mathbb{P}[$both planes next to airport $i$ chose the other direction] = $\frac{1}{2}\cdot \frac{1}{2} = \frac{1}{4}$ \\
+
+Thus, using Theorem 15.1, we have that
+$\mathbb{E}[X_n] = \mathbb{E}[I_1] + \mathbb{E}[I_2] + \dots + \mathbb{E}[I_n] = \frac{1}{4}\cdot n = \frac{n}{4}$ \\[.5cm]
+{\color{red} (b) $\sum\limits_{i=1}^n \prod\limits_{a\in N(i)} \frac{\text{deg}(a)-1}{\text{deg}(a)}$ } \\
+
+We proceed with a similar logic as part (a). Let $X_n$ denote the number of empty airports after all planes have landed. Then, we can first write $$X_n = I_1 + I_2 + \dots + I_n$$
+
+where $I_i = 1$ if none of the planes from $N(i)$ landed at airport $i$ (i.e. all chose the other direction); and $I_i = 0$ otherwise. \\
+
+Then, specifically, $\mathbb{E}[I_i] = 0\cdot\mathbb{P}[I_i=0] + 1\cdot\mathbb{P}[I_i=1] = \mathbb{P}[I_i=1] = \mathbb{P}[$all planes from $N(i)$ chose another neighbor of theirs] =
+$\prod\limits_{a\in N(i)} \frac{\text{deg}(a)-1}{\text{deg}(a)}$ \\
+
+Thus, using Theorem 15.1, we have that
+$\mathbb{E}[X_n] = \mathbb{E}[I_1] + \mathbb{E}[I_2] + \dots + \mathbb{E}[I_n] = $
+$$\sum\limits_{i=1}^n \prod\limits_{a\in N(i)} \frac{\text{deg}(a)-1}{\text{deg}(a)}$$
+
+
+\end{document}

@@ -1,0 +1,52 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=3cm]{geometry}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{xcolor}
+\begin{document}
+
+{\Large 3 Fizzbuzz} \\[.5cm]
+{\color{red} (a) $\frac{8}{15}n$ } \\
+
+If $15\mid n$, then there will be exactly $\frac{n}{3}$ multiples of 3 from 1 to $n$, $\frac{n}{5}$ multiples of 5 from 1 to $n$, and $\frac{n}{15}$ multiples of 15 from 1 to $n$. \\
+
+Let $A_1$ be the event that picking an integer between 1 and $n$ is a multiple of 3, and let $A_2$ be the event that picking an integer between 1 and $n$ is a multiple of 5, so $A_1\cup A_2$ is the event that picking an integer between 1 and $n$ that is a multiple of 15. Thus, we have
+$\mathbb{P}[A_1] = \frac{\frac{n}{3}}{n} = \frac{1}{3},
+\mathbb{P}[A_2] = \frac{\frac{n}{5}}{n} = \frac{1}{5}$, and
+$\mathbb{P}[A_1\cup A_2] = \frac{\frac{n}{15}}{n} = \frac{1}{15}$. \\
+
+Thus, the probability of randomly choosing an integer that printed words (i.e. multiple of 3 or 5) is $\mathbb{P}[\text{word}] = 
+\mathbb{P}[U_{i=1}^2 A_i] = \mathbb{P}[A_1] + \mathbb{P}[A_2] - \mathbb{P}[A_1\cup A_2] = \frac{1}{3} + \frac{1}{5} - \frac{1}{15} = \frac{7}{15}$, which means that $\mathbb{P}[\text{integer}] = \mathbb{P}[\overline{\text{word}}] =
+1 - \mathbb{P}[\text{word}] = \frac{8}{15}$. \\
+
+Since the size of the sample space $|\Omega| = n$, so the size of the sample space, where the event is that the printed line contains integer, is
+$|\omega| = |\Omega|\cdot\mathbb{P}[\text{integer}] = \frac{8}{15}n$. \\
+
+Thus, if n is a multiple of 15, then $\frac{8}{15}n$-many printed lines will contain an integer. \\[.5cm]
+{\color{red} (b) Direct Proof } \\
+
+We proceed by a direct proof. Since the only prime factors of $n$ are $p_1, p_2, \dots, p_k$, and they're distinct, so we could eliminate the prime factors with a similar procedure/idea from part (a). \\
+
+Using the Principle of Inclusion-Exclusion (Theorem 14.2), so the probability of randomly picking a line that contains words (not coprime with $n$) is that
+$$\mathbb{P}[\cup_{j=1}^k A_j] =
+	\sum\limits_{a_1=1}^k \mathbb{P}[A_{a_1}]\ -
+	\sum\limits_{a_1<a_2} \mathbb{P}[A_{a_1}\cap A_{a_2}]\ +
+	\sum\limits_{a_1<a_2<a_3} \mathbb{P}[A_{a_1}\cap A_{a_2}\cap A_{a_3}]
+	\ - \dots\ +\
+	(-1)^{n-1} \mathbb{P}[A_1\cap A_2\cap\dots\cap A_k]$$
+$$= \sum\limits_{a_1=1}^k \frac{1}{p_{a_1}}\ -
+	\sum\limits_{a_1<a_2} \frac{1}{p_{a_1}p_{a_2}}\ +
+	\sum\limits_{a_1<a_2<a_3} \frac{1}{p_{a_1}p_{a_2}p_{a_3}}
+	\ - \dots\ +\ 
+	(-1)^{n-1} \frac{1}{p_1p_2\dots p_k}$$
+
+Thus, the probability of randomly picking a line that contains an integer (i.e. picking a number that's coprime with $n$) is:
+$$\mathbb{P}[integer] = 1 - \mathbb{P}[\cup_{j=1}^k A_j] = \prod\limits_{j=1}^k (1-\frac{1}{p_j})$$.
+
+Therefore, $\mathbb{P}[integer]$ is the same as the probability of randomly picking a number that's coprime with $n$, i.e. $\frac{\phi(n)}{n}$, which means that
+$\frac{\phi(n)}{n} = \prod\limits_{j=1}^k (1-\frac{1}{p_j})$, as desired. \\
+
+Q.E.D.
+
+\end{document}

@@ -1,0 +1,30 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=3cm]{geometry}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{xcolor}
+\begin{document}
+
+{\Large 5 Clothing Argument} \\[.5cm]
+{\color{red} (a) $10,000$} \\
+
+Based on the given information, we can use the First Rule of Counting, so there are $10\cdot10\cdot10\cdot10 = 10,000$ distinct outfits. \\[.5cm]
+{\color{red} (b) $600$} \\
+
+Since we want to wear exactly 2 out of the 4 categories, so we first use the Second Rule of Counting, and we're sampling without replacement, which gives us $\frac{4!}{(4-2)!\cdot2!} = \frac{24}{2\cdot2} = 6$ ways. \\[.2cm]
+\indent Thus, we can then use the First Rule of Counting, multiplying by the previous number, so there are $6\cdot10\cdot10 = 600$ distinct outfits when choosing from exactly two categories. \\[.5cm]
+{\color{red} (c) $5040$} \\
+
+Since we want to pick exactly 4 out of the 10 hats, so we first use the Second Rule of Counting, and we're sampling without replacement, which gives us $\binom{10}{4} = \frac{10!}{(10-4)!\cdot4!} = 210$ ways. \\[.2cm]
+\indent Thus, we can then use the First Rule of Counting to line them up on a wall, and we're sampling without replacement, multiplying by the previous number, so there are $210\cdot 4! = 5040$ of hanging four of the ten hats. \\[.5cm]
+{\color{red} (d) $210$} \\
+
+Since we want to pack exactly 4 out of the 10 hats, so we use the Second Rule of Counting, and we're sampling without replacement, which gives us $\binom{10}{4} = \frac{10!}{(10-4)!\cdot4!} = 210$ different ways. \\[.2cm]
+\indent We can explain this number in terms of our answer in part (c) since there exists an 24-to-1 function $f$ from hanging hats (part c) to packing hats (part d) as we discussed in the second paragraph of part (c), which shows that after picking out the 4 out of 10 hats, then there're $4! = 24$ ways for hanging them up on a wall. Thus, $f$ will map 24 elements in the domain (the set of hanging ordered 4-hat subsets of the 10 hats) of the function to 1 element in the range (the set of packing 4-hat subsets of the 10 hats) of the function, so this number is {\color{red} $\frac{1}{24}$} of our answer to part (c), which is correct with $5040\cdot\frac{1}{24} = 210$. \\[.5cm]
+{\color{red} (e) $10$} \\
+
+Since we want to pack exactly 3 hats, and for each color, we have three or more of them (that are indistinguishable), so this is a problem of sampling with replacement, but where order does not matter. We are picking 3 hats out of 3 different colors of hats, and using the formula from Note 12, there are $\binom{3+3-1}{3} = \frac{5!}{(5-3)!\cdot3!} = \frac{120}{2\cdot6} = 10$ distinct sets of 3-hat subsets.
+
+
+\end{document}

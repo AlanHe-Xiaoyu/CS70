@@ -1,0 +1,26 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=3cm]{geometry}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{xcolor}
+\begin{document}
+
+{\Large 2 Binomial Beads} \\[.5cm]
+{\color{red} (a) $\binom{n}{k}$} \\
+
+First we'll make all the beads unique, which means that there are $n!$ unique keychains by such definition, and then we consider all the duplicates as the blue/golden beads are all the same, which gives us $\frac{n!}{k!(n-k!)} = \binom{n}{k}$ unique keychains. \\[.5cm]
+{\color{red} (b) $x^ky^{n-k}$} \\
+
+By definition given on the question, the price of a keychain with exactly $k$ blue beads and thus $n-k$ gold beads is: $x^ky^{n-k}$ \\[.5cm]
+{\color{red} (c) $\sum\limits_{0}^n \binom{n}{k} x^ky^{n-k}$} \\
+
+Using our results from parts (a) and (b), his total revenue is: 
+$$\sum\limits_{0}^n \binom{n}{k} x^ky^{n-k}$$ \\[.5cm]
+{\color{red} (d)} \\
+
+On the one hand $(x+y)^n$ is the sum of all different combination of the product of choosing a total of $n$ numbers from $x$ and $y$, sampling with replacement. \\
+
+On the other hand, $\sum\limits_{0}^n \binom{n}{k} x^ky^{n-k}$ is the sum of: the product of 0 $x$'s and $n\ y$'s, the product of 1 $x$'s and $(n-1)\ y$'s, the product of 2 $x$'s and $(n-2)\ y$'s, \dots, the product of $(n-1)\ x$'s and 1 $y$'s, and the product of $n\ x$'s and 0 $y$'s. Thus, $\sum\limits_{0}^n \binom{n}{k} x^ky^{n-k}$ also represents the sum of all the different combinations of the product of choosing a total of $n$ numbers from $x$ and $y$, sampling with replacement, which gives the connection between that and $(x+y)^n$.
+
+\end{document}

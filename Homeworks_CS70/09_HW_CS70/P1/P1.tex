@@ -1,0 +1,95 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=3cm]{geometry}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{xcolor}
+\begin{document}
+
+{\Large 1 Double-Check Your Intuition} \\[.5cm]
+{\color{red} (a) (i) } \\
+
+Since $X \in \text{Bin}(5, \frac{1}{4})$, so using the formula given, we have that
+{\color{red} $\mathbb{P}[X=i] = \binom{5}{i}\cdot (\frac{1}{4})^i(1 - \frac{1}{4})^{5-i}$ for $i\in \{0,1,2,3,4,5\}$}, i.e.
+$\mathbb{P}[X=i] = f(i)$ where $f = \binom{5}{i} (\frac{1}{4})^i(1 - \frac{1}{4})^{5-i}$ and its domain is $i\in \{0,1,2,3,4,5\}$ \\
+
+Then, since we define $Y = 5 - X$, so
+$\mathbb{P}[Y=5-j] = \binom{5}{j}\cdot (\frac{1}{4})^j(1 - \frac{1}{4})^{5-j}$ for $j = 0,1,2,3,4,5$, so we have that
+{\color{red} $\mathbb{P}[Y=i] = \binom{5}{5-i}\cdot (\frac{1}{4})^{5-i}(1 - \frac{1}{4})^{i}$ for $i\in \{0,1,2,3,4,5\}$}, i.e.
+$\mathbb{P}[Y=i] = g(i)$ where $g = \binom{5}{5-i} (\frac{1}{4})^{5-i}(1 - \frac{1}{4})^{i}$ and its domain is also $i\in \{0,1,2,3,4,5\}$ \\[.5cm]
+{\color{red} (ii) $\mathbb{E}[Z^2] = \frac{91}{6}$} \\
+
+Using given information, we know that $Z\in\{1,2,3,4,5,6\}$, and also
+$\mathbb{P}[Z = 1] =
+\mathbb{P}[Z = 2] =
+\mathbb{P}[Z = 3] =
+\mathbb{P}[Z = 4] =
+\mathbb{P}[Z = 5] =
+\mathbb{P}[Z = 6] = \frac{1}{6}$.
+Thus, we can conclude that $Z^2 \in \{1,4,9,16,25,36\}$, and so $\mathscr{A} = \{1,4,9,16,25,36\}$, with
+$\mathbb{P}[Z = 1] =
+\mathbb{P}[Z = 4] =
+\mathbb{P}[Z = 9] =
+\mathbb{P}[Z = 16] =
+\mathbb{P}[Z = 25] =
+\mathbb{P}[Z = 36] = \frac{1}{6}$. \\
+
+Thus, $\mathbb{E}[Z^2] = \sum\limits_{a\in\mathscr{A}} a\cdot\mathbb{P}[Z^2 = a] =
+1\cdot\frac{1}{6} + 4\cdot\frac{1}{6} + 9\cdot\frac{1}{6} + 16\cdot\frac{1}{6} + 25\cdot\frac{1}{6} + 36\cdot\frac{1}{6} =
+\frac{91}{6}$ \\[.5cm]
+{\color{red} (b) True} \\
+
+We proceed by a direct proof. Since $\sum\limits_{i\in\mathbb{Z}} \mathbb{P}[A = i] = 1$ by definition of probability and we also have that for any $i\in\mathbb{Z}$, $\mathbb{P}[A = i] \geq 0$, which implies that there exists some $k\in\mathbb{Z}$ such that $\mathbb{P}[A = k] > 0$ \\
+
+Then, since $A = B$ is equivalent to $A = i$ and $B = i$ for all $i\in\mathbb{Z}$, so $\mathbb{P}[A = B] = \sum\limits_{i\in\mathbb{Z}} \mathbb{P}[A = i] \cdot \mathbb{P}[B = i] =
+\sum\limits_{i\in\mathbb{Z}} (\mathbb{P}[A = i])^2$ using given information, and thus
+$\mathbb{P}[A = B] =
+\sum\limits_{i\in\mathbb{Z}} (\mathbb{P}[A = i])^2 \geq
+(\mathbb{P}[A = k])^2 > 0$, as desired. Q.E.D. \\[.5cm]
+{\color{red} (c) False} \\
+
+We proceed by providing a counterexample. Let $C$ be a random variable denoting the result of a die roll (so $1\leq C\leq6$uniformly at random). Using our result from part (a.ii), so $\mathbb{E}[C^2] = \frac{91}{6}$. \\
+
+Now, using the example of a single die incidence provided in Note 15, so $\mathbb{E}[C] = \frac{1}{6}\cdot(1+2+3+4+5+6) = \frac{7}{2}$, which means that $\mathbb{E}[C]^2 = (\frac{7}{2})^2 = \frac{49}{4} \neq \frac{91}{6} = \mathbb{E}[C]$, which gives the counterexample. \\[.5cm]
+{\color{red} (d) False} \\
+
+We proceed by providing a counterexample. Let $X$ be a random variable on a sample space $\{1, 10^6\}$ such that $\mathbb{P}[X=1] = 99.9\%, \mathbb{P}[X=10^6] = 0.1\%$; then let $Y$ be a random variable on a sample space $\{2\}$ such that $\mathbb{P}[Y=2] = 1$. \\
+
+Now, $\mathbb{E}[X] = 1\cdot99.9\% + 10^6\cdot0.1\% = 1000.999$ and $\mathbb{E}[Y] = 2\cdot1 = 2$, so it satisfies the condition that $\mathbb{E}[X] > 100\ \mathbb{E}[Y]$. But, consider the probability of $X>Y$. Since $Y = 2$ is constant, so only when $X = 10^6$ does $X>Y$ hold, which means that $\mathbb{P}(X>Y) = \mathbb{P}[X=10^6] = 0.1\% < 1/100$, which gives the countradiction and counterexample. \\[.5cm]
+{\color{red} (e) False} \\
+
+We proceed by providing a counterexample. Let $X$ be a random variable (taking positive values) on a sample space $\{1, 2\}$ such that $\mathbb{P}[X=1] = \mathbb{P}[X=2] = 0.5$; then let $Y$ be a random variable (taking positive values) on a sample space $\{1\}$ such that $\mathbb{P}[Y=1] = 1$. \\
+
+Thus, we can easily determine that
+$\mathbb{P}[\frac{X}{X+Y}=\frac{1}{2}] =
+\mathbb{P}[\frac{X}{X+Y}=\frac{2}{3}] = 0.5$, which gives us that
+$\mathbb{E}[\frac{X}{X+Y}] = \frac{1}{2}\cdot0.5 + \frac{2}{3}\cdot0.5 = \frac{7}{12}$. Then, we also have that
+$\mathbb{P}[X+Y=2] = \mathbb{P}[X+Y=3] = 0.5 =
+\mathbb{P}[X=1] = \mathbb{P}[X=2]$, so we have
+$\mathbb{E}[X+Y] = 2\cdot0.5 + 3\cdot0.5 = 2.5$ and $\mathbb{E}[X] = 1.5$. \\
+
+Thus, $\frac{\mathbb{E}[X]}{\mathbb{E}[X+Y]} = \frac{1.5}{2.5} = \frac{3}{5}\neq\frac{7}{12} = \mathbb{E}[\frac{X}{X+Y}]$, which gives the counterexample. \\[.5cm]
+{\color{red} (f) True} \\
+
+Since $A, B, C$ are events such that $\mathbb{P}(A\cap B\cap C) = \mathbb{P}(A) \mathbb{P}(B) \mathbb{P}(C)$, then by Definition 14.4, so they're mutually independent. Q.E.D.\\[.5cm]
+{\color{red} (g) False (No, an event $A$ is not never independent with itself.)} \\
+
+Consider the sample space be flipping a fair coin, and the event $A$ be that the coin lands and stays $45^\circ$ from the ground (assuming a universe where a coin always lands on either heads or tails and doesn't behave like this), then we have that $\mathbb{P}(A) = 0$. Now, we can easily determine that $\mathbb{P}(A\cap A) = 0 = \mathbb{P}(A)\times\mathbb{P}(A)$, and since they're in the same probability space, so by Definition 14.3, the events $A, A$ are indeed independent. \\[.5cm]
+{\color{red} (h) True} \\
+
+Using given information, we have that
+$\mathbb{P}(\overline{A}) = 1 - \mathbb{P}(A),
+\mathbb{P}(\overline{B}) = 1 - \mathbb{P}(B)$, and that
+$\mathbb{P}(A\cap B) = \mathbb{P}(A)\times\mathbb{P}(B)$. Thus,
+$\mathbb{P}(\overline{A})\times\mathbb{P}(\overline{B}) =
+(1 - \mathbb{P}(A))\cdot(1 - \mathbb{P}(B)) =
+1 - \mathbb{P}(A) - \mathbb{P}(B) + \mathbb{P}(A)\mathbb{P}(B) =
+1 - \mathbb{P}(A) - \mathbb{P}(B) + \mathbb{P}(A\cap B)$. \\
+
+Then, using the Theorem 14.2 (Inclusion-Exclusion), so we have that
+$\mathbb{P}(\overline{A})\times\mathbb{P}(\overline{B}) =
+1 - \mathbb{P}(A) - \mathbb{P}(B) + \mathbb{P}(A\cap B) =
+1 - (\mathbb{P}(A) + \mathbb{P}(B) - \mathbb{P}(A\cap B)) =
+1 - \mathbb{P}(A\cup B) = \mathbb{P}(\overline{A}\cap\overline{B})$ where the last equality results from the definition of union and intersections of sets. Since $\mathbb{P}(\overline{A}\cap\overline{B}) = \mathbb{P}(\overline{A})\times\mathbb{P}(\overline{B})$, so by Definition 14.3, we have that $\overline{A}, \overline{B}$ are also independent. Q.E.D.
+
+\end{document}

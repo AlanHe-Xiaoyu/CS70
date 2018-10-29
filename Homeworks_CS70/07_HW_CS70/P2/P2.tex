@@ -1,0 +1,157 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=3cm]{geometry}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{xcolor}
+\begin{document}
+
+{\Large 2 Counting Tools} \\[.5cm]
+(a) Countable \\
+
+We divide the problem into two cases, where exactly one must be true: (1) $A, B$ are both finite; or (2) $A, B$ are not both finite. \\
+
+Case (1): Given that $A, B$ are both finite, so we can enumerate the elements of $A$ as $a_0, a_1, a_2, ..., a_m$ and the elements of $B$ as $b_0, b_1, ..., b_n$. Thus, there is a total of $(m+1)(n+1)$ different elements of $A\times B$, which means that $A\times B$ is finite, and thus it's countable by definition. \\
+
+Case (2): Given that $A, B$ are not both finite (we include the cases where exactly one of them is finite, as it will still be a bijection between $A\times B$ and $\mathbb{N}$ when we do the spiral/diagonal enumeration). \\[.2cm]
+\indent Since $A$ is countable, so we can enumerate the elements of $A$ like this: $a_0, a_1, a_2, ...$ Similarly, the elements of the countable set $B$ can be enumerated as $b_0, b_1, b_2, ...$, so we can write $A\times B$ as:
+\begin{center}
+\begin{tabular} { c c c c }
+    $(a_0, b_0)$ & $(a_1, b_0)$ & $(a_2, b_0)$ & $\dots$ \\
+    $(a_0, b_1)$ & $(a_1, b_1)$ & $(a_2, b_1)$ & $\dots$ \\
+    $(a_0, b_2)$ & $(a_1, b_2)$ & $(a_2, b_2)$ & $\dots$ \\
+    $\vdots$ & $\vdots$ & $\vdots$ & $\ddots$
+\end{tabular}
+\end{center}
+
+Thus, we can enumerate the elements of $A\times B$, i.e. create an injection from $A\times B$ to $\mathbb{N}$, by counting the elements of $A\times B$ in a spiral/diagonal way like this (following the lines and arrows):
+\begin{center}
+\begin{tabular} { c c c c }
+    $(a_0, b_0)$ & $(a_1, b_0)$ & $(a_2, b_0)$ & $\dots$ \\[.1cm]
+    $(a_0, b_1)$ & $(a_1, b_1)$ & $(a_2, b_1)$ & $\dots$ \\[.1cm]
+    $(a_0, b_2)$ & $(a_1, b_2)$ & $(a_2, b_2)$ & $\dots$ \\[.1cm]
+    $\vdots$ & $\vdots$ & $\vdots$ & $\ddots$
+\end{tabular}
+\end{center}
+
+Thus, there is an injection $f:A\times B\rightarrow\mathbb{N}$ as no two elements lie in the same position and by the fact that this mapping certainly maps every element of $A\times B$ to a natural number, because every such element appears somewhere (exactly once) in the grid, and the spiral hits every point in the grid. \\[.2cm]
+\indent On the other hand, due to our counting strategy (no double-counting) as well as the fact that each element of $A\times B$ is unique, so there's also an injection $g:\mathbb{N}\rightarrow A\times B$ just by following our counting strategy. Thus, using the Cantor-Bernstein theorem and our Note, so there's a \textbf{bijection} $h:A\times B\rightarrow\mathbb{N}$, which by definition, shows that $A\times B$ is countable. \pagebreak\\
+(b) Countable \\
+
+We divide the problem into two cases, where exactly one must be true: (1) $A, B_i$ are all finite; or (2) $A, B_i$ are not all finite. \\
+
+Case (1): Given that $A, B_i$ are all finite, so we can enumerate the elements of $A$ as $a_0, a_1, a_2, ..., a_m$. Thus, $\cup_{i\in A}B_i = B_{a_0}\cup B_{a_1}\cup B_{a_2}\cup ...\cup B_{a_m}$. Then, we can enumerate of each $B_{a_j}$ that has $n_j\in\mathbb{N}$ elements as $b_{j,0}, b_{j,1}, ..., b_{j,n_j-1}$. Thus, there's a total of $\sum\limits_{i=0}^m n_i$ elements in $\cup_{i\in A}B_i$, and this is a finite number. Thus, $\cup_{i\in A}B_i$ is finite, and thus it's countable by definition. \\
+
+Case (2): Given that $A, B$ are not both finite (again, we include the case where exactly one of them are finite, as it will still be a bijection between $\cup_{i\in A}B_i$ and $\mathbb{N}$ when we do the spiral/diagonal enumeration). \\[.2cm]
+\indent Since $A$ is countable, so we can enumerate the elements of $A$ like this: $a_0, a_1, a_2, ...$ Similarly, the elements of any of the countable set $B_{a_j}$ can be enumerated as $b_{j,0}, b_{j,1}, b_{j,2}, ...$ So we can write $\cup_{i\in A}B_i = (B_{a_0}\cup B_{a_1}\cup B_{a_2}\cup ...)$ as:
+\begin{center}
+\begin{tabular} { c c c c c }
+    $b_{0,0}$ & $b_{0,1}$ & $b_{0,2}$ & $b_{0,3}$ & $\dots$ \\
+    $b_{1,0}$ & $b_{1,1}$ & $b_{1,2}$ & $b_{1,3}$ & $\dots$ \\
+    $b_{2,0}$ & $b_{2,1}$ & $b_{2,2}$ & $b_{2,3}$ & $\dots$ \\
+    $b_{3,0}$ & $b_{3,1}$ & $b_{3,2}$ & $b_{3,3}$ & $\dots$ \\
+    $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\ddots$
+\end{tabular}
+\end{center}
+
+Thus, we can enumerate the elements of $\cup_{i\in A}B_i$, i.e. create an injection from $\cup_{i\in A}B_i$ to $\mathbb{N}$, by counting the elements of $\cup_{i\in A}B_i$ in a spiral/diagonal way like this (following the lines and arrows):
+\begin{center}
+\begin{tabular} { c c c c c }
+    $b_{0,0}$ & $b_{0,1}$ & $b_{0,2}$ & $b_{0,3}$ & $\dots$ \\
+    $b_{1,0}$ & $b_{1,1}$ & $b_{1,2}$ & $b_{1,3}$ & $\dots$ \\
+    $b_{2,0}$ & $b_{2,1}$ & $b_{2,2}$ & $b_{2,3}$ & $\dots$ \\
+    $b_{3,0}$ & $b_{3,1}$ & $b_{3,2}$ & $b_{3,3}$ & $\dots$ \\
+    $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\ddots$
+\end{tabular}
+\end{center}
+
+Thus, there is an injection $f:\cup_{i\in A}B_i\rightarrow\mathbb{N}$ as no two elements lie in the same position and by the fact that this mapping certainly maps every element of $\cup_{i\in A}B_i$ to a natural number,
+because every such element appears somewhere (exactly once) in the grid, and the spiral hits every point in the grid. \\[.2cm]
+\indent On the other hand, due to our counting strategy (no double-counting) as well as the fact that each element of $\cup_{i\in A}B_i$ is unique,
+so there's also an injection $g:\mathbb{N}\rightarrow \cup_{i\in A}B_i$ just by following our counting strategy.
+Thus, using the Cantor-Bernstein theorem and our Note, so there's a \textbf{bijection} $h:\cup_{i\in A}B_i\rightarrow\mathbb{N}$, which by definition, shows that $\cup_{i\in A}B_i$ is countable. \pagebreak\\
+(c) Uncountable \\
+
+We use the Cantor’s Diagonalization Proof:
+
+Let $\mathscr{F}$ be the set of all functions $f$ from $\mathbb{N}$ to $\mathbb{N}$ such that $f$ is non-decreasing. We can represent a function $f\in\mathscr{F}$ as an infinite sequence $(f(0), f(1), ...)$, where the $i^{th}$ element is $f(i)$. Suppose towards a contradiction that there is a bijection from $\mathbb{N}$ to $\mathscr{F}$ where we list the functions $f$ of $\mathscr{F}$ in increasing order
+(i.e., Let $x<y, x,y\in\mathbb{N}$, then for the $x^{th}$ and $y^{th}$ enumerated function, $f_x$ and $f_y$, we have that $f_x(i) \leq f_y(i)\ \forall i\in\mathbb{N}$):
+\begin{center}
+$0\iff (f_0(0), f_0(1), f_0(2), f_0(3), ...)$ \\
+$1\iff (f_1(0), f_1(1), f_1(2), f_1(3), ...)$ \\
+$2\iff (f_2(0), f_2(1), f_2(2), f_2(3), ...)$ \\
+$3\iff (f_3(0), f_3(1), f_3(2), f_3(3), ...)$ \\
+$\vdots$
+\end{center}
+
+Consider the function $g:\mathbb{N}\rightarrow\mathbb{N}$ where $g(i) = f_i(i) + 1\ \forall i\in\mathbb{N}$. We claim that $g$ is a valid non-decreasing function from $\mathbb{N}$ to $\mathbb{N}$ that is not in our list of functions $f$. We provide a short proof by contradiction for this claim. \\
+
+Suppose, for a contradiction, that $g$ is in our list of functions, then let $g$ be the $n^{th}$ function, i.e. $g = f_n$. So, $g(\cdot) = f_n(\cdot)$. However, $g(\cdot)$ and $f_n(\cdot)$ differ in the $n^{th}$ number, since $g(n) = f_n(n) + 1\neq f_n(n)$, which implies that $g\neq f_n$, which gives the contradiction. \\
+
+Thus, by the Cantor’s Diagonalization Proof, we have that the set of all functions $f$ from $\mathbb{N}$ to $\mathbb{N}$, such that $f$ is non-decreasing, is uncountable. \\
+
+Q.E.D. \pagebreak \\
+(d) Countable \\
+
+Let $\mathscr{F}$ be the set of all functions $f$ from $\mathbb{N}$ to $\mathbb{N}$ such that $f$ is non-increasing.
+We can represent a function $f\in\mathscr{F}$ as an infinite sequence $(f(0), f(1), ...)$, where the $i^{th}$ element is $f(i)$. Consider the following representation of all elements (functions) of $\mathscr{F}$:
+
+$$\mathscr{F} = \cup_{i_1\in\mathbb{N}} (i_1, ...) = (0,...)\cup(1,...)\cup(2,...)$$
+
+i.e. (one) infinite sequence that starts with $0\ \cup$ infinite sequences that starts with $1\ \cup$ infinite sequences that starts with $2\ \cup$ ... \\[.5cm]
+
+Then, any infinite sequence that starts with $k$ could be enumerated/represented as:
+$$\cup_{i_2} (k, i_2, ...) = (k, 0, ...), (k, 1, ...), (k, 2, ...), ...$$
+
+i.e. infinite sequence that starts with $k, 0\ \cup$ infinite sequence that starts with $k, 1\ \cup$ infinite sequence that starts with $k, 2\ \cup$ ... \\[.5cm]
+
+Continuing the argument, we could enumerate each possibility of the current element by representing them as a union of infinite sequences that ``identifies'' the next unidentified (yet) element. \\
+
+Since each step of enumeration where we ``identify'' one more element in the infinite sequence is a union of $\mathbb{N}$, which is countable, sets of countable elements by recursion, so each "subset" of the enumeration is countable by the results obtained in 2(b).
+Therefore, $\mathscr{F}$, the set of all functions $f$ from $\mathbb{N}$ to $\mathbb{N}$ such that $f$ is non-increasing, is also countable as it's also the union of countable sets ($\mathbb{N}$) of countable elements... \\
+
+Q.E.D. \pagebreak\\
+(e) Countable \\
+
+Let $\mathscr{F}$ be the set of all bijective functions $f$ from $\mathbb{N}$ to $\mathbb{N}$.
+Again, We can represent a function $f\in\mathscr{F}$ as an infinite sequence $(f(0), f(1), ...)$, where the $i^{th}$ element is $f(i)$. Consider the following listing of all elements (functions) of $\mathscr{F}$:
+
+\begin{center}
+$0\iff (0, 1, 2, 3, 4, ...)$ \\ [.3cm]
+
+$1\iff (1, 0, 2, 3, 4, ...)$ \\ [.3cm]
+
+$2\iff (0, 2, 1, 3, 4, ...)$ \\
+$3\iff (1, 2, 0, 3, 4, ...)$ \\
+$4\iff (2, 0, 1, 3, 4, ...)$ \\
+$5\iff (2, 1, 0, 3, 4, ...)$ \\ [.3cm]
+
+$6\iff (0, 1, 3, 2, 4, ...)$ \\
+$7\iff (0, 2, 3, 1, 4, ...)$ \\
+$8\iff (0, 3, 1, 2, 4, ...)$ \\
+$9\iff (0, 3, 2, 1, 4, ...)$ \\
+$10\iff (1, 0, 3, 2, 4, ...)$ \\
+$11\iff (1, 2, 3, 0, 4, ...)$ \\
+$12\iff (1, 3, 0, 2, 4, ...)$ \\
+$13\iff (1, 3, 2, 0, 4, ...)$ \\
+$14\iff (2, 0, 3, 1, 4, ...)$ \\
+$15\iff (2, 1, 3, 0, 4, ...)$ \\
+$16\iff (2, 3, 0, 1, 4, ...)$ \\
+$17\iff (2, 3, 1, 0, 4, ...)$ \\
+$18\iff (3, 0, 1, 2, 4, ...)$ \\
+$19\iff (3, 0, 2, 1, 4, ...)$ \\
+$20\iff (3, 1, 0, 2, 4, ...)$ \\
+$21\iff (3, 1, 2, 0, 4, ...)$ \\
+$22\iff (3, 2, 0, 1, 4, ...)$ \\
+$23\iff (3, 2, 1, 0, 4, ...)$ \\
+$\vdots$
+\end{center}
+
+Thus, we are listing out the elements of $\mathscr{F}$ in an ``increasing'' order, as we would list out all possible permutations of the first $k$ numbers (while leaving $f(n) = n$ for all $n>k, n\in\mathbb{N}$) before having the $(k+1)^{th}$ number being ``switched out of its place'', as demonstrated by the enumerating technique above. \\
+
+Thus, we can conclude that this mapping certainly maps every element of $\mathscr{F}$ to a natural number, which implies that there is an injection $f:\mathscr{F}\rightarrow\mathbb{N}$ as no two elements lie in the same position.
+Therefore, there is a bijection between $\mathscr{F}$ and some subset $C\subseteq\mathbb{N}$ of $\mathbb{N}$, which by definition, means that $\mathscr{F}$, the set of all bijective functions $f$ from $\mathbb{N}$ to $\mathbb{N}$, is countable. \\
+
+Q.E.D.
+
+\end{document}

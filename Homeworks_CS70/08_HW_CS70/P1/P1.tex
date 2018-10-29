@@ -1,0 +1,82 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=3cm]{geometry}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{xcolor}
+\begin{document}
+
+{\Large 1 Counting, Counting, and More Counting} \\[.5cm]
+{\color{red} (a) $\frac{(n+k)!}{n!k!}$} \\
+
+First, assume that all the numbers are distinct, which gives $(n+k)!$ arrangements. Then, we're multi-counting the arrangments of $n$ 1s $n!$-many times, and similarly, we're multi-counting the arrangments of $k$ 0s $k!$-many times. Thus, there are $\frac{(n+k)!}{n!k!}$ many ways to arrange them into sequence. \\[.5cm]
+{\color{red} (b) $\binom{52}{13}$; $\binom{48}{13}$; $\binom{48}{9}$; $\binom{13}{6}\binom{39}{7}$} \\
+
+Choosing a 13-card hand from 52 cards, where order does not matter, means that we have $\binom{52}{13}$ different 13-card bridge hands. \\
+
+Regarding choosing a 13-card bridge hand that contain no aces, this means we can only choose from $(52 - 4 =)\ 48$ cards, so similar logic leads us to having $\binom{48}{13}$ different 13-card bridge hands that contain no aces. \\
+
+Regarding choosing a 13-card bridge hand that contain all four aces, this means that we're choosing the rest of $(13-4 = )\ 9$ cards in the hand from the rest of the $(52 - 4 = )\ 48$ cards, so again, similar logic leads us to having $\binom{48}{9}$ different 13-card bridge hands that contain all four aces. \\
+
+Regarding choosing a 13-card bridge hand that contain exactly 6 spades means that we're divided into two steps: (1) Choose 6 spades from 13 spades, and (2) Choose the rest of $(13-6 =)\ 7$ cards in the hand from the rest of $(52-13 =)\ 39$ cards of the deck. For step (1), we have $\binom{13}{6}$ choices, and for step (2), we have $\binom{39}{7}$ choices. Since we're using the First Rule of Counting, so there is a total of $\binom{13}{6}\binom{39}{7}$ different 13-card bridge hands that contain exactly 6 spades. \\[.5cm]
+{\color{red} (c) $\frac{104!}{2^{52}}$} \\
+
+Since we're mixing two identical decks of 52 cards, so this is similar to part (a), where we have 2 of each of the 52 cards (2 of Spade 1, 2 of Spade 2, etc.), which means that we can first consider all 104 to be distinct, which gives $104!$ different order of the stack in this assumption. Then, since we have 2 copies of 52 cards, so we're repetitively counting this stacking order by $(2!)^{52} = 2^{52}$ times. Thus, there are $\frac{104!}{2^{52}}$ ways to order this stack of 104 cards. \\[.5cm]
+{\color{red} (d) $2^{98}$} \\
+
+Since there is a total of $2^{99}$-many 99-bit strings, and each digit is either 0 or 1. Then, since there are 99 bits, so in any case, either the number of 1's is greater than the number of 0's, or vice versa, and the possibility should be the same, i.e. in half of all cases, there should be more 1's than 0's, so there are $\frac{2^{99}}{2} = 2^{98}$ \\[.5cm]
+{\color{red} (e) 5040, 120, 210, 1260} \\
+
+Since all 7 letters of FLORIDA are different, so there are $7! = 5040$ different anagrams of FLORIDA \\
+
+Since in ALASKA, there are 6 total letters of 4 different types, with 3 A's, and 1 each of L, S, K. Again, first assume that all six letter are distinct, so there are $6!$ different anagrams. Then, since the 3 A's are exactly the same, so we're counting repetitively any sequence by $3!$ times, so there are $\frac{6!}{3!} = \frac{720}{6} = 120$ different anagrams of ALASKA \\
+
+Since in ALABAMA, there are 7 total letters of 4 different types, with 4 A's, and 1 each of L, S, K. Again, first assume that all seven letter are distinct, so there are $7!$ different anagrams. Then, since the 4 A's are exactly the same, so we're counting repetitively any sequence by $4!$ times, so there are $\frac{7!}{4!} = \frac{5040}{24} = 210$ different anagrams of ALASKA \\
+
+Since in MONTANA, there are 7 total letters of 5 different types, with 2 A's, 2 N's and 1 each of M, O, T. Again, first assume that all seven letter are distinct, so there are $7!$ different anagrams. Then, since the 2 A's are exactly the same, so we're counting repetitively any sequence by $2!$ times; similarly, the 2 N's means that we're counting repetitively by $2!$ times. So, there are $\frac{7!}{2!2!} = \frac{5040}{2\cdot2} = 1260$ different anagrams of MONTANA \\[.5cm]
+{\color{red} (f) 120; 360} \\
+
+Problem (1): Given that C is the left neighbor of E, so in any sequence, CE can be combined as one. We could reassign the combination of CE as letter M, which means that we are just arranging five letters, ABDFM, so there are $5! = 120$ different anagrams. \\
+
+Problem (2): Given that C is on the left of E, so there are several cases: (1) C is the left-most letter (anagram looks like Cxxxxx); (2) anagram looks like xCxxxx; (3) anagram looks like xxCxxx; (4) anagram looks like xxxCxx; or (5) anagram looks like xxxxCx. \\[.1cm]
+\indent Case (1): We can arrange the rest of the 5 letters in any order, so there are $5! = 120$ different such anagrams. \\
+\indent Case (2): There are 4 possible positions for letter E, and the rest 4 letters (ABDF) can be arranged in any order, so there are $4\cdot4! = 96$ different such anagrams. \\
+\indent Case (3): There are 3 possible positions for letter E, and the rest 4 letters (ABDF) can be arranged in any order, so there are $3\cdot4! = 72$ different such anagrams. \\
+\indent Case (4): There are 2 possible positions for letter E, and the rest 4 letters (ABDF) can be arranged in any order, so there are $2\cdot4! = 48$ different such anagrams. \\
+\indent Case (5): There is only 1 possible positions for letter E, and the rest 4 letters (ABDF) can be arranged in any order, so there are $1\cdot4! = 24$ different such anagrams. \\
+
+Thus, there's a total of $120 + 96 + 72 + 48 + 24 = 360$ different such anagrams. \\[.5cm]
+{\color{red} (g) $27^9$} \\
+
+Since all 9 balls and 27 bins are distinguishable, so each of the 9 balls have 27 possibilities, so there are $9^{27}$ different ways to distribute them. \\[.5cm]
+{\color{red} (h) 28} \\
+
+Since the 9 balls are identical and the 7 bins are distinguishable, and since we are distributing balls such that no bin is empty, so we can first distribute 7 balls into 7 bins to get rid off the restrictions. In other words, we can next distribute the rest of 2 balls into any bins in any order, and there are two cases, exactly one must be true: (1) 2 balls in the same bin; or (2) 2 balls in two different bins. \\
+
+Case (1): There are 7 different ways as any of the 7 bins could have the extra two balls. \\
+Case (2): There are $\binom{7}{2} = 21$ different ways as we are just picking out 2 bins from the 7 distinguishable bins. \\
+
+Thus, in total, there are $7+21 = 28$ different ways. \\[.5cm]
+{\color{red} (i) $\binom{35}{9}$} \\
+
+Basically, we're sampling with replacement where the order doesn't matter, so we have $\binom{27 + 9 - 1}{9} = \binom{35}{9}$ choices. \\[.5cm]
+{\color{red} (j) $\frac{20!}{2^{10}}$} \\
+
+We're first choosing 2 students from the 20, and then another 2 from the rest $20-2=18$, and so on. Thus, there are $\binom{20}{2}\cdot\binom{18}{2}\cdot\binom{16}{2}\cdot\cdot\cdot\binom{4}{2}\cdot\binom{2}{2} = \frac{20\cdot19\cdot18\cdot17\cdot\cdot\cdot2\cdot1}{(2\cdot1)^{10}} = \frac{20!}{2^{10}}$ ways to do the pairing. \\[.5cm]
+{\color{red} (k) $\binom{n+k-1}{k-1}$ if $n\in\mathbb{N}$; 0 if $n<0$ or $n\not\in\mathbb{Z}$ } \\
+
+Since each $x$ is non-negative integer, so we can divide the the situation into two possibilities: (1) $n<0$, then there will be 0 solutions; and (2) $n\geq0$, i.e. $n\in\mathbb{N}$, which I'll discuss below. \\
+
+First, we can add k to both sides, which will result in a form like this: $(x_0+1)+(x_1+1)+\cdot\cdot\cdot+(x_k+1) = n+k$. Now, we can say that all the elements, i.e. $x_i+1$'s are all positive integers. Thus, we're now dividing $n+k$ into $k$ positive integers, which means that we can should be picking $k-1$ locations of inserting ``dividers'' in $n+k-1$ position, so there are $\binom{n+k-1}{k-1}$ solutions if any exists. \\[.5cm]
+{\color{red} (l) $n-1$ if $n\geq2, n\in\mathbb{Z}$; 0 if $n<2$ or $n\not\in\mathbb{Z}$ } \\
+
+Again, we consider two cases, since $x_0,x_1\in\mathbb{Z^+}$, so $x_0+x_1\geq1+1=2$, so if $n<2$, then there will be no solutions. \\
+
+Else if $n\geq2$, we'll utilize a similar logic as in part (k), which is that we'll be inserting 1 ``divider'' in the $n-1$ possible positions, so there are $\binom{n-1}{1} = n-1$ solutions if any exists. \\[.5cm]
+{\color{red} (m) $\binom{n-1}{k-1}$ if $n\geq k, n\in\mathbb{Z}$; 0 if $n<k$ or $n\not\in\mathbb{Z}$ } \\
+
+Again, we consider two cases, since for each $x$, we have $x\in\mathbb{Z^+}$, so $x_0+x_1+\cdot\cdot\cdot x_k\geq k$, so if $n<k$, then there will be no solutions. \\
+
+Else if $n\geq k$, we'll utilize a similar logic as in part (k), which is that we'll be inserting $k-1$ ``divider'' in the $n-1$ possible positions, so there are $\binom{n-1}{k-1}$ solutions if any exists.
+
+\end{document}

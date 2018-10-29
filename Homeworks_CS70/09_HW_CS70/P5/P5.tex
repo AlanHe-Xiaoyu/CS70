@@ -1,0 +1,46 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=3cm]{geometry}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{xcolor}
+\begin{document}
+
+{\Large 5 Balls and Bins, All Day Every Day} \\[.5cm]
+{\color{red} (a) $\binom{n}{k}\cdot(\frac{1}{n})^{k}(\frac{n-1}{n})^{n-k}$ } \\
+
+The probability is $\binom{n}{k}\cdot(\frac{1}{n})^{k}\cdot(\frac{n-1}{n})^{n-k}$ as we first choose $k$ balls from the $n$ balls where order does not matter and then consider the probability of each ball getting into desired position ($k$ balls into the first bin, and $(n-k)$ balls into any of the other $(n-1)$ bins). \\[.5cm]
+{\color{red} (b) $p = \sum\limits_{k=\frac{n}{2}}^n \binom{n}{k}\cdot(\frac{1}{n})^{k}(\frac{n-1}{n})^{n-k}$ } \\
+
+The probability $p$ that at least half of the balls land in the first bin is the sum of the probability of exactly $k$ balls landing in the first bin, where $k\in[\frac{n}{2}, n]$ as $n$ is a positive even number, which means that
+$$p = \sum\limits_{k=\frac{n}{2}}^n \binom{n}{k}\cdot(\frac{1}{n})^{k}(\frac{n-1}{n})^{n-k}$$
+{\color{red} (c) Union bound: $np$ } \\
+
+Let $\mathbb{P}[A_i]$ denote that there are at least half the balls in the $i^{th}$ bin.
+Since there are a total of $n$ bins, each of which has the same probability of containing at least half of the balls, which is the result of part (b). Thus, using the union bound, we have that the probability that some bin contains at least half of the balls,
+$\mathbb{P}[half] = \mathbb{P}[U_{i=1}^n Ai] \leq
+\sum\limits_{i=1}^n p = np $ \\[.5cm]
+{\color{red} (d) $2p - \binom{n}{\frac{n}{2}} \cdot (\frac{1}{n})^n$ } \\
+
+Let $\mathbb{P}[A_i]$ denote that there are at least half the balls in the $i^{th}$ bin.
+So, using Theorem 14.2, the probability we want to know is
+$\mathbb{P} = \mathbb{P}[\cup_{i=1}^2 A_i] =
+\mathbb{P}[A_1] + \mathbb{P}[A_1] - \mathbb{P}[A_1\cap A_2]$
+where $\mathbb{P}[A_i] = p$, and since $A_1\cap A_2$ represents the probability of bins 1 and 2 both contain at least half the balls, which is equivalent to bins 1 and 2 both contain exactly half of the balls, so
+$\mathbb{P}[A_1\cap A_2] =
+\binom{n}{\frac{n}{2}} \cdot (\frac{1}{n})^{\frac{n}{2}} \cdot (\frac{1}{n})^{\frac{n}{2}} =
+\binom{n}{\frac{n}{2}} \cdot (\frac{1}{n})^n$. \\
+
+Thus, $\mathbb{P} =
+2p - \binom{n}{\frac{n}{2}} \cdot (\frac{1}{n})^n$ \\[.5cm]
+{\color{red} (e) $\sum\limits_{k=1}^n \frac{1}{k}\cdot\binom{n}{k}\cdot(\frac{1}{n})^{k}(\frac{n-1}{n})^{n-k}$ } \\
+
+For a bin with exactly $k$ balls, the probability that the random ball I picked up is the first ball I threw is $\frac{1}{k}$. Then, using a similar logic from part (a), so the probability of exactly $k$ balls landing in the bin I threw my first ball into is:
+$\binom{n}{k}\cdot(\frac{1}{n})^{k}(\frac{n-1}{n})^{n-k}$, which gives us that the probability of picking up the first ball I threw in the bin where it contains exactly $k$ balls is
+$\frac{1}{k}\cdot\binom{n}{k}\cdot(\frac{1}{n})^{k}(\frac{n-1}{n})^{n-k}$. \\
+
+Thus, since the bin where the first ball landed contains at least one ball, so the total probability of this event is:
+$$\sum\limits_{k=1}^n \frac{1}{k}\cdot\binom{n}{k}\cdot(\frac{1}{n})^{k}(\frac{n-1}{n})^{n-k}$$
+
+
+\end{document}

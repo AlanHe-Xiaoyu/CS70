@@ -1,0 +1,42 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=3cm]{geometry}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{xcolor}
+\begin{document}
+
+{\Large 4 Cliques in Random Graphs} \\[.5cm]
+{\color{red} (a) $2^{\frac{n(n-1)}{2}}$ } \\
+
+The size of the sample space is that for each potential edge, we have two possibilities (heads for edge, or tails for no edge). Since there are a total of $\frac{n(n-1)}{2}$ possible edges, so the size of the sample space is $$|\Omega| = 2^{\frac{n(n-1)}{2}}$$ \\[.5cm]
+{\color{red} (b) $2^{-\frac{k(k-1)}{2}}$ } \\
+
+For a particular set of $k$ vertices to form a $k$-clique, all the $|E| = \frac{k(k-1)}{2}$ possible edges should be connected by definition. Then, since the probability of each edge being connected is $\mathbb{P}[edge] = \frac{1}{2}$, so the total probability is
+$\mathbb{P} = \prod\limits_{e\in E} \mathbb{P}[e] = (\frac{1}{2})^{|E|} = \frac{1}{2^{\frac{k(k-1)}{2}}} = 2^{-\frac{k(k-1)}{2}}$\\[.5cm]
+{\color{red} (c) Direct Proof } \\
+
+Proof 1: We proceed by a direct combinatorial proof. $\binom{n}{k}$ means that we're choosing $k$ elements from a set of $n$ elements, sampling without replacement, while $n^k$ is equivalent to choosing $k$ elements from a set of $n$ elements, sampling with replacement. Since we are choosing the same number of elements from the same set, and that we definitely have more options sampling with replacement (compared to without replacement), so $\binom{n}{k} \leq n^k$. Q.E.D. \\
+
+Proof 2: Alternatively, we also provide an algebraic proof. $\binom{n}{k} = n\cdot(n-1)\cdot(n-2)\dots(n-k+1)$, and $n^k = n\cdot n\dots n$. Since they have the same number of elements (both have $k$ terms), and that $0\leq n-i\leq n$ for $i\in[0,k-1]$, so we have that each term of $\binom{n}{k}$ is less than or equal to the corresponding term in $n^k$, and that each term is non-negative, so we have $\binom{n}{k} \leq n^k$. Q.E.D. \\[.5cm]
+{\color{red} (d) Direct Proof } \\
+
+We proceed by a direct proof. As we proved in part (b), the probability of a particular set of $k$ vertices to form a $k$-clique is $\mathbb{P} = 2^{-\frac{k(k-1)}{2}}$. Now, there are $\binom{n}{k}$ total different sets of $k$ particular vertices in a graph with $n$ vertices, and for each set of $k$ vertices, their probability of forming a $k$-clique is $\mathbb{P}[A] = 2^{-\frac{k(k-1)}{2}}$.
+Thus, the probability that a graph contains a $k$-clique is $\mathbb{P}[k\text{-clique}] =
+\mathbb{P}[\cup_{i=1}^{\binom{n}{k}} A_i] \leq
+\sum\limits_{i=1}^{\binom{n}{k}} \mathbb{P}[A_i] = 
+\binom{n}{k}\cdot 2^{-\frac{k(k-1)}{2}}$. \\
+
+Given that $k\geq 4\log_{2}n+1$, so $k-1\geq4\log_{2}n$, so we have that
+$2^{-\frac{k(k-1)}{2}}\leq
+2^{-\frac{k\cdot4\log_{2}n}{2}}\leq
+2^{-2k\log_{2}n} = (2^{\log_{2}n})^{-2k} =
+n^{-2k}$; and since we proved in part (c) that $\binom{n}{k}\leq n^k$, so combining these two gives us that:
+$$\mathbb{P}[k\text{-clique}] \leq \binom{n}{k}\cdot 2^{-\frac{k(k-1)}{2}} \leq
+n^k\cdot n^{-2k} = n^{-k} \leq n^{-1} = \frac{1}{n}$$
+
+Thus, we have proved that the probability that the graph contains a $k$-clique, for $k\geq4\log n+1$, is at most $\frac{1}{n}$, as desired. \\
+
+Q.E.D.
+
+\end{document}

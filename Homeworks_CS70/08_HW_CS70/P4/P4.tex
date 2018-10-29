@@ -1,0 +1,64 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=3cm]{geometry}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{xcolor}
+\begin{document}
+
+{\Large 4 Playing Strategically} \\[.5cm]
+{\color{red} (a) $\frac{3}{7}$} \\
+
+Let's call each shot a round. With Bob shooting first, he can only win the duel against Eve on $(2k+1)^{th}$ rounds, where $k\in\mathbb{N}$. Then, given that Bob has accuracy $\frac{1}{3}$ and Eve has accuracy $\frac{2}{3}$, so we have:\\
+
+$k = 0$: Bob hits Eve directly, $\mathbb{P}_0 = \frac{1}{3}$ \\
+\indent $k = 1$: Bob doesn't hit Eve first, Eve doesn't hit Bob either on round 2, and then Bob hits Eve, so $\mathbb{P}_1 = \frac{2}{3}\cdot \frac{1}{3}\cdot \frac{1}{3}$ \\
+\indent $k = 2$: Similarly, Bob and Eve doesn't hit each other for two shots each, and then Bob hits Eve, so $\mathbb{P}_2 = \frac{2}{3}\cdot \frac{1}{3}\cdot \frac{2}{3}\cdot \frac{1}{3}\cdot \frac{1}{3} = (\frac{2}{3}\cdot \frac{1}{3})^2\cdot \frac{1}{3}$ \\
+\indent $\dots$ \\
+
+We can conlude a pattern that for any $k\in\mathbb{N}$, the probability of Bob winning on the $(2k+1)^{th}$ round is $(\frac{2}{3}\cdot \frac{1}{3})^{k} \cdot \frac{1}{3} = (\frac{2}{9})^k\cdot \frac{1}{3}$, so using the formula of the sum of geometric series, we have that the total probability of Bob winning a duel against Eve is:
+$$P[E_1] = \sum\limits_{k=0}^\infty P_k = 
+\sum\limits_{k=0}^\infty (\frac{2}{9})^k\cdot \frac{1}{3} = \frac{\frac{1}{3}}{1-\frac{2}{9}} = \frac{\frac{1}{3}}{\frac{7}{9}} = \frac{3}{7}$$ \\[.5cm]
+{\color{red} (b) $\frac{1}{7}$} \\
+
+Let's call each shot a round. With Bob shooting second, he can only win the duel against Eve on $(2k+2)^{th}$ rounds, where $k\in\mathbb{N}$. Then, given that Bob has accuracy $\frac{1}{3}$ and Eve has accuracy $\frac{2}{3}$, so we have:\\
+
+$k = 0$: Eve doesn't hit Bob, and Bob hits Eve directly, $\mathbb{P}_0 = \frac{1}{3}\cdot \frac{1}{3}$ \\
+\indent $k = 2$: Eve doesn't hit Bob, Bob doesn't hit Eve, Eve doesn't hit Bob again on round 1, and then Bob hits Eve, so $\mathbb{P}_1 = 
+\frac{1}{3}\cdot\frac{2}{3} \cdot \frac{1}{3}\cdot \frac{1}{3}$ \\
+\indent $k = 2$: Similarly, Bob and Eve doesn't hit each other for two shots each, and then Eve doesn't hit Bob still, and Bob hits Eve, so $\mathbb{P}_2 = 
+(\frac{1}{3}\cdot\frac{2}{3})^2 \cdot \frac{1}{3}\cdot \frac{1}{3}$ \\
+\indent $\dots$ \\
+
+We can conlude a pattern that for any $k\in\mathbb{N}$, the probability of Bob winning on the $(2k+2)^{th}$ round is $(\frac{1}{3}\cdot\frac{2}{3})^k \cdot \frac{1}{3}\cdot \frac{1}{3} = 
+(\frac{2}{9})^k\cdot \frac{1}{9}$, so using the formula of the sum of geometric series, we have that the total probability of Bob winning a duel against Eve is:
+$$P[E_2] = \sum\limits_{k=0}^\infty P_k = 
+\sum\limits_{k=0}^\infty (\frac{2}{9})^k\cdot \frac{1}{9} = 
+\frac{\frac{1}{9}}{1-\frac{2}{9}} = \frac{\frac{1}{9}}{\frac{7}{9}} = \frac{1}{7}$$ \\[.5cm]
+{\color{red} (c) $\mathbb{P}[C_1] = \frac{1}{3}$; $\mathbb{P}[C_2] = 0$} \\
+
+Since Carol has an accuracy of 1, so as soon as Carol gets the chance to shoot at Bob, then Bob would loose. \\
+
+Situation (1): Bob shoots first. Since Bob and Carol are taking turns to shoot, with Bob shooting first, so Bob could win the duel if and only if he hits Carol on his first shot, which has the probability of $\frac{1}{3}$ (If he misses, then Carol gets te chance to shoot, and would win the duel on her shot with 100\% accuracy). Thus, $\mathbb{P}[C_1] = \frac{1}{3}$. \\
+
+Situation (2): Bob shoots second. The analyzation of this situation is easy because with Carol (who never misses) shooting first, she will hit Bob on her first shot and win the duel. Thus, Bob has no chance of winning this duel if he shoots second, which is equivalent to having a probability $\mathbb{P}[C_2] = 0$ \\[.5cm]
+{\color{red} (d) Direct Proof} \\
+
+Because Eve and Carol are playing rationally, so they should shoot at each other if given the chance since they have the highest accuracies. We can first calculate the probabilities of a duel between Eve and Carol. Notice that the two events, Eve winning and Carol winning, forms a partition, so $\mathbb{P}_{Eve} + \mathbb{P}[Carol] = 1$. \\
+
+If Eve shoots second (i.e. Carol shoots first), then Carol will hit Eve directly and win, so Carol's winning probability is $\mathbb{P}[Carol] = 1$, so Eve's winning probability is $\mathbb{P}[Eve] = 1 - 1 = 0$. Else if Eve shoots first, similar to our argument for part (c), Eve's winning probability is now $\mathbb{P}[Eve] = \frac{2}{3}$, so $\mathbb{P}[Carol] = 1 - \frac{2}{3} = \frac{1}{3}$. \\
+
+Now, we take Bob into consideration. There's 3 options or possibilities for Bob, exactly one of which must be true, and they form a partition: (1) Bob hits Eve; (2) Bob hits Carol; or (3) Bob doesn't hit anyone. \\
+
+Case (1): Since Bob hits Eve in the first round, so we're left with Bob and Carol in a duel, with Bob shooting second. As calculated in part (c), so Bob has a winning probability of $\mathbb{P}[Bob_1] = \mathbb{P}[C_2] = 0$. \\
+
+Case (2): Since Bob hits Carol in the first round, so we're left with Bob and Eve in a duel, with Bob shooting second. As calculated in part (b), so Bob has a winning probability of $\mathbb{P}[Bob_2] = \mathbb{P}[B_2] = \frac{1}{7}$. \\
+
+Case (3): Since Bob doesn't hit anyone, and that Eve and Carol are playing rationally, so they should shoot at each other first, so they're essentially playing a duel against each other, with Eve shooting first, so Eve has a winning possibility $\mathbb{P}[Eve] = \frac{2}{3}$, and Carol has a winning probability $\mathbb{P}[Carol] = \frac{1}{3}$. Since Eve winning and Carol winning forms a partition, so exactly one of the following two cases must be true: (3.a) Eve wins the duel; or (3.b) Carol wins the duel. \\[.1cm]
+\indent\indent Case (3.a): Since Eve wins, so we're left with a duel between Bob and Eve, with Bob shooting first, using the result from part (a), so Bob has a winning probability of $\frac{3}{7}$, which means in this 3-person shooting game under this situation, Bob has a total winning probability of $\mathbb{P}_1 = \frac{2}{3}\cdot\frac{3}{7} = \frac{2}{7}$. \\[.1cm]
+\indent\indent Case (3.b): Since Carol wins, so we're left with a duel between Bob and Carol, with Bob shooting first, using the result from part (c), so Bob has a winning probability of $\frac{1}{3}$. So, in this 3-person shooting game under this situation, Bob has a total winning probability of $\mathbb{P}_2 = \frac{1}{3}\cdot\frac{1}{3} = \frac{1}{9}$. \\
+
+Thus, the total probability of Bob winning in this case is: $\mathbb{P}[Bob_3] = \mathbb{P}_1 + \mathbb{P}_2 = \frac{2}{7} + \frac{1}{9} = \frac{25}{63}$ \\
+
+Therefore, we have that $\mathbb{P}[Bob_1] = 0, \mathbb{P}[Bob_2] = \frac{1}{7}, \mathbb{P}[Bob_3] = \frac{25}{63}$, and so $\mathbb{P}[Bob_3] > \mathbb{P}[Bob_2] > \mathbb{P}[Bob_1]$, which means that Bob has the greatest probability of winning if he doesn't hit anyone, so Bob’s best course of action is to shoot into the air (i.e., intentionally miss).
+\end{document}

@@ -1,0 +1,53 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=3cm]{geometry}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{xcolor}
+\begin{document}
+
+{\Large 3 Impossible Programs} \\[.5cm]
+(a) Cannot exist \\
+
+We proceed with a proof by contradiction and use the reduction technique. Suppose, for a contradiction, that such a program $P$ exists. Using the given information, so the program looks like this: \\[.2cm]
+\indent $P(F, x, y)$ \\[.1cm]
+\indent\indent if $F(x) = y$, then return True \\
+\indent\indent else, return False \\
+
+Thus, this function could be used as a subroutine to solve the Halting Problem where we construct an algorithm like this: \\[.2cm]
+\indent Halt$(Program, x)$ \\[.1cm]
+\indent\indent Construct a program $Program'$ that, on any input, returns $Program(x)$ \\
+\indent\indent return $P(Program', x, Program(x))$ \\[.3cm]
+where $Program'$ can be constructed rather easily (following Note 11): \\[.1cm]
+\indent $Program'(y)$ \\[.1cm]
+\indent\indent return $Program(x)$ \\
+
+So, we can see that $Program'(x)$ returns $Program(x)$ if and only if $Program(x)$ halts. Thus, by assumption of the program $P$ in the problem, so $P(Program', x, Program(x)$ is True if and only if $Program(x)$ halts. \\
+
+Therefore, if we have such a program $P$, then Halt will correctly solve the Halting Problem. Since we know there cannot be such a program Halt (the Halting Problem is uncomputable), so we conclude with contradiction, which means that this program $P$ does not exist. \\
+
+Q.E.D. \pagebreak\\
+(b) Cannot exist \\
+
+We proceed with a proof by contradiction and use the reduction technique. Suppose, for a contradiction, that such a program $P$ exists. Using the given information, so the program looks like this: \\[.2cm]
+\indent $P(F, G)$ \\[.1cm]
+\indent\indent If for all $x$, either both $F(x)$ and $G(x)$ halts or both $F(x)$ and $G(x)$ loops, then return True \\
+\indent\indent else, return False \\
+
+Thus, this function could be used as a subroutine to solve the Halting Problem where we construct an algorithm like this: \\[.2cm]
+\indent Halt$(Program, x)$ \\[.1cm]
+\indent\indent Construct a program, $TestyHalt$, that halts on input $x$ (i.e. returns 0 directly on input $x$), \\
+\indent\indent\indent and returns $Program(x)$ otherwise \\[.1cm]
+\indent\indent return $P(Program, TestyHalt)$ \\[.3cm]
+where $TestyHalt$ can be constructed rather easily: \\[.1cm]
+\indent $TestyHalt(y)$ \\[.1cm]
+\indent\indent if $y == x$, then return 0 (halts) \\
+\indent\indent else, return $Program(x)$ \\
+
+So, we can see that $Program$ and $TestyHalt$ are constructued to halt on the same inputs for all inputs except $x$, which is the only input we would need to examine. Then, since $TestyHalt$ always halts on input $x$, so $P(Program, TestyHalt)$ is True if and only if $Program(x)$ halts just like $TestyHalt(x)$ does. \\
+
+Therefore, if we have such a program $P$, then Halt will correctly solve the Halting Problem. Since we know there cannot be such a program Halt (the Halting Problem is uncomputable), so we conclude with contradiction, which means that this program $P$ does not exist. \\
+
+Q.E.D.
+
+\end{document}
