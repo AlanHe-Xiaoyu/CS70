@@ -1,0 +1,227 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=3cm]{geometry}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{color}
+\usepackage{graphicx}
+\begin{document}
+
+\noindent{\large Note 7}\\
+(RSA)
+\begin{itemize}
+	\item Def: The public key is $(N,e)$ where $N = pq$ such that $p,q$ are two very large primes. $e$ is (typically a relatively small $\mathbb{Z^+}$) such that $e,(p-1)(q-1)$ are coprime. The private key is $d$ where $d\equiv e^{-1}\pmod{(p-1)(q-1)}$. Finally, $x$ is the original message, which will be encrypted into $y\equiv E(x) = x^e\pmod{N}$, which could be decrypted by having $D(y) = D(E(x))\equiv y^d = x\pmod{N}$.
+	\item Theorem 7.1: Under the above definitions of the encryption and decryption functions $E$ and $D$, we have $D(E(x)) = x \pmod{N}$ for every possible message $x \in \{0,1,...,N-1\}$.
+	\item Theorem 7.2 (Fermat's Little Theorem, FLT): For any prime $p$ and any $a\in\{1,2,...,p-1\}$, we have $a^{p-1}\equiv 1 \pmod{p}$ (Extra: $a^y = a^{y\pmod{p-1}}\pmod{p}$ since {\color{red} $a\neq0$}; for any $x$, $x^p\equiv x\pmod{p}$).
+	\item Theorem 7.3 (Prime Number Theorem): Let $\pi(n)$ denote the number of primes that are $\leq n$. Then for all $n\geq17$, we have $\pi(n)\geq \frac{n}{\ln n}$ (And in fact $\lim_{n\to\infty}\frac{\pi(n)}{n/\ln n} = 1$).
+	\item HW: $a^{p(p-1)}\equiv1\pmod{p^2}$ where $p$ is prime and $a,p$ are coprime
+	\item Extra (need proof by ???): If $ax+bm = d$, gcd$(x,m) = d, xu\equiv v\pmod{m},$ then it has a solution $\iff d\mid v$; if so, one such solution is $u\equiv\frac{va}{d}\pmod{\frac{m}{d}}$, (in essence, $a = (\frac{x}{d})^{-1}\pmod{\frac{m}{d}}$,) and there are exactly {\large$d$}-many solutions (of the form $u = \frac{va}{d} + i\cdot\frac{m}{d}\pmod{m}).$
+	\item Extra (Proved in HW): If $a\equiv b\pmod{m_1}, a\equiv b\pmod{m_2}$ and gcd$(m_1, m_2) = 1$, then $a\equiv b\pmod{m_1m_2}.$
+	\item Extra (Proved in HW, FLT entended to composite): If $n = p_1p_2\cdot\cdot\cdot p_k$ where $p_i$ are distinct primes and $(p_i - 1)\mid(n - 1)\ \forall i$, then $a^{n-1}\equiv1\pmod{n}\ \forall a\in\{i\ |\ 1\leq i\leq n\ \land$ gcd$(n,i) = 1\}.$
+	\item Extra: $(p-1)!\equiv(p-1)\pmod{p}$: Proof by the fact that $2,...,p-2$ will pair up with their own inverse, and only ones that map back to themselves are $1, -1$.
+\end{itemize}
+
+\noindent{\large Note 8}\\
+(Polynomials)
+\begin{itemize}
+	\item Fundamental properties of polynomials
+	\begin{itemize}
+		\item Property 1: A non-zero polynomial of degree $d$ has at most $d$ roots.
+		\item Property 2: Given $d+1$ pairs $(x_1,y_1),\dots,(x_{d+1},y_{d+1})$, with all the $x_i$ distinct, then there is a unique polynomial $p(x)$ of degree (at most) $d$ such that $p(x_i)=y_i$ for $1\leq i\leq d+1$.
+	\end{itemize}
+	\item Lagrange interpolation
+	\begin{itemize}
+		\item Task: Construct the unique polynomial $p(x)$ of degree (at most) $d$ from the given $d+1$ pairs
+		\item Step 0: Def: Let $\Delta_i(x)$ be the degree $d$ polynomial that goes through these $d+1$ points. Then $\Delta_i(x) = \frac{\prod_{j\neq i} (x-x_j)}{\prod_{j\neq i} (x_i-x_j)}$
+		\item Step 1: Given the $d+1$ pairs, we first construct $\Delta_1(x),\dots, \Delta_{d+1}(x)$ as described above.
+		\item Step 2: Construct $p(x) = \sum\limits_{i=1}^{d+1} y_i\Delta_i(x)$
+	\end{itemize}
+	\item Polynomial division: degree $d$ polynomial $p(x)$ divided by degree $\leq d$ polynomial $q(x)$: \\
+	$p(x) = q'(x) q(x) + r(x)$ where deg$(r(x)) <$ deg$(q(x))$
+	\item Finite field: $GF(p)$ or $F(p)$ when we work with numbers modulo a prime $p$
+	\item In general, we can specify a degree $d$ polynomial $p(x)$ by specifying its values at $d+1$ points, say $x=0,1,\dots,d$. These $d+1$ values, $(y_0,y_1,\dots,y_d)$, are called the \textit{value representation} of $p(x)$. The \textit{coefficient representation} can be converted to the value representation by evaluating the polynomial at $0,1,...,d$.
+	\item Note that the reason that we can count the number of polynomials in this setting is because we are working over a finite field.
+
+\begin{figure} [h!]
+\begin{center}
+	\includegraphics[width=0.5\linewidth]{/Users/Alan/Desktop/70_polynomial}
+	\label{fig}
+\end{center}
+\end{figure}
+	\item Secret Sharing utilizes Lagrange interpolation and works under $GF(p)$. It is important to note that, two people have no more information about the secret than one person does.
+	\item HW: Min/Max number of roots for non-zero real polynomials $f$ and $g$
+	\begin{itemize}
+		\item $f+g$: {\color{red} min} = 0 if sum is even degree, 1 if odd degree; {\color{red} max} = max(deg$(f)$, deg$(g)$) if sum is non-zero, and infinity if $f=-g$
+		\item $f\cdot g$: {\color{red} min} = 0; {\color{red} max} = deg$(f)$ + deg$(g)$
+		\item $f/g$ (assume polynomial): {\color{red} min} = 0; {\color{red} max} = deg$(f)$ - deg$(g)$
+	\end{itemize}
+	\item HW: Consider $f = x^{p-1}-1, g=x$ be polynomials over $GF(p)$. Both are non-zero polynomials, but their product have a zero on all points in $GF(p)$.
+	\item HW: If $f$ is under $GF(p)$ such that deg$(f)\geq p$, then there exists a polynomial $h$ with deg$(h) < p$ such that $f(x) = h(x)$ for all $x \in \{0, 1, \dots, p-1\}$.
+	\item HW: There are $(p-1)\cdot p^{d-1}$ many $f$ of degree \textit{exactly} $d < p$ over $GF(p)$ such that $f(0) = a$ for some fixed $a \in\{0,1,\dots,p-1\}$
+	\item Extra: There are $p^p$ polynomials in $GF(p)$ for some prime $p$.
+	\item Extra: In $GF(p)$, $\exists\ p(x)$ of degree $d$ and $q(x)$ of degree $d-1$ such that a degree 1 polynomial $y(x) = p(x)$ satisfies $p(-y(0)) = 0$, where $d < p-1$ ($\equiv p,q$ share $d-1$ roots).
+\end{itemize}
+
+\noindent {\large Note 9}\\
+(Error Correction)
+\begin{itemize}
+	\item In a modular setting, division is equivalent to multiplying by the inverse, i.e. $\frac{a}{x} \equiv ax^{-1}\pmod{p}$
+	\item If we want to send $k$ packets in total, we need to work under $GF(p)$ where $p>k$.
+	\item Erasure Errors: We should transmit at least $(n+k)$ packets to guard against $k$ erasure errors. We can uniquely reconstruct $P(x)$ from its values at \textit{any} $n$ distinct points via Lagrange interpolation, since it has degree $n-1$.
+	\item General Errors: To guard against $k$ general/corruption errors, we should transmit at least $(n+2k)$ packets.
+	\begin{itemize}
+		\item Error-locator polynomial (deg $k$): $E(x) = (x-e_1)(x-e_2)\dots(x-e_k)$
+		\item {\color{red} $P(i)E(i) = r_iE(i)$ for $1\leq i\leq n+2k$}
+		\item Define $Q(x) := P(x)E(x)\ (= r_xE(x))$, which is a polynomial of degree $(n+k-1)$, and is therefore described by $n+k$ coefficients $a_0,a_1,\dots,a_{n+k-1}$
+		\item The error-locator polynomial $E(x) = (x-e_1)(x-e_2)\dots(x-e_k)$ has degree $k$ and is described by $k+1$ coefficients $b_0,b_1,\dots,b_k$ but the leading coefficient (the coefficient $b_k$ of $x_k$) is always 1, which leads to:
+		$$Q(x) = a_{n+k-1}x^{n+k-1} +\dots+a_1x+a_0$$
+		$$E(x) = x^k +b_{k-1}x^{k-1} +\dots+b_1x+b_0$$
+		\item We thus have $(n+2k)$ linear equations, one for each value of $i$, and $(n+2k)$ unknowns. We can solve these equations and get $E(x)$ and $Q(x)$. We can then compute the ratio $\frac{Q(x)}{E(x)}$ to obtain $P(x)$.
+	\end{itemize}
+	\item Error Detection (HW): We should transmit at least $(n+k)$ packets to detect any errors, assuming that a maximum of $k$ errors exists.
+\end{itemize}
+
+\noindent {\large Note 10} \\
+(Infinity and Countability)
+\begin{itemize}
+	\item Notes: $f$ is bijection $\iff$ it is both one-to-one and onto.
+	\item Def: A set $S$ is countable if there is a bijection between $S$ and $\mathbb{N}$ or some subset of $\mathbb{N}$. (Extra: The latter part implies that a set $S$ is countable if there's an injection from $S$ to $\mathbb{N}$)
+	\item The Cantor-Bernstein theorem (?): $|B|\leq|A|\leq|B| \iff A,B$ have the same cardinality. (one-to-one $+$ onto (reversed 1-to-1) $\rightarrow$ bijection)
+	\item Notes: The set of all (finite-degree) polynomials with $\mathbb{N}$ coefficients, which we denote $N(x)$, is countable.
+	\item Theorem: The real interval $\mathbb{R}[0, 1]$ (and hence also $\mathbb{R}$) is uncountable. (Proof by Diagonalization)
+	\item Theorem: $|\mathscr{P}(\mathbb{N})| > |\mathbb{N}|$ (and thus, the power set of an infinite set is uncountable).
+	\item Disc: The countable union of countable sets is countable.
+	\item Disc: The subset of any countable set is countable, which also implies that the intersection of (a countable or uncountable number of) countable sets is countable.
+	\item Disc: The functions from $\mathbb{N}$ to $\mathbb{N}$ is uncountable. (Diagonalization)
+	\item Disc: The total number of programs is countably infinite, since each is a string of characters, so halting programs, a subset of all programs, is either countable. Since there are an infinite number of halting programs, for example for each number $i$ the program that just prints $i$, so the total number of halting programs is countably infinite. The two results implies that not every function from $\mathbb{N}$ to $\mathbb{N}$ can be written as a program.
+	\item Disc: Given $A$ is a countable, non-empty set. For all $i\in A$, $S_i$ is an uncountable set; $B$ is an uncountable set. For all $i\in B$, $Q_i$ is a countable set.
+	\begin{itemize}
+		\item $A\cap B$ countable; $A\cup B$ uncountable
+		\item $\cup_{i\in A} S_i$ uncountable; $\cap_{i\in A} S_i$ both could happen (disjoint vs. identical)
+		\item $\cup_{i\in B} Q_i$ both could happen (identical vs. $B=\mathbb{R}, Q_i = \{i\}$); $\cap_{i\in B} Q_i$ countable
+	\end{itemize}
+	\item Disc: It’s not possible to determine if we ever execute a specific line because this depends on the logic of the program, but the number of computer instructions can be counted.
+	\item Extra: Finite graphs (defined as any set of vertices and edges) is countable infinite (defined isomorphically).
+\end{itemize}
+
+\noindent {\large Note 11} \\
+(Self-Reference and Computability)
+\begin{itemize}
+	\item Theorem: The Halting Problem is uncomputable; i.e., there does not exist a computer program \textit{TestHalt} that can determine, on all inputs $(P, x)$, whether the program $P$ halts on input $x$.
+	\item Notes: The Easy Halting Problem is uncomputable (testing whether a program $P$ halts on input 0). Proof by Reduction.
+	\item Godel’s Incompleteness Theorem: Any formal system that is sufficiently rich to formalize arithmetic is either inconsistent (there are false statements that can be proved) or incomplete (there are true statements that cannot be proved).
+	\item HW
+	\begin{itemize}
+		\item $f(x)=p\pmod{x}$, where $p>2$ is a prime, then $f:\{\frac{p+1}{2},\dots,p\} \rightarrow \{0,\dots,\frac{p-1}{2}\}$ is a bijection.
+		\item Countable: $A\times B$, where $A$ and $B$ are both countable.
+		\item Countable: $\cup_{i\in A} B_i$ where $A, B_i$ are all countable
+		\item Uncountable: The set of all functions $f:\mathbb{N}\rightarrow\mathbb{N}$ such that $f$ is non-decreasing, i.e. $f(x)\leq f(y)$ whenever $x\leq y$. (Proof by Diagonalization)
+		\item Countable: The set of all functions $f:\mathbb{N}\rightarrow\mathbb{N}$ such that $f$ is non-increasing, i.e. $f(x)\geq f(y)$ whenever $x\geq y$.
+		\item Uncountable: The set of all bijective functions from $\mathbb{N}$ to $\mathbb{N}$.
+	\end{itemize}
+	\item Disc: We can determine whether a program halts/outputs sth in $k^{th}$ steps, but not (1) before $k^{th}$ line or (2) on any input $x$.
+	\item Extra: We can determine whether a program contains a loop, given finite memory (since we can list all possible $k$ states and run the program $k+1$ steps). We can't check any program as a whole without the finite memory restriction.
+\end{itemize}
+
+\noindent {\large Note 12} \\
+(Counting)
+\begin{itemize}
+	\item First Rule of Counting: $n_1n_2\cdots n_k$ (order matters)
+	\item Second Rule of Counting: $\binom{n}{k}$ (order doesn't matter)
+\begin{center}
+	\begin{tabular}{ |c|c|c| } 
+ 	\hline
+ 	 & Replacement & No Replacement \\
+ 	\hline
+ 	Order & $n^k$ & $\frac{n!}{(n-k)!}$ \\
+ 	\hline
+ 	No Order & $\binom{n+k-1}{n-1} = \binom{n+k-1}{k}$ & ? $\binom{n}{k} = \frac{n!}{k!(n-k)!}$ \\ 
+ 	\hline
+	\end{tabular}
+\end{center}
+	\item Combinatorial Proofs
+	\begin{itemize}
+		\item $\binom{n}{k+1} = \binom{n-1}{k} + \binom{n-2}{k} + \dots + \binom{k}{k}$
+		\item $2^n = \binom{n}{0} + \binom{n}{1} + \dots + \binom{n}{n}$
+		\item $\sum\limits_{i=1}^n i\binom{n}{i} = n2^{n-1}$
+		\item $\sum\limits_{i=1}^n i\binom{n}{i}^2 = n\binom{2n-1}{n-1}$
+	\end{itemize}
+	\item HW: If there are exactly 20 students currently enrolled in a class, then there are $19\cdot17\cdots3\cdot1 = \frac{20!}{10!\cdot2^{10}} = \frac{\binom{20}{2}\binom{18}{2}\cdots\binom{2}{2}} {10!}$ different ways to pair up the 20 students.
+	\item Disc: $\sum\limits_{k=3}^n \frac{n!}{(n-k)!\cdot2k}$ distinct cycles are there in a complete graph with n vertices. Assuming no duplicated edges and two cycles are considered the same if they are rotations or inversions of each other.
+\end{itemize}
+
+\noindent {\large Note 13} \\
+(Discrete Probability)
+\begin{itemize}
+	\item Def: The outcome of a random experiment is called a sample point, and the sample space (often denoted by $\Omega$) is the set of all possible outcomes of the experiment.
+	\item Def: A \textbf{probability space} is a \textbf{sample space} $\Omega$, together with a probability $\mathbb{P}[\omega]$ (aka Pr[$\omega$]) for each sample point $\omega$, such that
+	\begin{itemize}
+		\item (Non-negativity): $0\leq\mathbb{P}[\omega]\leq1$ for all $\omega\in\Omega$
+		\item (Total one): $\sum\limits_{\omega\in\Omega} \mathbb{P}[\omega] = 1$, i.e., the sum of the probabilities over all outcomes is 1.
+	\end{itemize}
+	\item If the coin has $\mathbb{P}(H) = p$, and if we consider any sequence of $n$ coin flips with exactly $r$ $H$'s, then the probability of this sequence is $p^r (1-p)^{n-r}$. Now consider the event $C$ that we get exactly $r$ $H$’s when we flip the coin $n$ times, so $\mathbb{P}[C] = \binom{n}{r} p^r (1-p)^{n-r}$
+	\item If we throw $m$ labeled balls into $n$ labeled bins, we have a sample space of size $n^m$ (generalized).
+\end{itemize}
+
+\noindent {\large Note 14} \\
+(Conditional Probability)
+\begin{itemize}
+	\item Def 14.1 (Conditional Probability): For events $A,B \subseteq\Omega$ in the same probability space such that $\mathbb{P}[B]>0$, the conditional probability of $A\ given\ B$ is $\mathbb{P}[A|B] = \sum\limits_{\omega\in A\cap B} \mathbb{P}[\omega|B] = \sum\limits_{\omega\in A\cap B} \frac{\mathbb{P}[\omega]}{\mathbb{P}[B]} = \frac{\mathbb{P}[A\cap B]}{\mathbb{P}[B]}$
+	\item $\mathbb{P}[A\cap B] = \mathbb{P}[A|B]\cdot\mathbb{P}[B] = \mathbb{P}[B|A]\cdot\mathbb{P}[A]\longrightarrow\mathbb{P}[A|B] = \frac{\mathbb{P}[B|A]\mathbb{P}[A]}{\mathbb{P}[B]}$ Bayes' Rule
+	\item $\mathbb{P}[B] = \mathbb{P}[A\cap B] + \mathbb{P}[\overline{A}\cap B] = \mathbb{P}[B|A]\mathbb{P}[A] + \mathbb{P}[B|\overline{A}]\mathbb{P}[A] = \mathbb{P}[B|A]\mathbb{P}[A] + \mathbb{P}[B|\overline{A}](1-\mathbb{P}[A])$ Total Probability Rule
+	\item Thus, combining the two equations above gives: $\mathbb{P}[A|B] = \frac{\mathbb{P}[B|A]\mathbb{P}[A]}{\mathbb{P}[B]} = \frac{\mathbb{P}[B|A]\mathbb{P}[A]}{\mathbb{P}[B|A]\mathbb{P}[A] + \mathbb{P}[B|\overline{A}](1-\mathbb{P}[A])}$
+	\item Def 14.2 (Partition of an event): We say that an event $A$ is partitioned into $n$ events $A_1,\dots,A_n$ if
+	\begin{enumerate}
+		\item $A = A_1\cup A_2\cup \cdots \cup A_n$, and
+		\item $A_i\cap A_j = \emptyset$ for all $i\neq j$ (mutually exclusive)
+	\end{enumerate}
+	\item Let $A_1,\dots,A_n$ be a partition of the sample space $\Omega$. Then, the Total Probability Rule for any event $B$ is $\mathbb{P}[B] = \sum\limits_{i=1}^n \mathbb{P}[B\cap A_i] = \sum\limits_{i=1}^n \mathbb{P}[B|A_i]\mathbb{P}[A_i]$, and the Bayes' Rule (assuming $\mathbb{P}[B]\neq0$) is $\mathbb{P}[A_i|B] = \frac{\mathbb{P}[B|A_i]\mathbb{P}[A_i]}{\mathbb{P}[B]} = \frac{\mathbb{P}[B|A_i]\mathbb{P}[A_i]}{\sum\limits_{j=1}^n \mathbb{P}[B|A_j]\mathbb{P}[A_j]}$
+	\item Def 14.3 (Independence): Two events $A,B$ in the same probability space are said to be independent if $\mathbb{P}[A\cap B] = \mathbb{P}[A]\times \mathbb{P}[B]$. For events $A,B$ such that $\mathbb{P}[B] > 0$, the condition $\mathbb{P}[A|B] = \mathbb{P}[A]$ is actually equivalent to the definition of independence.
+	\item Def 14.4/5 (Mutual independence): Events $A_1,\dots,A_n$ are said to be mutually independent if (two equivalent definitions):
+	\begin{itemize}
+		\item for {\color{red} EVERY} subset $I\subseteq \{1,\dots,n\}$ with size $|I|\geq2$, we have $\mathbb{P}[\cap_{i_\in I} A_i] = \prod\limits_{i\in I} \mathbb{P}[A_i]$
+		\item for all $B_i\in\{A_i, \overline{A_i}\}, i=1,\dots,n$, we have $\mathbb{P}[B_1\cap\cdots\cap B_n] = \prod\limits_{i=1}^n \mathbb{P}[B_i]$
+	\end{itemize}
+	\item The independence of every pair of events (so-called pairwise independence) does not necessarily imply mutual independence.
+	\item Theorem 14.1 (Product Rule): $\mathbb{P}[A\cap B] = \mathbb{P}[A]\cdot\mathbb{P}[B|A]$. More generally, for any events $A_1,\dots, A_n$, we have
+	$\mathbb{P}[\cap_{i=1}^n A_i] = \mathbb{P}[A_1]\cdot\mathbb{P}[A_2|A_1]\cdots\mathbb{P}[A_3|A_1\cap A_2]\cdots\mathbb{P}[A_n|\cap_{i=1}^{n-1} A_i]$ (Proof by Induction)
+	\item Theorem 14.2 (Inclusion-Exclusion): Let $A_1,\dots,A_n$ be events in some probability space, where $n\geq2$. Then, we have $\mathbb{P}[\cup_{i=1}^n A_i] = \sum\limits_{i=1}{n}\mathbb{P}[A_i] - \sum\limits_{i<j}\mathbb{P}[A_i\cap A_j] + \sum\limits_{i<j<k} \mathbb{P}[A_i\cap A_j\cap A_k] -\cdots +(-1)^{n-1}\mathbb{P}[A_1\cap A_2\cap\cdots\cap A_n]$ (Proof by Induction)
+	\item (Mutually exclusive events) If the events $A_1,\dots,A_n$ are mutually exclusive, then $\mathbb{P}[\cup_{i=1}^n A_i] = \sum\limits_{i=1}{n} \mathbb{P}[A_i]$
+	\item (Union bound) Upper bound always due to overestimating: $\mathbb{P}[\cup_{i=1}^n A_i] \leq \sum\limits_{i=1}{n} \mathbb{P}[A_i]$
+\end{itemize}
+
+\noindent {\large Note 15} \\
+(Random Variables, Expectation)
+\begin{itemize}
+	\item Def 15.1 (Random Variable): A random variable $X$ on a sample space $\Omega$ is a function $X: \Omega\rightarrow\mathbb{R}$ that assigns to each sample point $\omega\in\Omega$ a real number $X(\omega)$.
+	\item Def 15.2 (Distribution): The distribution of a discrete random variable $X$ is the collection of values $\{(a,\mathbb{P}[X = a]): a\in\mathscr{A}\}$, where $\mathscr{A}$ is the set of all possible values taken by $X$ (Note that the collection of events form a partition of the sample space $\Omega$).
+	\item Bernoulli Distribution: $X\sim$ Bernoulli$(p)$ which takes value in $\{0,1\}$ such that $p = \mathbb{P}[X=1] = 1-\mathbb{P}[X=0]$ where $0\leq p\leq1$.
+	\item Binomial Distribution: $X\sim$ Bin$(n,p)$ such that $\mathbb{P}[X=i] = \binom{n}{i}\cdot p^i(1-p)^{n-i}$ for $i=0,1,\dots,n$.
+	\item The Bin$(n,p)$ gives probabilistic proof for the Binomial Theorem since by properties of $X$ we have $\sum\limits_{i=0}^n \mathbb{P}[X=i] = 1 \longrightarrow \sum\limits_{i=0}^n \binom{n}{i}\cdot p^i(1-p)^{n-i} = 1$
+	\item Relation to Error Correction: If we model each packet getting lost with probability $p$ and the losses are independent, then if we transmit $n+k$ packets, the number of packets received is a random variable $X$ with binomial distribution: $X\sim$ Bin$(n+k, 1-p)$, so the probability of successfully decoding the original data is: $\mathbb{P}[X\geq n] = \sum\limits_{i=n}^{n+k}\mathbb{P}[X=i] = \sum\limits_{i=n}^{n+k} \binom{n+k}{i}\cdot (1-p)^i p^{n+k-i}$
+	\item Def 15.3 (Expectation): The expectation of a discrete random variable $X$ is defined as $\mathbb{E}[X] = \sum\limits_{a\in\mathscr{A}} a\cdot\mathbb{P}[X=a]$ where the sum is over all possible values taken by the r.v. (Expectation is well defined provided that the sum on the RHS is absolutely convergent, and there are random variables for which expectations do not exist (haven't encountered yet but keep in mind).
+	\item The expectation can be seen in some sense as a ``typical'' value of the r.v. (though note that $\mathbb{E}[X]$ may not actually be a value that $X$ can take, like a regular die).
+	\item Theorem 15.1 (Linearity of Expectation): For any two random variables $X,Y$ on the same probability space and any constant $c$, we have $\mathbb{E}[X+Y] = \mathbb{E}[X] + \mathbb{E}[Y], \mathbb{E}[cX] = c\mathbb{E}[X]$ regardless of whether or not $X$ and $Y$ are independent. If $X,Y$ independent, then $\mathbb{E}[XY] = \mathbb{E}[X]\mathbb{E}[Y]$.
+	\item To take advantage of Theorem 15.1, we need to write $X_n$ as a sum of simpler r.v.’s. Since $X_n$ counts the number of times something happens, we can write it as a sum using the following useful trick: $X_n = I_1 + \cdots + I_n$ where $I_i = 1$ if student $i$ gets their own HW and 0 otherwise. So, we see that the expected number of students who get their own homeworks in a class of size $n$ is 1. That is, the expected number of fixed points in a random permutation of $n$ items is always 1, regardless of $n$.
+	\item HW: If $A$ and $B$ are integer-valued random variables such that for every integer $i$, $P(A = i) = P(B = i)$, then $P(A = B) > 0$ is not necessarily true. (Counterexample: Let $A$ be 0 with probability $\frac{1}{2}$ and 1 with probability $\frac{1}{2}$. Let $B = 1 - A$. Then $A$ and $B$ are never equal but $B$ takes the values 0, 1 with probability $\frac{1}{2}$ each as well.)
+	\item Extra: $\mathbb{E}[X^2]\geq\mathbb{E}[X]^2$ since $\mathbb{E}[Z^2]-\mathbb{E}[Z]^2 = \mathbb{E}\big[(Z-\mathbb{E}[Z])^2\big]\geq0$ with $Z\cdot\mathbb{E}[Z] = \mathbb{E}[Z^2]$
+\end{itemize}
+
+\noindent {\large Extra Sanity Check}
+\begin{itemize}
+	\item All polynomials that Lagrange Interpolation can output $\neq$ all polynomial solutions (e.g. polynomial with the coordinates $(-1,1),(0,0),(2,4)$ exist in $GF(8)$).
+	\item Prove strategy for uncountable: Diagonalization; for uncomputable: Reduction to the Halting Problem OR Use self-referencing algorithms
+	\item There are two ways to show undecidability: Use your program as a subroutine to solve a problem we know is undecidable OR Proof by Diagonalization.
+	\item Calculating probability with these steps:
+	\begin{itemize}
+		\item What is the sample space (i.e., the experiment and its set of possible outcomes)?
+		\item What is the probability of each outcome (sample point)?
+		\item What is the event we are interested in (i.e., which subset of the sample space)?
+		\item Finally, compute the probability of the event by adding up the probabilities of the sample points contained in it.
+	\end{itemize}
+	\item The independence of every pair of events (so-called pairwise independence) does not necessarily imply mutual independence (counterexample: flip first coin, flip second coin, both flips are the same).
+	\item When solving r.v. problems of intuition, always double-check the edge cases of $\mathbb{P}[A] = 0$ or 1.
+	\item A random experiment must define the sample space (the set of possible outcomes) AND a set of probabilities.
+\end{itemize}
+
+\end{document}
