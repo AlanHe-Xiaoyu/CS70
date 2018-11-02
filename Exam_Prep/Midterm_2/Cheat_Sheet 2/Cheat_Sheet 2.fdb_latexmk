@@ -1,6 +1,6 @@
 # Fdb version 3
-["pdflatex"] 1540771492 "Cheat_Sheet 2.tex" "Cheat_Sheet 2.pdf" "Cheat_Sheet 2" 1540771499
-  "/Users/Alan/Desktop/70_polynomial.png" 1540599531 35566 aa7434d2fdd301d92ea01a8681994320 ""
+["pdflatex"] 1541016511 "Cheat_Sheet 2.tex" "Cheat_Sheet 2.pdf" "Cheat_Sheet 2" 1541016512
+  "/Users/Alan/Desktop/70_polynomial" 0 -1 0 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1480098698 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1480098698 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -86,9 +86,9 @@
   "/usr/local/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1523934492 2717033 f61a5287d9c22a39a74f1979fe3f905c ""
   "/usr/local/texlive/2018/texmf-var/web2c/pdftex/pdflatex.fmt" 1527634103 4220280 8f75fe68c9ae6a61c324fee8af685faa ""
   "/usr/local/texlive/2018/texmf.cnf" 1523934483 577 0b39adfd7c93507ff20c9c14c2f1a33f ""
-  "Cheat_Sheet 2.aux" 1540771492 30 a2c680bbf803839cf11bfc07daf5b28b ""
-  "Cheat_Sheet 2.tex" 1540771498 22985 e460bc739897de178e5500bfce40e515 ""
+  "Cheat_Sheet 2.aux" 1541016512 30 f5574421bb0aaedc8b63c8968e5106c9 ""
+  "Cheat_Sheet 2.tex" 1541016511 24555 20a8e47df019c37f616ca9ef62d563ef ""
   (generated)
-  "Cheat_Sheet 2.log"
   "Cheat_Sheet 2.aux"
   "Cheat_Sheet 2.pdf"
+  "Cheat_Sheet 2.log"
