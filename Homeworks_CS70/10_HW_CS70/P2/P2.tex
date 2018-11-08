@@ -1,0 +1,34 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=3cm]{geometry}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{xcolor}
+\begin{document}
+
+{\Large 2 Will I Get My Package?} \\[.5cm]
+{\color{red} (a) $\mathbb{E}(X) = \frac{1}{2}$ } \\
+
+We can make use of Theorem 15.1. Let $X$ denote the number of customers who receive their own packages unopened, so $X = I_1 + I_2 + \cdots + I_n$ where $I_i = 0$ if the $i^{th}$ customer received his/her own package unopened. \\
+
+Since $\mathbb{E}[I_i] = 
+0\cdot\mathbb{P}[I_i = 0] + 1\cdot\mathbb{P}[I_i = 1] =
+\mathbb{P}[I_i = 1] =  \frac{1}{n}\cdot\frac{1}{2} = \frac{1}{2n}$, so $$\mathbb{E}[X] = 
+\mathbb{E}[I_1] + \mathbb{E}[I_2] + \cdots + \mathbb{E}[I_n] =
+n\cdot\frac{1}{2n} = \frac{1}{2}$$ \\[.5cm]
+{\color{red} (b) var$(X) = \frac{1}{2}$ } \\
+
+Here, we have that $\mathbb{E}[X] = \frac{1}{2}$, so we need to calculate $\mathbb{E}[X^2]$, which we have:
+$$\mathbb{E}[X^2] = \sum\limits_{i=1}^n \mathbb{E}[I_i^2] + 2\sum\limits_{i<j} \mathbb{E}[I_iI_j]$$
+
+Since $I_i$ are all indicator variables, so again $\mathbb{E}[I_i^2] = \mathbb{E}[I_i=1] = \mathbb{P}[I_i=1] = \frac{1}{2n}$. Now, due to the properties of indicator variables, so $\mathbb{E}[I_iI_j]$ can be simplified as:
+$$\mathbb{E}[I_iI_j] = \mathbb{P}[I_iI_j=1] =
+\mathbb{P}[I_i=1\land I_j=1] = \mathbb{P}[\text{both i,j are fixed points}] = \frac{1}{2n\cdot2(n-1)}$$
+
+Thus, $\mathbb{E}[X^2] = n\cdot\frac{1}{2n} + 2\binom{n}{2}\frac{1}{2n\cdot2(n-1)} = \frac{1}{2} + \frac{1}{4} = \frac{3}{4}$ \\
+
+Thus, using Theorem 16.1, we have that:
+$$var(X) = \mathbb{E}[X^2] - \mathbb{E}[X]^2 = \frac{3}{4} - (\frac{1}{2})^2 = \frac{1}{2}$$
+
+
+\end{document}

@@ -1,0 +1,90 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=3cm]{geometry}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{xcolor}
+\begin{document}
+
+{\Large 3 Double-Check Your Intuition Again} \\[.5cm]
+{\color{red} (a) (i) cov$(X+Y, X-Y)=0$ } \\
+
+By definition of covariance, so cov$(X+Y, X-Y) = \mathbb{E}[(X+Y)(X-Y)] - \mathbb{E}[X+Y]\cdot\mathbb{E}[X-Y] = \mathbb{E}[X^2-Y^2] - \mathbb{E}[X+Y]\cdot\mathbb{E}[X-Y]$ \\
+
+Since $X$ and $Y$ are independent, so $\mathbb{E}[X^2-Y^2] = \mathbb{E}[X^2] - \mathbb{E}[Y^2], \mathbb{E}[X+Y] = \mathbb{E}[X] + \mathbb{E}[Y]$, and $\mathbb{E}[X-Y] = \mathbb{E}[X] - \mathbb{E}[Y]$, which gives us that:
+cov$(X+Y, X-Y) =
+\mathbb{E}[X^2-Y^2] - \mathbb{E}[X+Y]\cdot\mathbb{E}[X-Y] =
+\mathbb{E}[X^2] - \mathbb{E}[Y^2] - (\mathbb{E}[X] + \mathbb{E}[Y])\cdot(\mathbb{E}[X] - \mathbb{E}[Y]) = \mathbb{E}[X^2] - \mathbb{E}[Y^2] - (\mathbb{E}[X]^2 - \mathbb{E}[Y]^2) = 0$ \\[.5cm]
+
+{\color{red} (ii) Proof by Contradiction } \\
+
+Suppose, for a contradiction, that $X+Y$ and $X-Y$ are independent, then by definition, $\mathbb{P}[X+Y=a, X-Y=b] = \mathbb{P}[X+Y=a]\cdot\mathbb{P}[X-Y=b]\indent\forall a,b$ \\
+
+Yet, consider the case when $X+Y = 2, X-Y = 0$. Since $X,Y\geq1$, so $X = Y = 1$, so $X-Y = 0$, which means that
+$$\mathbb{P}[X+Y=2, X-Y=0] = \mathbb{P}[X+Y=2] = \frac{1}{6}\cdot\frac{1}{6} = \frac{1}{36}$$
+
+On the other hand,
+$$\mathbb{P}[X-Y=0] = \frac{6}{36} = \frac{1}{6}$$
+
+So, we have that:
+$$\mathbb{P}[X+Y=2]\cdot\mathbb{P}[X-Y=0] = \frac{1}{36}\cdot\frac{1}{6} = \frac{1}{216}\neq\mathbb{P}[X+Y=2, X-Y=0]$$
+
+Thus, this gives the contradiction, which implies that $X+Y$ and $X-Y$ are not independent. \\
+
+Q.E.D. \\[.5cm]
+{\color{red} (b) Yes } \\
+
+Since by definition and given information, we have that $$var(X) = \mathbb{E}\big[(X-\mathbb{E}[X])^2\big] = 0$$
+
+Now, for any $a\in(X-\mathbb{E}[X])^2$, we have that $a\geq0$. Thus, let $\mathscr{A}$ be the set of all values $(X-\mathbb{E}[X])^2$ can take on, so $\mathbb{E}[(X-\mathbb{E}[X])^2] =
+\sum\limits_{a\in\mathscr{A}} a\cdot\mathbb{P}[a] \geq 0$, and the equivalence is reached only if $a=0\ \forall\ a\in\mathscr{A}$, which implies that $(x-\mathbb{E}[X])^2=0$ for all possible $x$ that can be taken by $X$, which gives $x=\mathbb{E}[X]$, and thus implies that $X$ is a constant. \\[.5cm]
+{\color{red} (c) No } \\
+
+We proceed by providing a counterexample. Consider random variable $X$ where $\mathbb{P}[X=0] = 1/2, \mathbb{P}[X=1] = 1/2$ and constant $c = 2$. \\
+
+We have that: \\
+
+$\mathbb{E}[X] = 0\cdot1/2+1\cdot1/2 = \frac{1}{2},\ \mathbb{E}[X^2] = 0\cdot1/2 + 1^2\cdot1/2 = \frac{1}{2}$ \\
+
+$\mathbb{E}[cX] = 0\cdot1/2 + 2\cdot1/2 = 1,\ \mathbb{E}[(cX)^2] = 0\cdot1/2 + 2^2\cdot1/2 = 2$ \\
+
+which gives that var$(X) = \mathbb{E}[X^2] - \mathbb{E}[X]^2 = \frac{1}{4}$, so $c\cdot$var$(X) = 2\cdot\frac{1}{4} = \frac{1}{2}$, and var$(cX) = \mathbb{E}[(cX)^2] - \mathbb{E}[cX]^2 = 2-1 = 1$. \\
+
+Thus, in this case, $c\cdot$var$(X)\neq$ var$(cX)$, which gives the counterexample.\\[.5cm]
+{\color{red} (d) No } \\
+
+We proceed by providing a counterexample. Consider the example from part (a), let $A = X+Y, B = X-Y$, we know that cov$(A,B) = 0$, and then we can calculate $\sigma(A)=\sigma(B) = \sqrt{\frac{35}{12}}$ using results from Note 16. Thus, we have that Corr$(A,B) = \frac{\text{cov}(A,B)}{\sigma(A)\sigma(B)} = 0$, but $A,B$ are not independent. \\[.5cm]
+{\color{red} (e) Yes } \\
+
+Givent that Corr$(X,Y) = 0$, so
+$\frac{\text{cov}(X,Y)}{\sigma(X)\sigma(Y)} =
+\frac{\mathbb{E}[XY] - \mathbb{E}[X]\mathbb{E}[Y]}{\sigma(X)\sigma(Y)} = 0$, which implies that $\mathbb{E}[XY] - \mathbb{E}[X]\mathbb{E}[Y] = 0$, or equivalently, $\mathbb{E}[XY] = \mathbb{E}[X]\mathbb{E}[Y]$. \\
+
+Thus, var$(X+Y) =
+\mathbb{E}[(X+Y)^2] - \mathbb{E}[X+Y]^2 =
+\mathbb{E}[X^2] + \mathbb{E}[Y^2] + 2\mathbb{E}[XY] - (\mathbb{E}[X]^2 + \mathbb{E}[Y]^2 + 2\mathbb{E}[X]\mathbb{E}[Y]) =
+(\mathbb{E}[X^2]-\mathbb{E}[X]^2) + (\mathbb{E}[Y^2]-\mathbb{E}[Y]^2) + 2((\mathbb{E}[XY]-\mathbb{E}[X]\mathbb{E}[Y]) =
+Var(X) + Var(Y) + 2((\mathbb{E}[XY]-\mathbb{E}[X]\mathbb{E}[Y])$. Now, since we have that $\mathbb{E}[XY] = \mathbb{E}[X]\mathbb{E}[Y]$, so $\text{var}(X+Y) = \text{var}(X) + \text{var}(Y)$, as desired. \\[.5cm]
+{\color{red} (f) Yes } \\
+
+Given r.v. $X$ and $Y$, let $\mathscr{A}, \mathscr{B}$ denote the set of all values $X,Y$ can take on, respectively. Thus, we have that
+$\mathbb{E}[max(X,Y)min(X,Y)] =
+\sum\limits_{a\in\mathscr{A}, b\in\mathscr{B}} \mathbb{P}[X=a,Y=b]\cdot max(a,b)min(a,b)$. \\
+
+Now, we have that $max(a,b)min(a,b) = ab$ since exactly one of the situations must be true: (1) $a\geq b$ or (2) $a<b$. In Case (1), $max(a,b)min(a,b) = ab$; In Case (2), $max(a,b)min(a,b) = ba = ab$. \\
+
+Thus, $\mathbb{E}[max(X,Y)min(X,Y)] =
+\sum\limits_{a\in\mathscr{A}, b\in\mathscr{B}} \mathbb{P}[X=a,Y=b]\cdot max(a,b)min(a,b) =
+\sum\limits_{a\in\mathscr{A}, b\in\mathscr{B}} \mathbb{P}[X=a,Y=b]\cdot ab = \mathbb{E}[XY]$, as desired. \\[.5cm]
+{\color{red} (g) No } \\
+
+Consider independent r.v. $X, Y$ where $\mathbb{P}[X=1]=\mathbb{P}[X=3] = \mathbb{P}[Y=2] = \mathbb{P}[Y=4] = \frac{1}{2}$. \\
+
+Now, we can see that r.v. $max(X,Y), min(X,Y)$ can be calculated as $\mathbb{P}[max(X,Y)=1] = 0, \mathbb{P}[max(X,Y)=2] = \mathbb{P}[max(X,Y)=3] = \frac{1}{4}, \mathbb{P}[max(X,Y)=4] = \frac{1}{2}$ and
+$\mathbb{P}[min(X,Y)=1] = \frac{1}{2}, \mathbb{P}[min(X,Y)=2] = \mathbb{P}[min(X,Y)=3] = \frac{1}{4}, \mathbb{P}[min(X,Y)=4] = 0$.\\
+
+Thus, $\mathbb{E}[max(X,Y)] = \frac{13}{4}$ and $\mathbb{E}[min(X,Y)] = \frac{7}{4}$, while using results from part (f) we have $\mathbb{E}[max(X,Y)min(X,Y)] = \mathbb{E}[XY] = \frac{1}{4}\cdot(2+4+6+12) = 6$, so Corr$(max(X,Y), min(X,Y)) = \frac{cov(max(X,Y), min(X,Y))}{\sigma(max(X,Y))\sigma(min(X,Y))} = \frac{5}{16}$ while Corr$(X,Y) = \frac{cov(X,Y)}{\sigma(X)\sigma(Y)} = 0$. \\
+
+Since Corr$(max(X,Y), min(X,Y))\neq$Corr$(X,Y)$, so this is a counterexample.
+
+\end{document}
