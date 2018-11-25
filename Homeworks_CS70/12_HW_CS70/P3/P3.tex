@@ -1,0 +1,42 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=3cm]{geometry}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{xcolor}
+\begin{document}
+
+{\Large 3 Geometric and Poisson} \\[.5cm]
+{\color{red} (a) $e^{-\lambda p}$} \\
+
+Since $X\sim\text{Geo}(p), Y\sim\text{Poisson}(\lambda)$, so we have that
+$\mathbb{P}(X>Y) = 
+\sum\limits_{i=0}^\infty \mathbb{P}[Y=i]\mathbb{P}[X>i]$.
+Now, for any $i\in\mathbb{N}$, we have that
+$$\mathbb{P}[Y=i] = \frac{\lambda^i}{i!}e^{-\lambda}$$
+
+and with $p\neq 0$, we have 
+$$\mathbb{P}[X>i] = \sum\limits_{j=i+1}^\infty \mathbb{P}[X=j] =
+\sum\limits_{j=i+1}^\infty (1-p)^{j-1}p =
+\frac{(1-p)^i p}{1-(1-p)} = (1-p)^i$$
+
+Then, using the Taylor series expansion of $e^x$, we have that:
+$$\mathbb{P}(X>Y) = \sum\limits_{i=0}^\infty \frac{\lambda^i}{i!}e^{-\lambda} \cdot (1-p)^i =
+e^{-\lambda} \cdot \sum\limits_{i=o}^\infty \frac{(\lambda (1-p))^i}{i!} =
+e^{-\lambda} \cdot e^{\lambda(1-p)}$$
+
+Thus,
+$$\mathbb{P}(X>Y) = e^{-\lambda + \lambda - \lambda p} = e^{-\lambda p}$$ \\[.5cm]
+{\color{red} (b) 1} \\
+
+Since $Z$ is defined as $Z = \text{max}(X, Y)$, so by definition, we have that $\forall i,\ Z\geq X$. Therefore,
+$\mathbb{P}(Z\geq X) = 1$. \\[1cm]
+{\color{red} (c) $1 - e^{-\lambda p}$} \\
+
+Again, since $Z = \text{max}(X, Y)$, so we have that
+$\mathbb{P}(Z\leq Y) = \mathbb{P}(Z=Y) = \mathbb{P}(X\leq Y) =
+\mathbb{P}(\overline{X>Y}) = 1 - \mathbb{P}(X>Y)$. Using our result from part (a), so:
+$$\mathbb{P}(Z\leq Y) = 1 - \mathbb{P}(X>Y) = 1 - e^{-\lambda p}$$
+
+
+\end{document}

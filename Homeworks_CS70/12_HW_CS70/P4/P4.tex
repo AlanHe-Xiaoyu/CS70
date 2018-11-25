@@ -1,0 +1,57 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=3cm]{geometry}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{xcolor}
+\begin{document}
+
+{\Large 4 Darts} \\[.5cm]
+{\color{red} (a) $1 - e^{-4}$} \\
+
+Since we have that the probability density that the dart is $x$ distance from the center is $f_X(x) = \text{exp}(-x) = e^{-x}$ and that the board's radius is 4 units, so:
+$$\mathbb{P}[\text{within board}] = 
+\mathbb{P}[0\leq x\leq4] =
+\int_{0}^{4}\, f_X(x)\,dx =
+\int_{0}^{4}\, e^{-x}\,dx =
+-e^{-x}\,\big|_0^4 = 1 - e^{-4}$$
+{\color{red} (b) $\frac{1 - e^{-1}}{1 - e^{-4}}$} \\
+
+We first calculate the probability Alvin made it within 1 unit from the center, which is:
+$$\mathbb{P}[\text{1 unit}] = 
+\mathbb{P}[0\leq x\leq1] =
+\int_{0}^{1}\, f_X(x)\,dx =
+\int_{0}^{1}\, e^{-x}\,dx =
+-e^{-x}\,\big|_0^1 = 1 - e^{-1}$$
+
+Then, since
+$\mathbb{P}[\text{1 unit $\cap$ within board}] = \mathbb{P}[\text{1 unit}] = 1 - e^{-1}$, and by definition of conditional probability, so we have that:
+$$\mathbb{P}[\text{1 unit $\mid$ within board}] =
+\frac{\mathbb{P}[\text{1 unit $\cap$ within board}]}{\mathbb{P}[\text{within board}]} =
+\frac{1 - e^{-1}}{1 - e^{-4}}$$
+{\color{red} (c) $4 - e^{-1} - e^{-2} - e^{-3} - e^{-4}$} \\
+
+Let $S = \lfloor5-x\rfloor$ denote the score of Alvin. First, by definition of our score and shooting, the value of $S$ can only fall into these values: $5, 4, 3, 2, 1, 0$. Then, using given information, we can calculate that:
+$$\mathbb{P}[S=5] = \mathbb{P}[\text{0 unit}]
+= \mathbb{P}[0\leq x\leq0] = \int_{0}^{0}\, f_X(x)\,dx = 0$$
+$$\mathbb{P}[S=4] = \mathbb{P}[\text{between 0 and 1 unit}] = \mathbb{P}[0\leq x\leq1] = \int_{0}^{1}\, f_X(x)\,dx = 1 - e^{-1}$$
+$$\mathbb{P}[S=3] = \mathbb{P}[\text{between 1 and 2 unit}] = \mathbb{P}[1\leq x\leq2] = \int_{1}^{2}\, f_X(x)\,dx =
+-e^{-x}\,\big|_1^2 = e^{-1} - e^{-2}$$
+$$\mathbb{P}[S=2] = \mathbb{P}[\text{between 2 and 3 unit}] = \mathbb{P}[2\leq x\leq3] = \int_{2}^{3}\, f_X(x)\,dx =
+-e^{-x}\,\big|_2^3 = e^{-2} - e^{-3}$$
+$$\mathbb{P}[S=1] = \mathbb{P}[\text{between 3 and 4 unit}] = \mathbb{P}[3\leq x\leq4] = \int_{3}^{4}\, f_X(x)\,dx =
+-e^{-x}\,\big|_3^4 = e^{-3} - e^{-4}$$
+$$\mathbb{P}[S=0] = \mathbb{P}[\overline{\text{within board}}] =
+1 - (1 - e^{-4}) = e^{-4}$$
+
+Thus, Alvin’s expected score after one throw is:
+$$\mathbb{E}[S] = \int_{-\infty}^\infty xf(x)\,dx =
+\sum\limits_{i=0}^5 i\cdot\mathbb{P}[S=i]$$
+$$\Longrightarrow \mathbb{E}[S] =
+0\cdot e^{-4} + 1\cdot(e^{-3} - e^{-4}) +
+2\cdot (e^{-2} - e^{-3}) + 3\cdot (e^{-1} - e^{-2}) + 
+4\cdot (1 - e^{-1}) + 5\cdot 0$$
+$$\Longrightarrow \mathbb{E}[S] =
+4 - e^{-1} - e^{-2} - e^{-3} - e^{-4}$$
+
+\end{document}

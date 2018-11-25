@@ -1,0 +1,99 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=3cm]{geometry}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{xcolor}
+\begin{document}
+
+{\Large 5 Exponential Practice} \\[.5cm]
+{\color{red} (a) $f_Y(y) = \lambda^2 e^{-\lambda y} y$ for $y\geq 0$; and 0 otherwise} \\
+
+Since $X_1\sim\text{Exp}(\lambda)$ and $\lambda > 0$, so by definition $X_1$ has probability density function $f_{X_1}(x) = \lambda e^{-\lambda x}$ if $x\geq0$ and 0 otherwise, and also that
+it has CDF $F_{X_1}(x) = \mathbb{P}[X_1\leq x] = 1 - e^{-\lambda x}$ for $x\geq0$.
+Similarly, $X_2$ has the same PDF and CDF. \\
+
+Now, since $Y = X_1 + X_2$, $X_1, X_2$ are independent, and that all values of $X_1, X_2$ has to be non-negative (since the probability of them having negative values is 0), so we can calculate the cumulative distribution function of $Y$ as:
+$
+F_Y(y) = \mathbb{P}[Y\leq y] =
+\mathbb{P}[(X_1+X_2)\leq y] =
+\int_{-\infty}^y
+	\mathbb{P}[X_1\leq y-x\mid X_2=x] \cdot f_{X_2}(x) \, dx =
+\int_{-\infty}^y
+	\mathbb{P}[X_1\leq y-x] \cdot f_{X_2}(x) \, dx =
+\int_{-\infty}^y
+	(1-e^{-\lambda(y-x)}) \cdot \lambda e^{-\lambda x} \, dx =
+\int_{-\infty}^y \lambda e^{-\lambda x} \, dx -
+	\int_{-\infty}^y \lambda e^{\lambda x-\lambda y -\lambda x} \, dx =
+\int_{0}^y \lambda e^{-\lambda x} \, dx -
+	\int_{0}^y \lambda e^{-\lambda y} \, dx =
+-e^{-\lambda x}\Big|_0^y - (\lambda e^{-\lambda y}x)\Big|_0^y =
+1 - e^{-\lambda y} - \lambda e^{-\lambda y}y
+$ \\
+
+Since the density of $Y$ is
+$f_Y(y) = \frac{dF_Y(y)}{dy}$ by definition,
+so for $y\geq 0$,
+$$f_Y(y) =
+\lambda e^{-\lambda y} - \lambda (-y\lambda e^{-\lambda y} + e^{-\lambda y}) =
+\lambda^2 e^{-\lambda y} y
+$$
+
+and 0 otherwise ($y < 0$). \\[1cm]
+{\color{red} (b) $\frac{x}{t}$} \\
+
+By given information and the definition of conditional probability, so we have that the CDF is:
+$$\mathbb{P}(X_1\leq x\mid X_1 + X_2 = t) =
+\frac{\mathbb{P}(X_1\leq x\, \cap\, X_1 + X_2 = t)}{\mathbb{P}(X_1 + X_2 = t)}
+$$
+
+Now, since $X_1, X_2$ can only take non-negative values again, and using the hint to condition on the event
+$\{X_1 + X_2 \in [t, t+\epsilon]\}$ where $\epsilon>0$ and is small instead of
+$\{X_1 + X_2 = t\}$,
+so we have that:
+$\mathbb{P}(X_1\leq x\, \cap\, X_1 + X_2 = t) =
+\mathbb{P}(X_1\leq x\, \cap\, (X_1 + X_2) \in [t, t+\epsilon]) =
+\int_0^x \int_{t-n}^{t-n+\epsilon}
+	f_{X_1}(n) \cdot f_{X_2}(m) \,dm \,dn =
+\int_0^x \int_{t-n}^{t-n+\epsilon}
+	(\lambda e^{-\lambda n}) \cdot (\lambda e^{-\lambda m}) \,dm\,dn =
+\int_0^x \lambda e^{-\lambda n} \Big(-e^{-\lambda m}\Big|_{t-n}^{t-n+\epsilon}\Big) \,dn =
+\int_0^x \lambda e^{-\lambda t} (1-e^{\lambda\epsilon}) \,dn =
+\lambda e^{-\lambda t}(1-e^{-\lambda\epsilon})x$ \\
+
+Similarly, $\mathbb{P}(X_1 + X_2 = t) = \int_0^t \int_{t-n}^{t-n+\epsilon}
+	f_{X_1}(n) \cdot f_{X_2}(m) \,dm \,dn =
+\lambda e^{-\lambda t}(1-e^{-\lambda\epsilon})t$ \\
+
+Thus, the CDF is
+$$\mathbb{P}(X_1\leq x\mid X_1 + X_2 = t) =
+\frac{\epsilon\lambda\cdot e^{-\lambda t}x}
+	{\epsilon\lambda\cdot e^{-\lambda t}t} =
+\frac{x}{t}
+$$
+
+
+
+Again, using the hint and steps from part (a) where $Y = X_1 + X_2$ and that $f_Y(y) = \lambda^2 e^{-\lambda y} y$ for $y\geq 0$, so we can approximate $\mathbb{P}(X_1 + X_2 = t)$ to be:
+$$\mathbb{P}(X_1 + X_2 \in [t, t+\epsilon]) =
+\mathbb{P}(X_1 + X_2\leq t+\epsilon) - \mathbb{P}(X_1 + X_2\leq t)
+	\approx
+\epsilon\cdot F_Y(t) =
+\epsilon\lambda^2 e^{-\lambda t} t$$
+
+Thus, the CDF is
+$$\mathbb{P}(X_1\leq x\mid X_1 + X_2 = t) =
+\frac{\epsilon\lambda\cdot e^{-\lambda t}x}
+	{\epsilon\lambda^2 e^{-\lambda t} t} =
+\frac{x}{\lambda t}
+$$
+
+$$\int_0^x \int_{t-n}^{t-n+\epsilon}
+	f_{X_1}(n) \cdot f_{X_2}(m) \,dm \,dn =$$
+
+
+
+\pagebreak
+
+
+\end{document}

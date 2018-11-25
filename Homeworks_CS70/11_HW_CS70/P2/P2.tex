@@ -1,0 +1,44 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=3cm]{geometry}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{xcolor}
+\begin{document}
+
+{\Large 2 Markov’s Inequality and Chebyshev’s Inequality} \\[.5cm]
+{\color{red} (a) True (Direct Proof) } \\
+
+We proceed by a direct proof. Using Theorem 16.1, we have that var$(X) = \mathbb{E}[X^2] - \mathbb{E}[X]^2$, which gives us that:
+$$\mathbb{E}[X^2] = \text{var(X)} + \mathbb{E}[X]^2 = 9 + 2^2 = 13$$
+
+This gives the value we desire. Q.E.D. \\[.5cm]
+{\color{red} (b) True (Proof by Contradiction) } \\
+
+Assume, for a contradiction, that $\mathbb{P}[X\leq1]>8/9$. Let $R$ denote the assertion that $\mathbb{E}[X] = 2$. Since the value of $X$ is never greater than 10, so we have that $$\mathbb{E}[X] < 1\cdot8/9 + 10\cdot(1-8/9) = 2$$
+
+In other words, the expectation of $X$ would never reach 2, which implies $\neg R$. So $R\land\neg R$ holds, which gives the contradiction. Q.E.D. \\[.5cm]
+{\color{red} (c) True (Direct Proof) } \\
+
+Givent that $\mu = \mathbb{E}[X] = 2$ and var$(X) = 9$, so using Theorem 18.3 (Chebyshev's Inequality), we have that:
+$$\mathbb{P}[|X-\mu|\geq4]\ \leq\ \frac{\text{var}(X)}{4^2}$$
+
+which gives that $\mathbb{P}[|X-2|\geq4]\leq\frac{9}{16}$. Then, since 
+$\mathbb{P}[|X-2|\geq4] = \mathbb{P}[X\geq6] + \mathbb{P}[X\leq-2]$, and since $\mathbb{P}[X\leq-2]$ is nonnegative, so we can conclude that:
+$$\mathbb{P}[X\geq6]\ \leq\ \mathbb{P}[|X-2|\geq4]\ \leq\ \frac{9}{16}$$
+
+This gives the result we desire. Q.E.D. \\[.5cm]
+{\color{red} (d) False (Counterexample) } \\
+
+Consider random variable $X$ where $\mathbb{P}[X=6] = \frac{11}{32}, \mathbb{P}[X=-10] = \frac{1}{160}, \mathbb{P}[X=0] = \frac{13}{20}$. \\
+
+Here, we can first verify that all values $X$ can take on is not greater than 10. Then,
+$\mathbb{E}[X] = 6\cdot\frac{11}{32} + (-10)\cdot\frac{1}{160} + 0\cdot\frac{13}{20} = 2$ as desired, and
+$\mathbb{E}[X^2] = 6^2\cdot\frac{11}{32} + (-10)^2\cdot\frac{1}{160} + 0^2\cdot\frac{13}{20} = 13$, which gives that var$(X) = \mathbb{E}[X^2] - \mathbb{E}[X]^2 = 13-2^2 = 9$ as desired. In other words, this is a random variable that satisfies all constraints. Yet,
+$$\mathbb{E}[X\geq6]\geq\mathbb{E}[X=6] = \frac{11}{32} > \frac{9}{32}$$
+
+Thus, this is a valid counterexample. Q.E.D.
+
+
+
+\end{document}

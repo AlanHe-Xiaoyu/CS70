@@ -1,0 +1,40 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=3cm]{geometry}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{xcolor}
+\begin{document}
+
+Sundry: I worked alone without any help. \\[1cm]
+{\Large 1 Safeway Monopoly Cards} \\[.5cm]
+{\color{red} Direct Proof} \\
+
+We proceed by a direct proof. This is very similar to the coupon collector's problem. \\
+
+As usual, we start by writing $X = I_1 + I_2 + \cdots + I_n$ where $I_i$ is the number of times we visit Safeway while trying to get the $i^{th}$ new card (starting immediately after we have gotten the $(i-1)^{th}$ new card). With this definition, $I_1$ is trivial: no matter what happens, we always get a new card the first time (since we have none to start with). So $\mathbb{P}[I_1 = 1] = 1$, and thus $\mathbb{E}[I_1] = 1$. \\
+
+Then, $I_2$ has the geometric distribution with parameter $p = \frac{n-1}{n}$, and thus, using Theorem 19.2, we have $\mathbb{E}[I_2] = \frac{1}{p} = \frac{n}{n-1}$. Similarly, for any $i = 1,2,\dots,n,$ $I_i$ has the geometric distribution with parameter
+$p = \frac{n-i+1}{n}$, and hence, $\mathbb{E}[I_i] = \frac{n}{n-i+1}$ by Theorem 19.2. \\
+
+Now, we could apply the linearity of expectation to get:
+$$\mathbb{E}[X] = \mathbb{E}[I_1] + \mathbb{E}[I_1] + \cdots + \mathbb{E}[I_n] = \frac{n}{n} + \frac{n}{n-1} + \cdots + \frac{n}{1} = n\sum\limits_{i=1}^n \frac{1}{i}$$
+
+Similarly, since all the events $I_i$ are mutually independent, so the variance of their sum is the sum of their variance by Theorem 16.3, and thus we have:
+var$(X) = \text{var}(I_1 + I_2 + \cdots + I_n) = \text{var}(I_1) + \text{var}(I_2) + \cdots + \text{var}(I_n)$, where for any $I_i\sim\text{Geo}(\frac{n-i+1}{n})$, by Theorem 19.3 we have
+var$(I_i) = \frac{1 - \frac{n-i+1}{n}}{(\frac{n-i+1}{n})^2} =
+\frac{n(i-1)}{(n-i+1)^2}$. Thus,
+$$\text{var}(X) =
+\text{var}(I_1) + \text{var}(I_2) + \cdots + \text{var}(I_n) =
+\frac{n\cdot0}{n^2} + \frac{n\cdot1}{(n-1)^2} + \frac{n\cdot2}{(n-2)^2} + \cdots + \frac{n(n-1)}{1^2}$$
+$$\Longrightarrow \text{var}(X) = n\cdot\sum\limits_{i=1}^{n} \frac{i-1}{(n-(i-1))^2}$$
+$$\Longrightarrow \text{var}(X) = n\cdot\sum\limits_{i=1}^{n} \frac{n-i}{(n-(n-i))^2} = n\cdot\sum\limits_{i=1}^{n} \frac{n-i}{i^2}$$
+$$\Longrightarrow \text{var}(X) = n\cdot(\sum\limits_{i=1}^{n} \frac{n}{i^2} - \sum\limits_{i=1}^{n} \frac{i}{i^2})$$
+$$\Longrightarrow \text{var}(X) = n^2\cdot\sum\limits_{i=1}^{n} \frac{1}{i^2} - n\sum\limits_{i=1}^{n} \frac{1}{i}$$
+
+Since $\mathbb{E}[X] = n\sum\limits_{i=1}^n \frac{1}{i}$, so we have that:
+$$\text{var}(X) = n^2\cdot\sum\limits_{i=1}^{n} i^{-2} - \mathbb{E}[X]$$
+
+which is the desired result. Q.E.D.
+
+\end{document}

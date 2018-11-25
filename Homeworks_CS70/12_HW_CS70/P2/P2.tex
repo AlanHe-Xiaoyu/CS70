@@ -1,0 +1,58 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=3cm]{geometry}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{xcolor}
+\begin{document}
+
+{\Large 2 Geometric Distribution} \\[.5cm]
+{\color{red} (a) Direct Proof} \\
+
+\textit{Proof.} We proceed by a direct proof. First, since $X_1\sim\text{Geo}(p_1), X_2\sim\text{Geo}(p_2)$, so $\mathbb{P}[X_1=i] = (1-p_1)^{i-1}\cdot p_1, \mathbb{P}[X_2=i] = (1-p_2)^{i-1}p_2$ for any $i\in\mathbb{Z^+}$ by definition. \\
+
+Now, for any $i\in\mathbb{Z^+}$, i.e. $i = 1, 2, \dots$, by the Principal of Inclusion-Exclusion, we have that the probability of at least one of the machines failing at the $i^{th}$ day is (also by the mutually exclusive property of the two machines and the sum of infinite geometric series):
+$\mathbb{P}[X = i] = 
+\mathbb{P}[X_1 = i, X_2\geq i] + \mathbb{P}[X_1\geq i, X_2 = i] - \mathbb{P}[X_1 = i, X_2 = i] =
+	\mathbb{P}[X_1=i]\mathbb{P}[X_2\geq i] +
+	\mathbb{P}[X_1\geq i]\mathbb{P}[X_2=i] -
+	\mathbb{P}[X_1=i]\mathbb{P}[X_2=i]$.
+Since we have:
+$$\mathbb{P}[X_1\geq i] =
+\sum\limits_{k=i}^\infty \mathbb{P}[X_1=k] =
+\sum\limits_{k=i}^\infty (1-p_1)^{k-1}p_1 =
+p_1\cdot \frac{(1-p_1)^{i-1}}{1 - (1-p_1)} = (1-p_1)^{i-1}$$
+
+And similarly, $$\mathbb{P}[X_2\geq i] = (1-p_2)^{i-1}$$
+
+Thus, for $i = 1, 2, 3, \dots$, we have:
+$$\mathbb{P}[X = i] =
+	(1-p_1)^{i-1} p_1 \cdot (1-p_2)^{i-1} +
+	(1-p_1)^{i-1} \cdot (1-p_2)^{i-1} p_2 -
+	(1-p_1)^{i-1} p_1 \cdot (1-p_2)^{i-1} p_2$$
+$$\Longrightarrow \mathbb{P}[X = i] =
+(1-p_1)^{i-1}(1-p_2)^{i-1}\cdot(p_1 + p_2 - p_1p_2)$$
+$$\Longrightarrow \mathbb{P}[X = i] =
+(1-(p_1+p_2-p_1p_2))^{i-1}\cdot(p_1 + p_2 - p_1p_2)$$
+
+which implies that $X$ is the geometric distribution with parameter $p_1 + p_2 - p_1p_2$, as desired. \\
+
+Q.E.D. \\[1cm]
+{\color{red} (b) $\frac{1}{2-p_1-p_2+p_1p_2}$} \\
+
+The probability that the first technician is the first one to find a faulty machine is equivalent to the probability of having the first failure on either machine happen after an even number of runs (starting from 0). Since we proved in part (a) that $X\sim\text{Geo}(p_1 + p_2 - p_1p_2)$, denoting parameter $p = p_1 + p_2 - p_1p_2$ so we have that:
+$\mathbb{P} = \mathbb{P}[\text{first technician finds failure first}] =
+\mathbb{P}[\text{first failure after odd number of runs}] =
+\sum\limits_{i=0}^\infty \mathbb{P}[X=2i] =
+\sum\limits_{i=0}^\infty (1-p)^{2i} \cdot p =
+p\cdot \sum\limits_{i=0}^\infty (1-p)^{2i}$. \\
+
+Since the summation represents an infinite geometric series, so with $p = p_1 + p_2 - p_1p_2$ and that $p\neq0$, so we can take its sum and simplify that:
+$$\mathbb{P} =
+	p\cdot \frac{1}{1 - (1-p)^2} =
+p\cdot \frac{1}{2p-p^2} = \frac{1}{2-p} =
+\frac{1}{2-p_1-p_2+p_1p_2}$$
+
+Thus, the probability that the first technician is the first one to find a faulty machine is $\frac{1}{2-p_1-p_2+p_1p_2}$.
+
+\end{document}

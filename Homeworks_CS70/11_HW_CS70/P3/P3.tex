@@ -1,0 +1,25 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=3cm]{geometry}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{xcolor}
+\begin{document}
+
+{\Large 3 Easy A’s} \\[.5cm]
+{\color{red} $\mathbb{E} = 35; \text{var} = 25$ } \\
+
+Since each of the first 3 problems (and the last 4 problems) are graded independently with the same range, expectation and variance, so the two sets are i.i.d., which implies that I could calculate desired results separately. Let the grading of one of the first three problems be $I_1$ and let the grading of one of the last four problems be $I_2$, and denote my total score as the random variable $X$, where $X = 3I_1 + 4I_2$. As analyzed earlier, we have that the $I_i$'s are mutually independent: \\
+
+Using given information, we have that $\mathbb{E}[I_i] = 5$ and var$(I_i) = 1$. Thus, using results from the Notes (Theorem 15.1 and 16.3), we have that:
+$$\mathbb{E}[X] = \mathbb{E}[3I_1 + 4I_2] = 3\mathbb{E}[I_1] + 4\mathbb{E}[I_2] = 3\cdot5 + 4\cdot5 = 35$$
+$$\text{var}[X] = \text{var}[3I_1 + 4I_2] = \text{var}[3I_1] + \text{var}[4I_2] = 3^2\text{var}[I_1] + 4^2\text{var}[I_2] =
+9\cdot1 + 16\cdot1 = 25$$ \\
+
+Now, using Chebyshev's inequality, we can calculate that:
+$$\mathbb{P}\big[|X-\mathbb{E}[X]|\geq25\big]\ \leq\ \frac{\text{var}(X)}{25^2}$$
+$$\Longrightarrow \mathbb{P}\big[|X-35|\geq25\big]\ \leq\ \frac{25}{625} = \frac{1}{25} < 5\%$$
+
+In other words, I have less than a 5\% chance of getting an A when the grades are randomly chosen this way. Q.E.D.
+
+\end{document}

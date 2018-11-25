@@ -1,0 +1,31 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=3cm]{geometry}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{xcolor}
+\begin{document}
+
+I worked alone without any help. \\[1cm]
+{\Large 1 Random Cuckoo Hashing} \\[.5cm]
+{\color{red} (a) $\mathbb{P}[\text{No Collision}] = \frac{n!}{n^n}; \longrightarrow0$} \\
+
+Since the size of the event space of such a situation is $|\omega| = n!$, and the size of the probability space is $|\Omega| = n^n$, so the probability of such a situation is $\mathbb{P}[\text{No Collision}] = \frac{|\omega|}{|\Omega|} = \frac{n!}{n^n}$, and as $n\rightarrow\infty$, we can see that $\mathbb{P}[\text{No Collision}]\rightarrow0$. \\
+
+We can represent $\mathbb{P}[\text{No Collision}]$ in another method:
+$\mathbb{P}[\text{No Collision}] = \frac{n}{n}\frac{n-1}{n}\cdots\frac{1}{n}$, which will tend toward 0 (all terms of this product are smaller than or equal to 1, and $\lim_{n\rightarrow\infty}\frac{1}{n}=0$) as $n$ grows very large. \\[.5cm]
+{\color{red} (b) $\mathbb{E}[\text{Collisions}] = n-1$} \\
+
+Let the expected number of collisions that we’ll see while hashing $D_n$ be $\mathbb{E}[\text{Collisions for }D_n] = X$. \\
+
+Since we have already hashed $D_1,\dots,D_{n-1}$, and they each occupy their own bucket, so in this situation, the probability of $D_n$ not getting a collision is $\frac{1}{n}$ (which is equivalent to having 0 collisions); then, in other words, the probability of $D_n$ getting a first collision is $1-\frac{1}{n} = \frac{n-1}{n}$. \\
+
+Now, let $D_n$ take the $i^{th}$ bucket, the bucket of $D_i$. So now, we reached the same situation where $(n-1)$ pieces of data have occupied their own buckets, and a single piece of data $D_i$ needs to be rehashed, and thus, the expected number of collisions we'll see hashing $D_i$ would be $X$ again, because it's an identical situation. This implies that the total number of collision of hashing $D_n$ in this situation would be $\mathbb{E}[\text{First Collision}] = 1+X$. \\
+
+Thus, looking back at $\mathbb{E}[\text{Collisions for }D_n]$, we have this equation:
+$$ X = \frac{1}{n}\cdot0 + \frac{n-1}{n}\cdot(1+X)$$
+
+Thus, we can calculate that:
+$$X = n-1$$
+
+\end{document}

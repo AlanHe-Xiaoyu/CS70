@@ -1,0 +1,56 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=3cm]{geometry}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{xcolor}
+\begin{document}
+
+{\Large 6 Uniform Means} \\[.5cm]
+{\color{red} (a) $\frac{1}{n+1}$} \\
+
+Given that $X_1, X_2, \dots, X_n$ are $n$ independent and identically distributed uniform random variables on the interval $[0, 1]$ (where $n\in\mathbb{Z^+}$), and that $Y = \text{min}\{X_1, X_2, \dots, X_n\}$, so we have $0\leq Y\leq1$, and thus, we can use the tail sum formula to obtain:
+$$\mathbb{E}(Y) =
+	\int_0^\infty \mathbb{P}(Y>y)\,dy =
+	\int_0^1 \mathbb{P}(Y>y)\,dy$$
+
+Now, since $X_1, X_2, \dots, X_n$ are uniform i.i.ds,
+and $Y = \text{min}\{X_1, X_2, \dots, X_n\}$,
+so for any $y\in[0,1]$, we can calculate an expression for $\mathbb{P}(Y>y)$ as:
+$\mathbb{P}(Y>y) = \mathbb{P}(\text{min}\{X_1, X_2, \dots, X_n\}>y) = \mathbb{P}(X_1>y, X_2>y, \dots, X_n>y) =
+\mathbb{P}(X_1>y)\cdot \mathbb{P}(X_2>y)\cdot \cdots \cdot\mathbb{P}(X_n>y)$
+where for any $i\in\{1,\dots, n\},\
+\mathbb{P}(X_i>y) = \frac{1-y}{1-0} = 1-y$. Thus,
+$$\mathbb{P}(Y>y) = (1-y)\cdot\cdots\cdot(1-y) = (1-y)^n$$
+
+Therefore, we can now calculate the expectation of $Y$, which is:
+$$\mathbb{E}(Y) =
+\int_0^1 \mathbb{P}(Y>y)\,dy =
+\int_0^1 (1-y)^n \,dy =
+-\frac{(1-y)^{n+1}}{n+1} \Big|_0^1 =
+- 0 + \frac{1}{n+1} = \frac{1}{n+1}$$ \\[.5cm]
+{\color{red} (b) $\frac{n}{n+1}$} \\
+
+Given that $X_1, X_2, \dots, X_n$ are $n$ independent and identically distributed uniform random variables on the interval $[0, 1]$ (where $n\in\mathbb{Z^+}$), and that $Z = \text{max}\{X_1, X_2, \dots, X_n\}$, so we have $0\leq Z\leq1$, and thus, we can use the formula for Cumulative Distribution Function to obtain:
+$$\mathbb{E}(Z) =
+	\int_{-\infty}^1 z\cdot f(z)\,dz = 
+	\int_{0}^1 z\cdot f(z)\,dz$$
+
+Now, since $X_1, X_2, \dots, X_n$ are uniform i.i.ds,
+and $Z = \text{max}\{X_1, X_2, \dots, X_n\}$,
+so for any $z\in[0,1]$, we can calculate an expression for $\mathbb{P}(Z\leq z)$ as:
+$\mathbb{P}(Z\leq z) = \mathbb{P}(\text{max}\{X_1, X_2, \dots, X_n\}\leq z) = \mathbb{P}(X_1\leq z, X_2\leq z, \dots, X_n\leq z) =
+\mathbb{P}(X_1\leq z)\cdot \mathbb{P}(X_2\leq z)\cdot \cdots \cdot\mathbb{P}(X_n\leq z)$
+where for any $i\in\{1,\dots, n\},\
+\mathbb{P}(X_i\leq z) = \frac{z-0}{1-0} = z$. Thus,
+$$F(z) = \mathbb{P}(Z\leq z) = z\cdot\cdots\cdot z = z^n$$
+
+Therefore, $f(z) = \frac{dF(z)}{dz} = nz^{n-1}$
+we can now calculate the expectation of $Z$, which is:
+$$\mathbb{E}(Z) =
+	\int_0^1 z\cdot nz^{n-1}\,dz =
+\int_0^1 nz^n \,dz =
+\Big(\frac{n}{n+1}\cdot z^{n+1} \Big|_0^1 \, \Big) =
+\frac{n}{n+1}$$
+
+\end{document}
