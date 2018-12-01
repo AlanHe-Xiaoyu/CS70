@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1542684049 "P2.tex" "P2.pdf" "P2" 1542684050
+["pdflatex"] 1542684049 "P2.tex" "P2.pdf" "P2" 1543627147
   "/usr/local/texlive/2018/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1480098698 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1480098698 916 f87d7c45f9c908e672703b83b72241a3 ""
@@ -53,6 +53,6 @@
   "P2.aux" 1542684050 8 a94a2480d3289e625eea47cd1b285758 ""
   "P2.tex" 1542684049 2863 b531f5480aa799e618501f14060634cb ""
   (generated)
-  "P2.pdf"
-  "P2.aux"
   "P2.log"
+  "P2.aux"
+  "P2.pdf"

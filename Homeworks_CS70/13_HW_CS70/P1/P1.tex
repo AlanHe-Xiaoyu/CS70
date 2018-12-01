@@ -8,33 +8,99 @@
 
 Sundry: I worked alone without any help. \\[1cm]
 {\Large 1 Buffon’s Needle on a Grids} \\[.5cm]
-{\color{red} (a) $\mathbb{P}[\text{no intersection at } \theta] = ?$} \\
+{\color{red} (a)
+$\mathbb{P}[\text{no intersection at } \theta] =
+1 - \sin\theta - \cos\theta + \sin\theta\cos\theta$} \\
 
-We proceed by a direct proof. This is very similar to the coupon collector's problem. \\
+Note that a random throw of the needle is completely specified by 3 random variables: \\[.1cm]
+(1) the horizontal distance $X$ between the midpoint of the needle and the closest vertical line; \\[.1cm]
+(2) the vertical distance $Y$ between the midpoint of the needle and the closest horizontal line; \\[.1cm]
+(3) the angle $\theta$ between the needle and the horizontal lines. \\
 
-As usual, we start by writing $X = I_1 + I_2 + \cdots + I_n$ where $I_i$ is the number of times we visit Safeway while trying to get the $i^{th}$ new card (starting immediately after we have gotten the $(i-1)^{th}$ new card). With this definition, $I_1$ is trivial: no matter what happens, we always get a new card the first time (since we have none to start with). So $\mathbb{P}[I_1 = 1] = 1$, and thus $\mathbb{E}[I_1] = 1$. \\
+Since we assume a perfectly random throw, so we may assume that the position of the center of the needle and its orientation are independent and uniformly distributed (i.e. $X,Y,\theta$ are i.i.d.).
+Then, since the r.v.s $X$ and $Y$ range between 0 and $\theta$ is fixed, so their joint distribution has density $f(x,y)$ that is uniform over the square $[0,\frac{1}{2}] \times [0,\frac{1}{2}]$.
+Since this square has area $\frac{1}{4}$, so the density should be:
+$$f(x,y,\theta) = 4 \indent \text{for } (x,y)\in [0,\frac{1}{2}] \times [0,\frac{1}{2}]$$
+$$\text{and}\indent f(x,y,\theta) = 0 \indent \text{otherwise}$$
 
-Then, $I_2$ has the geometric distribution with parameter $p = \frac{n-1}{n}$, and thus, using Theorem 19.2, we have $\mathbb{E}[I_2] = \frac{1}{p} = \frac{n}{n-1}$. Similarly, for any $i = 1,2,\dots,n,$ $I_i$ has the geometric distribution with parameter
-$p = \frac{n-i+1}{n}$, and hence, $\mathbb{E}[I_i] = \frac{n}{n-i+1}$ by Theorem 19.2. \\
+Sanity Check:
+$$\int_{-\infty}^\infty
+	\int_{-\infty}^\infty\ f(x,y,\theta)\ dxdy =
+\int_{0}^\frac{1}{2}
+	\int_{0}^\frac{1}{2}\ 4\ dxdy = 1
+$$
 
-Now, we could apply the linearity of expectation to get:
-$$\mathbb{E}[X] = \mathbb{E}[I_1] + \mathbb{E}[I_1] + \cdots + \mathbb{E}[I_n] = \frac{n}{n} + \frac{n}{n-1} + \cdots + \frac{n}{1} = n\sum\limits_{i=1}^n \frac{1}{i}$$
+Now let $E$ denote the event that the needle does NOT intersect a line. By elementary geometry the vertical distance of the endpoint of the needle from its midpoint is $\frac{1}{2}\sin\theta$, and the horizontal distance of the endpoint of the needle from its midpoint is $\frac{1}{2}\cos\theta$, so the needle will NOT intersect any grid lines if and only if $(X > \frac{1}{2}\cos\theta) \land (Y > \frac{1}{2}\sin\theta)$. \\
 
-Similarly, since all the events $I_i$ are mutually independent, so the variance of their sum is the sum of their variance by Theorem 16.3, and thus we have:
-var$(X) = \text{var}(I_1 + I_2 + \cdots + I_n) = \text{var}(I_1) + \text{var}(I_2) + \cdots + \text{var}(I_n)$, where for any $I_i\sim\text{Geo}(\frac{n-i+1}{n})$, by Theorem 19.3 we have
-var$(I_i) = \frac{1 - \frac{n-i+1}{n}}{(\frac{n-i+1}{n})^2} =
-\frac{n(i-1)}{(n-i+1)^2}$. Thus,
-$$\text{var}(X) =
-\text{var}(I_1) + \text{var}(I_2) + \cdots + \text{var}(I_n) =
-\frac{n\cdot0}{n^2} + \frac{n\cdot1}{(n-1)^2} + \frac{n\cdot2}{(n-2)^2} + \cdots + \frac{n(n-1)}{1^2}$$
-$$\Longrightarrow \text{var}(X) = n\cdot\sum\limits_{i=1}^{n} \frac{i-1}{(n-(i-1))^2}$$
-$$\Longrightarrow \text{var}(X) = n\cdot\sum\limits_{i=1}^{n} \frac{n-i}{(n-(n-i))^2} = n\cdot\sum\limits_{i=1}^{n} \frac{n-i}{i^2}$$
-$$\Longrightarrow \text{var}(X) = n\cdot(\sum\limits_{i=1}^{n} \frac{n}{i^2} - \sum\limits_{i=1}^{n} \frac{i}{i^2})$$
-$$\Longrightarrow \text{var}(X) = n^2\cdot\sum\limits_{i=1}^{n} \frac{1}{i^2} - n\sum\limits_{i=1}^{n} \frac{1}{i}$$
+Therefore, with our density function and bounds, so we have that:
+$$\mathbb{P}[E] =
+\mathbb{P}[(X > \frac{1}{2}\cos\theta) \land (Y > \frac{1}{2}\sin\theta)] =
+\int_{\frac{1}{2}\sin\theta}^\infty
+	\int_{\frac{1}{2}\cos\theta}^\infty\
+		f(x,y,\theta)\ dxdy$$
+$$\Longrightarrow \mathbb{P}[E] =
+\int_{\frac{1}{2}\sin\theta}^\frac{1}{2}
+	\int_{\frac{1}{2}\cos\theta}^\frac{1}{2}\
+		4\ dxdy =
+4\cdot
+	(\frac{1}{2} - \frac{1}{2}\cos\theta)
+		(\frac{1}{2} - \frac{1}{2}\sin\theta) =
+1 - \sin\theta - \cos\theta + \sin\theta\cos\theta
+$$
+{\color{red} (b)
+$\mathbb{P}[\text{intersection}] = \frac{2}{\pi}$} \\
 
-Since $\mathbb{E}[X] = n\sum\limits_{i=1}^n \frac{1}{i}$, so we have that:
-$$\text{var}(X) = n^2\cdot\sum\limits_{i=1}^{n} i^{-2} - \mathbb{E}[X]$$
+Using a similar argument, we have that the r.v.s $X$ and $Y$ range between 0 and $\frac{1}{2}$, while $\theta$ ranges between $-\frac{\pi}{2}$ and $\frac{\pi}{2}$. Since we assume a perfectly random throw, so we may assume that the position of the center of the needle and its orientation are independent and uniformly distributed (i.e. $X,Y,\theta$ are i.i.d.), and thus,
+their joint distribution has density $f(x,y,\theta)$ that is uniform over the cube $[0,\frac{1}{2}] \times [0,\frac{1}{2}] \times [-\frac{\pi}{2}, \frac{\pi}{2}]$. Since this cube has volume $\frac{\pi}{4}$, so the density should be:
+$$f(x,y,\theta) = \frac{4}{\pi} \indent \text{for } (x,y,\theta)\in [0,\frac{1}{2}] \times [0,\frac{1}{2}] \times [-\frac{\pi}{2}, \frac{\pi}{2}]$$
+$$\text{and}\indent f(x,y,\theta) = 0 \indent \text{otherwise}$$
 
-which is the desired result. Q.E.D.
+Sanity Check:
+$$\int_{-\infty}^\infty
+	\int_{-\infty}^\infty
+		\int_{-\infty}^\infty\ f(x,y,\theta)\ dxdyd\theta =
+\int_{-\frac{\pi}{2}}^\frac{\pi}{2}
+	\int_{0}^\frac{1}{2}
+		\int_{0}^\frac{1}{2}\ \frac{4}{\pi}\ dxdyd\theta = 1
+$$
+
+Now let $E_2$ denote the event that the needle does NOT intersect a line. By elementary geometry the vertical distance of the endpoint of the needle from its midpoint is $\frac{1}{2}\sin\theta$, and the horizontal distance of the endpoint of the needle from its midpoint is $\frac{1}{2}\cos\theta$, so the needle will NOT intersect any grid lines if and only if $(X > \frac{1}{2}\cos\theta) \land (Y > \frac{1}{2}\sin\theta)$. \\
+
+Thus, with our density function and bounds, so we have that:
+$$\mathbb{P}[E_2] =
+\mathbb{P}[(X > \frac{1}{2}\cos\theta) \land (Y > \frac{1}{2}\sin\theta)] =
+\int_{-\frac{\pi}{2}}^\frac{\pi}{2}
+	\int_{\frac{1}{2}\sin\theta}^\infty
+		\int_{\frac{1}{2}\cos\theta}^\infty\
+			f(x,y,\theta)\ dxdyd\theta$$
+$$\Longrightarrow \mathbb{P}[E_2] =
+\int_{-\frac{\pi}{2}}^\frac{\pi}{2}
+	\int_{\frac{1}{2}\sin\theta}^\frac{1}{2}
+		\int_{\frac{1}{2}\cos\theta}^\frac{1}{2}\
+			\frac{4}{\pi}\ dxdyd\theta =
+\int_{-\frac{\pi}{2}}^\frac{\pi}{2}
+	\frac{4}{\pi}\cdot
+		(\frac{1}{2} - \frac{1}{2}\cos\theta)
+		(\frac{1}{2} - \frac{1}{2}\sin\theta)\ d\theta$$
+$$\Longrightarrow \mathbb{P}[E_2] =
+\int_{-\frac{\pi}{2}}^\frac{\pi}{2}
+	\frac{1}{\pi}\cdot(1 - \sin\theta - \cos\theta + \sin\theta\cos\theta)\ d\theta =
+\frac{1}{\pi}\cdot \int_{-\frac{\pi}{2}}^\frac{\pi}{2}
+	1 - \sin\theta - \cos\theta + \frac{1}{2}\sin(2\theta)\ d\theta$$
+$$\Longrightarrow \mathbb{P}[E_2] =
+\frac{1}{\pi}\cdot
+	\big(\theta + \cos\theta - \sin\theta - \frac{1}{4}\cos(2\theta)\big)	\Big|_{-\frac{\pi}{2}}^\frac{\pi}{2} =
+\frac{1}{\pi}\cdot
+	\Big(
+		(\frac{\pi}{2} + 0 - 1 + \frac{1}{4}) -
+		(-\frac{\pi}{2} + 0 + 1 + \frac{1}{4})
+	\Big) =
+\frac{\pi-2}{\pi}$$
+
+Therefore, we have that the probability that the needle intersects a grid line is:
+$$\mathbb{P}[\text{intersection}] =
+\mathbb{P}[\overline{E_2}] =
+1 - \mathbb{P}[E_2] = 1 - \frac{\pi-2}{\pi} = \frac{2}{\pi}$$
+
 
 \end{document}
