@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1542698564 "P6.tex" "P6.pdf" "P6" 1542698564
+["pdflatex"] 1542698564 "P6.tex" "P6.pdf" "P6" 1543703180
   "/usr/local/texlive/2018/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1480098698 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1480098698 916 f87d7c45f9c908e672703b83b72241a3 ""
@@ -48,7 +48,7 @@
   "/usr/local/texlive/2018/texmf-var/web2c/pdftex/pdflatex.fmt" 1527634103 4220280 8f75fe68c9ae6a61c324fee8af685faa ""
   "/usr/local/texlive/2018/texmf.cnf" 1523934483 577 0b39adfd7c93507ff20c9c14c2f1a33f ""
   "P6.aux" 1542698564 8 a94a2480d3289e625eea47cd1b285758 ""
-  "P6.tex" 1542698564 2621 c66f7c5e2537e4e1b2b0e9831a20c717 ""
+  "P6.tex" 1543703179 2621 c66f7c5e2537e4e1b2b0e9831a20c717 ""
   (generated)
   "P6.aux"
   "P6.pdf"

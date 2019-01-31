@@ -1,0 +1,86 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=3cm]{geometry}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{xcolor}
+\begin{document}
+
+{\Large 5 Markov Chain Terminology} \\[.5cm]
+{\color{red} (a)
+Irreducible: $a\neq 0 \land b\neq 0$;
+Reducible: $a = 0 \lor b = 0$ } \\
+
+For the given Markov chain to be irreducible, it has to be able to transform between the two states, which means that the constraint is:
+$$a\neq 0\ \land\ b\neq 0$$
+
+Since the term reducible Markov chains is the complement of irreducible Markov chains, so we have that for the Markov chain to be reducible, we have:
+$$a = 0\ \lor\ b = 0$$
+
+
+
+\noindent{\color{red} (b) Direct Proof } \\
+
+Given this case with $a = b = 1$, so the Markov chain can go from state 0 to state 0 in $n$ steps for all $n\in \{2,4,6,8,\dots\}$, so we have
+$$d(0) = gcd\{2,4,\cdots\} = 2 \neq 1$$
+
+Thus, by definition of periodicity, we have that the given Markov chain is periodic. \\
+
+Q.E.D. \\
+
+
+
+\noindent{\color{red} (c) Direct Proof } \\
+
+Given this case with $a, b \in (0,1)$, so the Markov chain can go from state 0 to state 0 in any of the $n\geq1$ steps, i.e. $n = \{1,2,3,\dots\}$, so we have
+$$d(0) = gcd\{1,2,3,\cdots\} = 1$$
+
+Similarly, we have that $d(1) = 1$. Therefore,
+$$d(i) = 1\ \forall\ i\in\mathscr{X}$$
+
+which implies, by definition, that the given Markov chain is aperiodic. \\
+
+Q.E.D. \\
+
+
+
+\noindent{\color{red} (d)
+$ \mathbf{P} =
+\begin{bmatrix}
+	1-b & b \\
+	a & 1-a
+\end{bmatrix} $ } \\
+
+We have that the transition probability matrix for the given Markov chain is:
+$$ \mathbf{P} =
+\begin{bmatrix}
+	P_{00} & P_{01} \\
+	P_{10} & P_{11}
+\end{bmatrix} =
+\begin{bmatrix}
+	1-b & b \\
+	a & 1-a
+\end{bmatrix} $$ 
+
+
+
+\noindent{\color{red} (e)
+$\pi_0 = \frac{a}{a+b},\ \pi_1 = \frac{b}{a+b}$ } \\
+
+We have that the balance equations can be set up with $\pi\mathbf{P} = \pi$, and so
+$$[\pi_0, \pi_1] = [\pi_0, \pi_1] \cdot
+\begin{bmatrix}
+	1-b & b \\
+	a & 1-a
+\end{bmatrix}$$
+
+which gives us two linear equations, and then since there's also the condition that the components of $\pi$ sum up to one, so we have 3 linear equations in total:
+$$\pi_0 = \pi_0 (1-b) + \pi_1 a$$
+$$\pi_1 = \pi_0 b + \pi_1 (1-a)$$
+$$\pi_0 + \pi_1 = 1$$
+
+We could then solve them as:
+$$\pi_0 = \frac{a}{a+b}$$
+$$\pi_1 = \frac{b}{a+b}$$
+
+\end{document}

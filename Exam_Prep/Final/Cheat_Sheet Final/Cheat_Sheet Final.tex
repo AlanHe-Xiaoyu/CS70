@@ -1,0 +1,277 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=3cm]{geometry}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{color}
+\usepackage{graphicx}
+\begin{document}
+
+{\color{blue} \noindent{\Large Variance, Covariance}}
+\begin{itemize}
+	\item Def (Var): For a r.v. $X$ with $\mathbb{E}[X] = \mu$, then var$(X) = \mathbb{E}[(X-\mu)^2]$, and the standard deviation of $X$ is $\sigma(X) = \sqrt{\text{var}(X)}$
+	\item Th: For a r.v. $X$ with $\mathbb{E}[X] = \mu$, then Var$(X) = \mathbb{E}[X^2] - \mu^2$
+	\item HW: var$(cX)$ = $c^2$ var$(X)$, i.e. $\sigma(cX) = c\cdot\sigma(X)$
+	\item For $X_n = I_1 + I_2 + \cdots + I_n$, then
+	$\mathbb{E}[X_n^2] = \sum\limits_{i=1}^n \mathbb{E}[I_i^2] + 2\sum\limits_{i<j} \mathbb{E}[I_iI_j]$
+	\item Th: For {\color{red} independent} r.v. $X,Y$, then $\mathbb{E}[XY] = \mathbb{E}[X]\mathbb{E}[Y]$ and var$(X+Y) = \text{var}(X-Y) = \text{var}(X) + \text{var}(Y)$
+	\item Def (Cov): Cov$(X, Y) = \mathbb{E}[(X-\mu_X)(Y-\mu_Y)] =
+	\mathbb{E}[XY] - \mathbb{E}[X]\mathbb{E}[Y]$
+	\begin{itemize}
+		\item If $X,Y$ are independent, then Cov$(X,Y) = 0$ (and so Corr$(X,Y) = 0$). However, the converse and negation are {\color{red} not} true.
+		\item Cov$(X, X) =$ var$(X)$
+		\item Cov is bilinear, for any collection of r.v. $X,Y$ and fixed constants $a, b$,
+		Cov$(\sum\limits_{i=1}^{n} a_iX_i, \sum\limits_{j=1}^{m} b_jY_j) =
+		\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{m} a_ib_j\text{Cov}(X_i, Y_j)$
+		\item For general r.v. $X,Y$, Var$(X+Y) =$ Var$(X)$ + Var$(Y)$ + 2Cov$(X, Y)$
+	\end{itemize}
+	\item Def (Corr): Suppose $X$ and $Y$ are r.v. with $\sigma(X) > 0, \sigma(Y) > 0$. Then, Corr$(X, Y) = \frac{\text{Cov}(X, Y)}{\sigma(X)\sigma(Y)}$
+	\item Th: For any pair of r.v. $X$ and $Y$ with $\sigma(X) > 0, \sigma(Y) > 0$, then $-1\leq \text{Corr}(X, Y) \leq +1$
+	\item HW: If r.v. $X$ has var$(X) = 0$, then X is a constant.
+	\item HW: For r.v. $X,Y$, then $\mathbb{E}[\max(X,Y), \min(X,Y)] = \mathbb{E}[XY]$
+	\item HW: If $X,Y$ are independent r.v. with nonzero $\sigma$'s, then it's not necessarily true that Corr$(\max(X,Y), \min(X,Y)) =$ Corr$(X, Y)$ (Counter: $X,Y\sim\text{Bernoulli}(\frac{1}{2})$)
+	\item Disc: If two r.v. are independent, they must have no relationship whatsoever, so they're uncorrelated. The converse, however, is not true: two uncorrelated variables may not be independent (Counter: Consider $X$ and $Y$ that follow a uniform joint distribution over the points $(1,0),(0,1),(-1,0),(0,-1)$).
+	\item Disc: Two r.v. $X,Y$ are independent $\iff$ The three criteria are equivalent and connected by Bayes rule: for all $x,y$ such that $P(X=x), P(Y=y)>0$, we need $P(X=x|Y=y) = P(X=x)$ or $P(Y=y|X=x) = P(Y=y)$ or $P(X=x,Y=y) = P(X=x)P(Y=y)$
+	\item HW: Let $n\in\mathbb{Z}^+$ and $X_1,\dots,X_n \sim\text{Uniform}[0,1]$ be i.i.d., then for $Y = \min\{X_1,\dots,X_n\}$, var$(Y) = \frac{n}{(n+1)^2(n+2)}$
+	\item Let $X_1,X_2,\dots,X_n$ be $n$ iid uniform r.v. on the interval $[0, 1]$ (where $n\in\mathbb{Z}^+$). For $Y = \min\{X_1,\dots,X_n\}, \mathbb{E}[Y] = \frac{1}{n+1}$; For $Z = \max\{X_1,\dots,X_n\}, \mathbb{E}[Z] = \frac{n}{n+1}$
+
+	\item Extra: Correlation is not necessarily transitive: if $X$ correlates with $Y$, and $Y$ correlates with $Z$, then this does not imply that $X$ correlates with $Z$.
+
+	\item Extra: Let $X$ be a discrete r.v. that takes values in $[0,1]$, then var$(X)\leq \frac{1}{4}$ (Given the bounds, so $X^2\leq X$, and so
+	Var$(X) = \mathbb{E}[X^2] - \mu^2 \leq \mu - \mu^2 = \mu(1-\mu) \leq \frac{1}{4}$)
+	\item Extra: Let $X,Y$ be two r.v. and $Z = \min(X,Y)$. Then $E[Z]\leq\min(E[X],E[Y])$
+\end{itemize}
+
+
+
+{\color{blue} \noindent {\Large Concentration Inequalities}}
+\begin{itemize}
+	\item Th (Markov's Inequality): For a {\color{red} nonnegative} r.v. $X$ (i.e., $X(\omega)\geq 0\ \forall\ \omega\in\Omega$) with finite mean and for any constant $c>0$, then $\mathbb{P}[X\geq c]\ \leq\ \frac{\mathbb{E}[X]}{c}$
+	\item Th (Generalized Markov's Inequality): Let $Y$ be an arbitrary r.v. with finite mean, for any constants $c,r>0$, then $\mathbb{P}[|Y|\geq c]\ \leq\ \frac{\mathbb{E}[|Y|^r]}{c^r}$
+	\item Th (Chebyshev’s Inequality): For {\color{blue} any} r.v. $X$ with finite expectation $\mathbb{E}[X] = \mu$ and for any constant $c>0$, then $\mathbb{P}[|X-\mu|\geq c]\ \leq\ \frac{\text{var}(X)}{c^2}$ \\
+	$\Longrightarrow$ Corollary: if $X$ has finite $\sigma = \sqrt{\text{var}(X)}$, for any constant $k>0$, then $\mathbb{P}[|X-\mu|\geq k\sigma]\ \leq\ \frac{1}{k^2}$ \\
+	$\Longrightarrow$ Chebyshev is the only one that could have a bound $>1$ (when $c^2\leq \sigma^2$) \\
+	$\Longrightarrow$ For a probability $p$ confidence interval for sampling $n$ times with observed mean $m$, then the interval is: $m\pm \frac{\sigma}{\sqrt{n(1-p)}}$
+
+	\item Th (Law of Large Numbers): Let $X_1,X_2,\dots$ be a sequence of i.i.d. r.v. with common finite expectation $\mathbb{E}[X_i] = \mu$ for all $i$. Then, for every $\epsilon >0$, however small, their partial sums $S_n = X_1 + X_2 + \cdots + X_n$ satisfy
+	$$\mathbb{P}\big[ |\frac{1}{n}S_n - \mu| < \epsilon \big] \longrightarrow 1
+	\text{ as } n\longrightarrow \infty$$
+
+	\item Th ({\color{red} Central Limit Theorem, CLT}): Let $X_1,X_2,\dots$ be a sequence of i.i.d. r,v, with common finite expectation $\mathbb{E}[X_i] = \mu$ and finite variance Var$(X_i) = \sigma^2$.
+	Let $S_n = \sum\limits_{i=1}^{n} X_i$, then the distribution of $\frac{S_n - n\mu}{\sigma\sqrt{n}}$ converges to $N(0, 1)$ as $n\rightarrow\infty$. In other words, for any constant $c\in\mathbb{R}$,
+	$$\mathbb{P}\Big[\frac{S_n - n\mu}{\sqrt{n\sigma^2}}\leq c\Big] \rightarrow
+	\Phi(c),\ i.e.\
+	\frac{1}{\sqrt{2\pi}} \int_{-\infty}^{c} e^{-x^2/2} \, dx \text{ as } n\rightarrow\infty$$
+	$\Longrightarrow$ For a probability $p$ confidence interval for sampling $n$ times with observed mean $m$, then we look for the $k$ where $p$ of the points are with $k\sigma$ ($k$ standard deviations) of the mean, and so the confidence interval is: $m\pm \frac{k\sigma}{\sqrt{n}}$
+	
+	$\Longrightarrow$ For large $n$, we have: $\frac{S_n}{n} \sim N(\mu, \frac{\sigma^2}{n})$ approximately \\
+	$\Longrightarrow$ Since CLT is an {\color{red} approximation} not a bound, so points are on both sides of the curve
+
+	\item To approximate a probability, use CLT; to bound, use Markov or Chebyshev.
+
+\end{itemize}
+
+
+
+{\color{blue} \noindent {\Large Distributions}}
+\begin{itemize}
+	\item For r.v. $X\sim {\color{red} \text{Bernoulli}(p)}, \mathbb{P}[X=1] = p = 1 - \mathbb{P}[X=0]$ where $0\leq p\leq1;\ \mathbb{E}[X] = p$, var$(X) = p(1-p)$.
+	
+	\item For r.v. $X\sim {\color{red} \text{Bin}(n, p)}, \mathbb{P}[X=k] = \binom{n}{k} p^k (1-p)^{n-k}$ for $k\in\{0,1,\dots, n\};\
+	\mathbb{E}[X] = np$, var$(X) = np(1-p)$. \\
+	Binomial distribution models the number of successes in a repeated experiment.
+	\begin{itemize}
+		\item Th: Let $X\sim \text{Bin}(n,\frac{\lambda}{n})$ where $\lambda > 0$ is a fixed constant, then for every $i = 0,1,\dots, \mathbb{P}[X=i] \longrightarrow \frac{\lambda^i}{i!}e^{-\lambda} \text{ as } x\longrightarrow \infty$, i.e. the probability distribution of $X$ converges to Poisson$(\lambda)$.
+	\end{itemize}
+
+	\item For r.v. $X\sim {\color{red} \text{Geo}(p)}, \mathbb{P}[X=i] = p (1-p)^{i-1}$ for $i = 1,2,\dots;\
+	\mathbb{E}[X] = \frac{1}{p}$, var$(X) = \frac{1-p}{p^2}$. \\
+	Geometric distrubution models how long we have to wait before a certain event happens. ({\color{red} Memoryless} $\mathbb{P}(X=j+k\,|\,X>j) = \mathbb{P}(X=k)$)
+	\begin{itemize}
+		\item $\mathbb{P}[X > k] = (1-p)^k$
+	\end{itemize}
+
+	\item For r.v. $X\sim {\color{red} \text{Poisson}(\lambda)}, \mathbb{P}[X=i] = \frac{\lambda^i}{i!} e^{-\lambda}$ for $i = 0,1,\dots;\ \mathbb{E}[X] = \lambda$, var$(X) = \lambda$. \\
+	Models the probability of a given number of events occurring in a fixed interval of time or space if these events occur with a known constant rate and independently of the time since the last event.
+	\begin{itemize}
+		\item Let $X\sim\text{Poisson}(\lambda), Y\sim\text{Poisson}(\mu)$ be independent r.v., then $X+Y\sim\text{Poisson}(\lambda+\mu)$ and
+		$\mathbb{P}[X=k\,|\,X+Y=n] = \binom{n}{k} (\frac{\lambda}{\lambda+\mu})^k (1 - \frac{\lambda}{\lambda+\mu})^{n-k}$, i.e. $X|X+Y \sim \text{Bin}(X+Y, \frac{\lambda}{\lambda + \mu})$
+	\end{itemize}
+
+	\item For continuous r.v. $X\sim {\color{red}\text{Exp}(\lambda)}$ with $\lambda > 0$, it has CDF $\mathbb{P}[X\leq x] = 1 - e^{-\lambda x}$ and PDF $f(x) = \lambda e^{-\lambda x}$ if $x\geq0$ and 0 otherwise.
+	Then, $\mathbb{E}[X] = \int_{0}^{\infty} x\lambda e^{-\lambda x}\,dx = \frac{1}{\lambda}$, var$(X) = \frac{1}{\lambda^2}$ ({\color{red} Memoryless}, i.e. $\mathbb{P}(X\geq s+t | X\geq s) = \mathbb{P}(X\geq t)$ \\
+	Models the time between events in a Poisson arrival process (continuous analogue of Geo).
+	\begin{itemize}
+		\item For $X\sim\text{Exp}(\lambda)$ and any $t\geq0$, then $\mathbb{P}[X>t] = \int_t^\infty \lambda e^{-\lambda x} \, dx = e^{-\lambda t}$
+		\item Let $U_1\sim\text{Uniform}(0,1)$, then $-\ln U_1\sim\text{Expo}(1)$
+		\item Let $N_1, N_2\sim\text{Normal}(0,1)$ be iid, then $N_1^2+N_2^2\sim\text{Exp}(1/2)$
+		\item Disc: For $X_1\sim\text{Exp}(\lambda_1), X_2\sim\text{Exp}(\lambda_2)$, then
+		$\mathbb{P}[\min(X_1,X_2) = X_1] = \mathbb{P}[X_2\geq X_1] = \int_0^\infty \mathbb{P}[X_2\geq X_1\,|\,X_1 = x] f_{X_1}(x)\, dx= \frac{\lambda_1}{\lambda_1 + \lambda_2}$ \\
+		(Extra: $Z = \min\{X_1,X_2\}$, then $Z\sim\text{Exp}(\lambda_1+\lambda_2)$ Proof by calculating CDF; use induction for summing $n$ Exp. distributions)
+		\item Extra: (Erlang) For $X_i\sim\text{Exp}(\lambda)$, let $Z = X_1 + X_2$, then $f_Z(z) = \lambda^2z\,e^{-\lambda z}$; let $W = X_1+\cdots+X_k$, then $f_W(w) = \frac{\lambda^kw^{k-1}e^{-\lambda w}}{(k-1)!}$
+		\item Extra: Let $X\sim\text{Exp}(\lambda), Y\sim\text{Exp}(\lambda)$ be iid, $M = \max(X,Y), L = \min(X,Y), Z = M-L$, i.e. $\max-\min$, then $L,Z$ are independent, $M,L$ and $M,Z$ are dependent.
+		(Proof for $Z,L$: Since $X,Y$ independent, so $\mathbb{P}(M>m|L=l) = \mathbb{P}(X>m|X>l)$, and thus by memoryless property,
+		$\mathbb{P}(Z>z|L=l) = \mathbb{P}(M>z+l|L=l) = \mathbb{P}(X>z+l|X>l) = \mathbb{P}(X>z)$
+	\end{itemize}
+
+	\item For continuous r.v. $X\sim {\color{red} N(\mu, \sigma^2)}$ with any $\mu\in\mathbb{R}$ and $\sigma > 0$, the normal distribution has PDF $f(x) = \frac{1}{\sqrt{2\pi\sigma^2}} e^{-(x-\mu)^2/(2\sigma^2)}$. Then, $\mathbb{E}[X] = \mu$, var$(X) = \sigma^2$
+	\begin{itemize}
+		\item Def: If $\mu = 0, \sigma = 1$, then $X$ has the standard normal distribution.
+		\item Lemma: If $X\sim N(\mu, \sigma^2)$, then $Y = \frac{X-\mu}{\sigma} \sim N(0,1)$. Equivalently, if $Y\sim N(0, 1)$, then $X = \sigma Y + \mu \sim N(\mu, \sigma^2)$
+		\item Corollary: Let $X\sim N(\mu_X, \sigma_X^2), Y\sim N(\mu_Y, \sigma_Y^2)$ be independent r.v., then for any constants $a,b\in\mathbb{R}$, the r.v. $Z = aX + bY$ is also normally distributed with $\mu = a\mu_X + b\mu_Y, \sigma^2 = a^2\sigma_X^2 + b^2\sigma_Y^2$, i.e. $Z \sim N(a\mu_X+b\mu_Y, a^2\sigma_X^2+b^2\sigma_Y^2)$
+		\item Th: Suppose $X,Y$ are independent, then $X_\theta, Y_\theta$ are independent $\iff$ $X,Y$ are both Normal r.v. with the same variance $\sigma^2$ (Def the rotational/orthorgonal transformation as
+		$\begin{bmatrix}
+			X_\theta \\ Y_\theta
+		\end{bmatrix}$ =
+		$\begin{bmatrix}
+			\cos\theta & \sin\theta \\
+			-\sin\theta & \cos\theta
+		\end{bmatrix}$
+		$\begin{bmatrix}
+			X \\ Y
+		\end{bmatrix}$
+		)
+		\item Normal distribution is symmetrical about the mean
+		\item From two uniform r.v. $U_1, U_2$, we can construct two standard normal distribution r.v. with $\sqrt{-2\ln(U_1)}\,\cos(2\pi U_2)$
+	\end{itemize}
+
+	\item Variance for a uniform distribution in $[a,b]$ is $\frac{(b-a)^2}{12}$
+
+	\item Th ({\color{red} Tail Sum Formula}): Let $X$ be a r.v. that takes values in $\{0,1,2,\dots\}$, then $\mathbb{E}[X] = \sum\limits_{i=1}^{\infty} \mathbb{P}[X\geq i]$. For continous {\color{blue} nonnegative} r.v. $Y$, then $\mathbb{E}[Y] = \int_0^\infty \mathbb{P}[Y > y]\, dy$
+	
+	\item {\color{blue} Poisson Arrival Process}: Characterize a sequence of independent Bernoulli$(p)$ trials
+	\begin{itemize}
+		\item Bin$(n, p)$ distribution governing the number of successes in $n$ trials
+		\item Geo$(p)$ distribution governing the waiting time to success
+		\item (Continuous analogous) Consider a random arrival process on $[0, \infty)$ satisfying the following property:
+		\begin{enumerate}
+			\item For any fixed time interval $I\subset [0,\infty)$, the number $N(I)$ of arrivals in $I$ is distributed as Poisson$(\lambda\cdot|I|)$, where $|I|$ denotes the length of interval $I$.
+			\item If $I_1,I_2,\dots$ are disjoint time intervals, then $N(I_1),N(I_2),\dots$ are mutually independent.
+		\end{enumerate}
+		An equivalent description: For $i = 1, 2, \dots$, let $W_i$ denote the waiting time to the $i^{th}$ arrival, then
+		\begin{enumerate}
+			\item $W_i\sim\text{Exp}(\lambda)$ for all $i = 1,2,\dots$
+			\item $W_1, W_2, \dots$ are mutually independent
+		\end{enumerate}
+	\end{itemize}
+	\item Application: For Coupon Collector/Safeway Monopoly, after $i^{th}$ element, getting $(i+1)^{th}$ is like r.v. Geo$(\frac{n-i}{n})$. Thus, $\mathbb{E}[X] = n\sum\limits_{i=1}^{n} \frac{1}{i} \approx n\cdot(\ln n + \gamma_E)$ where $\gamma_E = 0.5772\dots$ is Euler's constant;
+	and Var$(X) = n^2 (\sum\limits_{i=1}^{n} \frac{1}{i^2}) - \mathbb{E}[X]$
+	\item HW: Let $X_1,X_2\sim \text{Exp}(\lambda)$ be independent, $\lambda > 0$. Then the density of $Y = X_1 + X_2$ is $f_Y(y) = \lambda^2 y\, e^{-\lambda y}$ for $y>0$ and 0 otherwise.
+
+	\item For r.v. $X\sim\text{HyperGeometric}(N,D,k)$, then $\mathbb{P}[X=b] = \frac{\binom{D}{b}\binom{N-D}{k-b}}{\binom{N}{k}}$ with mean $\mu = k\frac{D}{N}$, and var$(X) = k\frac{D}{N}\frac{N-D}{N}\frac{N-k}{N-1}$.
+
+	Hypergeometric is a discrete probability distribution, modeling the probability of $b$ successes in $k$ draws, without replacement, from a finite population of size $N$ that contains exactly $D$ success states, wherein each draw is either a success or a failure. (Differs from Bin since Bin samples with replacement.)
+\end{itemize}
+
+
+
+{\color{blue} \noindent {\Large Continuous Probability}}
+\begin{itemize}
+	\item Def (Probability Density Function): A PDF for a real-valued r.v. $X$ is a function $f:\mathbb{R}\rightarrow\mathbb{R}$ satisfying:
+	\begin{enumerate}
+		\item $f$ is non-negative: $f(x)\geq 0$ for all $x\in\mathbb{R}$.
+		\item $\int_{-\infty}^{\infty} f(x)\, dx = 1$
+	\end{enumerate}
+	Then the distribution of $X$ is given by: $\mathbb{P}[a\leq X\leq b] = \int_a^b f(x)\, dx$ for all $a<b$
+	\item If $X\sim\text{Uniform}(0, k)$, then its density is $f(x) = 1/k$ for $0\leq x\leq k$ and 0 otherwise.
+	\item Def ({\color{red} Expectation}): For continuous r.v. $X$, $\mathbb{E}[X] = \int_{-\infty}^{\infty} xf(x)\, dx$
+	\item Def (Variance): For continuous r.v. $X$, var$(X) = \mathbb{E}[X^2] - \mathbb{E}[X]^2 =
+	\int_{-\infty}^{\infty} x^2f(x)\, dx - \Big(\int_{-\infty}^{\infty} xf(x)\, dx\Big)^2$
+	\item Def (Joint Density): A joint density function for two r.v. $X,Y$ is a function $f:\mathbb{R}^2\rightarrow\mathbb{R}$ satisfying:
+	\begin{enumerate}
+		\item $f$ is non-negative: $f(x,y)\geq 0$ for all $x,y\in\mathbb{R}$.
+		\item $\int_{-\infty}^{\infty}\int_{-\infty}^{\infty} f(x,y)\, dxdy = 1$
+	\end{enumerate}
+	Then the joint distribution of $X,Y$ is given by: $\mathbb{P}[a\leq X\leq b, c\leq Y\leq d] = \int_c^d\int_a^b f(x,y)\, dxdy$ for all $a\leq b, c\leq d$
+	\item Def (Independence for Continuous r.v.): Two continuous r.v. $X,Y$ are independent if the events $a\leq X\leq b, c\leq Y\leq d$ are independent for all $a\leq b, c\leq d$:
+	$$\mathbb{P}[a\leq X\leq b, c\leq Y\leq d] = \mathbb{P}[a\leq X\leq b]\cdot\mathbb{P}[c\leq Y\leq d]$$
+	\item Th: Joint density is $f(x,y) = f_X(x)f_Y(y)$ for all $x,y\in\mathbb{R}$; indiv. density can be calculated as $f(x) = \int_{-\infty}^{\infty} f(x,y)\,dy$
+	
+	\item Application: Buffon's Needle - given a needle of length $l$, and a board ruled with horizontal lines at distance $l$ apart
+	\begin{itemize}
+		\item Since we assume a perfectly random throw, so the joint distribution has density $f(y,\theta)$, uniform over the rectangle $[0,l/2]\times[-\pi/2,\pi/2]$. Since this rectangle has area $\frac{\pi l}{2}$, so $f(y,\theta) = \frac{2}{\pi l}$ for $(y,\theta)\in[0,l/2]\times[-\pi/2,\pi/2]$ and 0 otherwise.
+		\item Let $E$ denote the event that the needle crosses a line, then
+		$$\mathbb{P}[E] = \mathbb{P}[Y\leq \frac{l}{2}\cos\theta] =
+		2\int_{0}^{\frac{\pi}{2}} \int_{0}^{l\cdot\cos\theta/2} f(y,\theta) \, dyd\theta = \frac{2}{\pi} \int_{0}^{\frac{\pi}{2}} \cos\theta\, d\theta = \frac{2}{\pi}$$
+		\item Equivalently, use indicator variable to form a circle of $d = 1$, with total length $\pi$ and 2 intersections.
+	\end{itemize}
+	\item HW: For a non-negative r.v. $X$ with density $f_X$, one can extend the tail sum formula to give $\mathbb{E}[X^2] = \int_0^{\infty} 2s\,\mathbb{P}(X\geq s)\, ds$
+	\item Extra: Conditional PDF for r.v. $X$ on $A$ is: $f_{X|A}(x) = \frac{f_{X}(x)}{\mathbb{P}[A]}$
+
+\end{itemize}
+
+
+
+{\color{blue} \noindent {\large Markov Chain}}
+\begin{itemize}
+	\item For transition probability matrix $\mathbf{P}$, $P_{ij}$ indicates the probability of from state $i$ to state $j$
+	\item $P_{ij} \geq 0\ \forall i,j\in\mathscr{S}$
+	\item $\sum\limits_{j\in\mathscr{S}} P_{ij} = 1\ \forall i\in\mathscr{S}$, i.e. rows of $P$ sum to 1
+	\item The initial distribution is a row vector $\vec{\mu}^{(0)} = (\mu_i^{(0)}:i\in\mathscr{S})$ where $\mu_i^{(0)} \geq 0$ for all $i\in\mathscr{S}$ and $\sum_{i\in\mathscr{S}} \mu_i^{(0)} = 1$
+	\item Th: For all $n\geq 0, \mu^{(n)} = \mu^{(0)} \mathbf{P}^{n}$. In particular, if $\mu_i^{(0)} = 1$ for some $i$, then $\mu_j^{n} = [\mathbf{P}^n]_{ij} = Pr[X_n = j | X_0 = i]$
+	\item Hitting Time: Use first step equations (FSE) and solve them (possible due to recursion)
+	\begin{itemize}
+		\item Let $\mathscr{A}\subset \mathscr{S}$ be a subset of states. For each $i\in\mathscr{S}$, let $\tau(i)$ be average number of steps until the Markov chain enters one of the states in $\mathscr{A}$, given that it starts in state $i$.
+		\item FSE: $\tau(i) = 0$ if $i\in\mathscr{A}$, and $\tau(i) = 1 + \sum\limits_{j\in\mathscr{S}} P_{ij}\cdot\tau(j)$ otherwise
+	\end{itemize}
+	\item Def (Stationary or Invariant Distribution): A distribution $\vec{\pi} = (\pi_i: i\in\mathscr{S})$ is invariant (aka stationary) for the transition probability matrix $\mathbf{P}$ if it satisfies the following {\color{blue} balance equations}: $\vec{\pi} = \vec{\pi}\mathbf{P}$
+	\item Th: $\vec{\mu}^{(n)} = \vec{\mu}^{(0)}$ for all $n\geq 0 \iff \mu^{(0)}$ is invariant (since by definition, $\vec{\mu}^{(n)} = \vec{\mu}^{(0)} P^n$)
+	\item It is not necessarily true that $X_{i+1}$ and $X_{i-1}$ are uncorrelated. $X_{i+1}$ only depends on $X_{i}$ and is conditionally independent of $X_{i-1}$, but we do not know that $X_{i+1}$ and $X_{i-1}$ are independent.
+	\item For 1-D random walk with absorbing boundaries (increase $p$, decrease $1-p$, stops at $0$ and $N$)
+	\begin{itemize}
+		\item Q1: $\alpha(i) = \mathbb{P}(\text{Hit }0\text{ before }N\,|\,X_0 = i)$
+		\item Q2: $\tau(i) = \mathbb{E}(W\,|\,X_0=i)$ where $W =$ waiting time until either boundaries is hit
+		\item For $i\neq 0,N$: $\alpha(i) = (1-p)\,\alpha(i-1) + p\,\alpha(i+1)$ and $\tau(i) = 1 + (1-p)\,\tau(i-1) + p\,\tau(i+1)$ and also $\alpha(0)=1, \alpha(N) = \tau(o) = \tau(N) = 0$
+		\item $\Longrightarrow$ with $r = \frac{1-p}{p}$, then $\alpha(i) = 1 - \frac{i}{N}$ if $r=1$ and $\frac{r^i-r^N}{1-r^N}$ otherwise
+	\end{itemize}
+\end{itemize}
+
+
+
+{\color{blue} \noindent {\large Extra Sanity Checks}}
+\begin{itemize}
+	\item When in doubt, always reduce to the very basic definitions, including Var$(X) = \mathbb{E}[X^2] - \mu^2$ and linearity of expectation
+	\item When still in doubt, consider {\color{red} symmetry}.
+	\item $\mathbb{E}[g(X,Y)] = \sum\limits_{x,y\in\mathbb{R}}g(x,y)\mathbb{P}[X=x,Y=y]$
+	\item Extra: Let $X,Y$ be r.v. The value of $c$ that minimizes the variance of $X-cY$ is $\frac{cov(X,Y)}{var(Y)}$
+	\item CLT provides a much smaller answer than Chebyshev. Because CLT is applied to a particular kind of r.v., namely the (scaled) sum of a bunch of rv. Chebyshev’s inequality, however, holds for any r.v., and is therefore weaker. To approximate a probability, use CLT; to bound, use Markov or Chebyshev.
+	\item For continuous r.v. with PDF $f(x)$, then $\int_{-\infty}^{\infty} f(x)\,dx = 1$
+	\item To calculate the density (PDF) of a continuous r.v., first find its CDF $F(x)$, and then get $f(x) = \frac{dF(x)}{dx}$
+	\item Extra: var$(X+Y) =$ var$(X) + 2\,\text{Cov}(X,Y) + \text{var}(Y)$
+	\item $X,Y$ are independent r.v. mod $n$. Don't know about $X$, but know $Y$ is uniformly distributed. Then $Z = X+Y\pmod{N}$ is uniformly distributed.
+	\item Def (Markov chain): A sequence of random variables $X_0,X_1,X_2,...$ is a Markov chain if: $Pr[X_{t+1} |X_t] = Pr[X_{t+1} |X_t,X_{t-1},...,X_0]$ for all $t$ and $Pr[X_{t'+1} | X_{t'}] = Pr[X_{t+1} | X_t]$ (i.e. the transition matrix $P$ is always the same)
+
+	\item Hashing, Load Balancing
+	\begin{itemize}
+		\item Let $A$ denote the event of having no collision. For $m$ keys (balls) and $n$ locations (bins), we want $\mathbb{P}[\overline{A}] \leq \frac{m^2}{2n} \leq \epsilon$, i.e. $m\leq \sqrt{2\epsilon n}$, using union bound.
+		\item A stricter bound would be: $\mathbb{P}[A] \approx e^{-\frac{m^2}{2n}} \geq 1-\epsilon$, i.e. $m \leq \sqrt{2\ln(\frac{1}{1-\epsilon})}\cdot\sqrt{n}$, but still $O(\sqrt{n})$
+		\item Load Balancing: Let $A_k$ be the event that the load of some processor is at least $k$, then to find the smallest value $k$ such that $\mathbb{P}[A_k] \leq p$, we can use the union bound to just inspect $\mathbb{P}[A_k(1)] \leq p\cdot\frac{1}{n}$ for identical bins.
+	\end{itemize}
+	
+	\item $\sum\limits_{k=0}^{\infty} \frac{x^k}{k!} = e^x$
+	\item $\sum\limits_{k=1}^n \frac{1}{k} \approx \ln n + \gamma_E$ where $\gamma_E = 0.5772\dots$ is known as Euler’s constant.
+
+	\item All sets of finite size objects are countable; there are countably infinite computer programs.
+	\item Given a random variable $X\sim\text{Expo}(\lambda)$, consider the integer valued random variable $K = \lceil X\rceil$, then
+	$\mathbb{P}[K=k] = e^{-\lambda(k-1)}\cdot(1-e^{-\lambda}) \sim\text{Geo}(1-e^{-\lambda})$
+
+	\item A standard deck is 52 cards!
+	\item Derangement (\# of permutations of $n$ elements with no fixed point): $D_n = n! \sum\limits_{k=1}^{n} \frac{(-1)^k}{k!} \approx \frac{n!}{e}$
+
+	\item Extra: Suppose we draw cards from a standard 52-card deck without replacement, then the expected \# of cards we must draw before we get all 13 spades (including the last spade) is $52 - 39\cdot\frac{1}{14}$
+	\item Extra: If $\mathbb{P}(A|B)=1$, then $\mathbb{P}(B)\leq \mathbb{P}(A)$
+	\item Extra: By Stirling's approximation, $\binom{2n}{n}2^{-2n}\approx (\pi n)^{-1/2}$ for large $n$.
+
+	\item Normal Cumulative Distribution Function: $\Phi(z) = \int_{-\infty}^z \frac{1}{\sqrt{2\pi}} e^{-x^2/2}\, dx$. Also, the probability of a standard normal being within $\pm\epsilon$ is $\Phi(\epsilon) - \Phi(-\epsilon)$, and $\Phi(-x) = 1 - \Phi(x)$
+	\item A random variable is a real-valued function of the outcome of a random experiment.
+
+	\item For $Z\sim N(0,1)$, then $\mathbb{P}(|Z|\leq 1) = 0.68, \mathbb{P}(|Z|\leq 2) = 0.95, \mathbb{P}(|Z|\leq 3) = .997$
+	\begin{figure} [h!]
+		\begin{center}
+			\includegraphics[width=\linewidth]{/Users/Alan/Desktop/70_phi}
+			\label{fig}
+		\end{center}
+	\end{figure}
+\end{itemize}
+
+\end{document}

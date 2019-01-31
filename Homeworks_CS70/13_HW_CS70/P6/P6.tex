@@ -1,0 +1,115 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=3cm]{geometry}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{xcolor}
+\begin{document}
+
+{\Large 6 Analyze a Markov Chain} \\[.5cm]
+{\color{red} (a) Direct Proof } \\
+
+Given this case with $a, b \in (0,1)$, so the Markov chain can go from state 0 to state 0 in any of the $n\geq1$ steps, i.e. $n = \{1,2,3,\dots\}$, so we have
+$$d(0) = gcd\{1,2,3,\cdots\} = 1$$
+
+Similarly, we have that $d(1) = 1$ and $d(2) = 2$. Therefore,
+$$d(i) = 1\ \forall\ i\in\mathscr{X}$$
+
+which implies, by definition, that the given Markov chain is aperiodic. \\
+
+Q.E.D. \\
+
+
+
+\noindent{\color{red} (b)
+$a(1-b)(1-a)a = a^2(1-a)(1-b)$ } \\
+
+Given that $X(0) = 0$, so
+$$\mathbb{P}[X(1)=1\ |\ X(0)=0] = a$$
+
+and similarly
+$$\mathbb{P}[X(2)=0\ |\ X(1)=1] = 1-b $$
+$$\mathbb{P}[X(3)=0 | X(2)=0] = 1-a $$
+$$\mathbb{P}[X(4)=1\ |\ X(3)=0] = a $$
+
+Thus, we have that
+$\mathbb{P}[X(1)=1,X(2)=0,X(3)=0,X(4)=1\ |\ X(0) = 0] = \\
+\mathbb{P}[X(1)=1\ |\ X(0)=0] \cdot
+	\mathbb{P}[X(2)=0\ |\ X(1)=1] \cdot
+	\mathbb{P}[X(3)=0 | X(2)=0] \cdot
+	\mathbb{P}[X(4)=1\ |\ X(3)=0]$
+$$\Longrightarrow
+\mathbb{P}[X(1)=1,X(2)=0,X(3)=0,X(4)=1\ |\ X(0) = 0] =
+a(1-b)(1-a)a = a^2(1-a)(1-b)$$
+
+
+
+\noindent{\color{red} (c) $\pi =
+(\frac{1 - b}{ab + a - b + 1},
+\frac{a}{ab + a - b + 1},
+\frac{ab}{ab + a - b + 1})$ } \\
+
+First, we calculate that the transition probability matrix for the given Markov chain is:
+$$ \mathbf{P} =
+\begin{bmatrix}
+	P_{00} & P_{01} & P_{02} \\
+	P_{10} & P_{11} & P_{12} \\
+	P_{20} & P_{21} & P_{22}
+\end{bmatrix} =
+\begin{bmatrix}
+	1-a & a & 0 \\
+	1-b & 0 & b \\
+	0 & 1 & 0
+\end{bmatrix} $$
+
+Then, we have that the balance equations can be set up with $\pi\mathbf{P} = \pi$, and so
+$$[\pi_0, \pi_1, \pi_2] = [\pi_0, \pi_1, \pi_2] \cdot
+\begin{bmatrix}
+	1-a & a & 0 \\
+	1-b & 0 & b \\
+	0 & 1 & 0
+\end{bmatrix} $$
+
+Then, since the components of $\pi$ sum up to one, so we have 4 linear equations in total:
+$$(1-a)\pi_0 + (1-b)\pi_1 + 0\cdot\pi_2 = \pi_0 $$
+$$a\cdot\pi_0 + 0\cdot\pi_1 + 1\cdot\pi_2 = \pi_1 $$
+$$0\cdot\pi_0 + b\cdot\pi_1 + 0\cdot\pi_2 = \pi_2 $$
+$$\pi_0 + \pi_1 + \pi_2 = 1 $$
+
+We could then solve them to get the invariant distribution as:
+$$\pi_0 = \frac{1 - b}{ab + a - b + 1}$$
+$$\pi_1 = \frac{a}{ab + a - b + 1}$$
+$$\pi_2 = \frac{ab}{ab + a - b + 1}$$
+
+
+
+\noindent{\color{red} (d) $\frac{ab - b + 1}{ab}$ } \\
+
+Since $X(0) = 1$, so $\mathbb{P}[X(1)=2 | X(0) = 1] = b,
+\mathbb{P}[X(1)=1 | X(0) = 1] = 0$, and
+$\mathbb{P}[X(1)=0 | X(0) = 1] = 1-b$.
+Now, since we want the expectation of the number of steps until we transit to state 2 for the first time, so we need to further examine the condition of $X(1) = 0$. \\
+
+Since for $i\in\mathbb{N}$, we have $\mathbb{P}[X(i+1) = 0 | X(i) = 0] = 1-a$,
+$\mathbb{P}[X(i+1) = 1 | X(i) = 0] = a$ and
+$\mathbb{P}[X(i+1) = 2 | X(i) = 0] = 0$,
+so we have that \\
+\indent $\mathbb{E}[T_2|X(0)=1] = \\
+\indent \mathbb{P}[X(1) = 0 | X(0) = 0] \cdot \mathbb{E}[X(1) = 0 | X(0) = 0] +
+	\mathbb{P}[X(1) = 1 | X(0) = 0] \cdot \mathbb{E}[X(1) = 1 | X(0) = 0] +
+	\mathbb{P}[X(1) = 2 | X(0) = 0] \cdot \mathbb{E}[X(1) = 2 | X(0) = 0] = \\
+\indent (1-a) \cdot (1 + \mathbb{E}[T_2\ |\ X(0)=1]) +
+	a \cdot (1 + \mathbb{E}[T_2\ |\ X(0)=1]) $ \\
+
+which can be simplified a bit to:
+$$\mathbb{E}[T_2\ |\ X(0)=1] =
+\mathbb{E}[T_2\ |\ X(0)=1] + \frac{1}{a} $$
+
+Thus, we can combine this result with our previous setup to get:
+$$\mathbb{E}[T_2\ |\ X(0)=1]) =
+b \cdot 1 + 0 +
+	(1-b) \cdot \big(\mathbb{E}[T_2\ |\ X(0)=1] + \frac{1}{a}\big)$$
+$$\Longrightarrow \mathbb{E}[T_2\ |\ X(0)=1]) =
+\frac{ab - b + 1}{ab} $$
+
+\end{document}

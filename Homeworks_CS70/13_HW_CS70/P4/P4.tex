@@ -1,0 +1,96 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=3cm]{geometry}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{xcolor}
+\begin{document}
+
+{\Large 4 Sampling a Gaussian With Uniform} \\[.5cm]
+{\color{red} (a) Direct Proof } \\
+
+By definition, since $U_1\sim Uniform(0,1)$, so $U_1$ has PDF:
+$$f_{U_1}(x) = 1 \indent \text{if } 0\leq x\leq 1$$
+$$f_{U_1}(x) = 0 \indent \text{otherwise}$$
+
+Then, since we have that for $RHS = -\ln U_1$, its CDF is:
+$$F_{RHS}(x) =
+\mathbb{P}[-\ln U_1\leq x] =
+\mathbb{P}[U_1 \geq e^{-x}] =
+1 - \mathbb{P}[U_1 < e^{-x}] =
+1 - F_{U_1}(e^{-x}) $$
+
+Thus, we have the PDF of the RHS as:
+$$f_{RHS}(x) = \frac{d}{dx} F_{RHS}(x) =
+\frac{d}{dx} (1 - F_{U_1}(e^{-x})) =
+e^{-x}\cdot f_{U_1}(e^{-x}) $$
+
+Then, since we have $f_{U_1}$ above, so we can conclude that:
+$$f_{RHS}(x) = e^{-x}\indent \text{if } x\geq0$$
+$$f_{RHS}(x) = 0 \indent \text{otherwise}$$
+
+Also, by definition, the LHS, which is $\text{Expo}(1)$, has PDF:
+$$f_{LHS}(x) = e^{-x}\indent \text{if } x\geq0$$
+$$f_{LHS}(x) = 0 \indent \text{otherwise}$$
+
+Therefore, $f_{RHS}(x) = f_{LHS}(x)$, which means that $-\ln U_1$ and $Expo(1)$ have the same PDF, and thus, they have the same distribution, i.e. $-\ln U_1 \sim Expo(1)$, as desired. \\
+
+Q.E.D. \\
+
+
+
+\noindent{\color{red} (b) Direct Proof } \\
+
+Given that $N_1, N_2\sim\mathscr{N}(0,1)$ where $N_1,N_2$ are independent, so we have that they have the same PDF with:
+$$f_{N_1}(x) = f_{N_2}(x) =
+\frac{1}{\sqrt{2\pi\cdot1}}\ e^{-(x-0)^2 / (2\cdot1)} =
+\frac{1}{\sqrt{2\pi}}\ e^{-x^2 / 2} $$
+
+Since $N_1,N_2$ are independent, so by Theorem 20.1, we have that the joint density of $N_1, N_2$ is:
+$$f_{N}(u, v) = \frac{1}{2\pi}\ e^{-(u^2+v^2)/2}$$
+
+Then, since we have that for $RHS = N_1^2 + N_2^2$, its CDF can be written as:
+$$F_{RHS}(x) =
+\mathbb{P}[N_1^2 + N_2^2 \leq x] =
+\int_{-\sqrt{x}}^{\sqrt{x}}
+	\int_{-\sqrt{x-v^2}}^{\sqrt{x-v^2}}
+		f_{N}(u,v)\, dudv $$
+$$\text{(By the hint)} \Longrightarrow F_{RHS}(x) =
+\int_{0}^{2\pi} \int_{0}^{\sqrt{x}}
+	r\cdot f_{N}(r\cos\theta, r\sin\theta)\, drd\theta =
+\int_{0}^{2\pi} \int_{0}^{\sqrt{x}}
+	r\cdot \frac{1}{2\pi}\ e^{-r^2/2} \, drd\theta $$
+$$\Longrightarrow F_{RHS}(x) =
+\frac{1}{2\pi}\int_{0}^{2\pi} -e^{-r^2/2}\Big|_{0}^{\sqrt{x}} \, d\theta =
+\frac{1}{2\pi}\int_{0}^{2\pi} 1 - e^{-x/2} \, d\theta =
+1 - e^{-x/2} $$
+
+Thus, we have that the (general) PDF of the RHS, $N_1^2 + N_2^2$, is:
+$$f_{RHS}(x) = \frac{d}{dx} F_{RHS}(x) = \frac{d}{dx} (1 - e^{-x/2}) =
+\frac{1}{2}\, e^{-x/2} $$
+
+Yet, notice that since $N_1^2 + N_2^2$ is the sum of two squares, so $N_1^2 + N_2^2 \geq 0$, i.e. for any $x < 0$, the probability/density of $N_1^2 + N_2^2 = x$ is 0, which gives us the final PDF:
+$$f_{RHS}(x) = \frac{1}{2}\, e^{-x/2} \indent \text{if } x\geq 0$$
+$$f_{RHS}(x) = 0 \indent \text{otherwise}$$
+
+Then, by definition, the LHS, which is $\text{Expo}(1/2)$, has PDF:
+$$f_{LHS}(x) = \frac{1}{2}\, e^{-x/2}\indent \text{if } x\geq0$$
+$$f_{LHS}(x) = 0 \indent \text{otherwise}$$
+
+Therefore, $f_{RHS}(x) = f_{LHS}(x)$, which means that $N_1^2 + N_2^2$ and $Expo(1/2)$ have the same PDF, and thus, they have the same distribution, i.e. $N_1^2 + N_2^2\sim Expo(1/2)$, as desired. \\
+
+Q.E.D. \\
+
+
+
+\noindent{\color{red} (c) ??? } \\
+
+First, using the (extension of) results from parts (a) and (b), we have that for
+$U_1\sim Uniform(0,1)$, we can generate an exponential r.v. and the sum of the square of the normal r.v. ($N_1, N_2\sim\mathscr{N}(0,1)$ where they're independent) with:
+$$-\frac{1}{2}\ln U_1 \sim Expo(1/2) \sim N_1^2+N_2^2$$
+
+Then, to sample the angle, we would use $U_2\sim Uniform(0,1)$ by multiplying it with $2\pi$, which would give us $Uniform(0, 2\pi)$, and thus, we have that the angle is uniform. \\
+
+Combining these two ($-\frac{1}{2}\ln U_1$ and $2\pi U_2$) would give us a pair of r.v. $\sim\mathscr{N}(0,1)$, and we can pick either one to complete the transformation.
+
+\end{document}

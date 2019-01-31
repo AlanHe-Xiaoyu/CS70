@@ -1,0 +1,64 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=3cm]{geometry}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{xcolor}
+\begin{document}
+
+{\Large 2 Variance of the Minimum of Uniform Random Variables} \\[.5cm]
+{\large{\color{red} (a) $\text{var}(Y) = \frac{n}{(n+1)^2\,(n+2)}$ } } \\
+
+Given that $n\in\mathbb{Z^+},\
+X_1,\dots, X_n \stackrel{\text{i.i.d.}}{\sim} \text{Uniform}[0,1]$, and that
+$Y = \min\{X_1, \dots, X_n\}$, so using result from HW 12 Problem 6(a), we have that:
+$$\mathbb{E}(Y) = \frac{1}{n+1}$$
+
+Now, since $0\leq Y\leq1$, so we also have that $0\leq Y^2\leq 1$ and thus, we can use the tail sum formula to obtain:
+$$\mathbb{E}(Y^2) =
+	\int_0^\infty \mathbb{P}(Y^2>y)\,dy =
+	\int_0^1 \mathbb{P}(Y^2>y)\,dy$$
+
+Now, since $X_1,\dots, X_n \stackrel{\text{i.i.d.}}{\sim} \text{Uniform}[0,1]$,
+and $Y = \text{min}\{X_1, X_2, \dots, X_n\}$,
+so we have that $Y^2 = \text{min}\{X_1^2, X_2^2, \dots, X_n^2\}$.
+Thus, for any $y\in[0,1]$, we can calculate an expression for $\mathbb{P}(Y^2>y)$ as:
+$\mathbb{P}(Y^2>y) =
+\mathbb{P}(\text{min}\{X_1^2, \dots, X_n^2\}>y) =
+\mathbb{P}(X_1^2>y,\dots, X_n^2>y) =
+\mathbb{P}(X_1^2>y)\cdot \cdots \cdot\mathbb{P}(X_n^2>y)$
+where for any $i\in\{1,\dots, n\},\
+\mathbb{P}(X_i^2>y) =
+\mathbb{P}(X_i>\sqrt{y}) = 
+\frac{1 - \sqrt{y}}{1-0} =
+1 - \sqrt{y}$.
+Thus,
+$$\mathbb{P}(Y^2>y) = (1-\sqrt{y})\cdot\cdots\cdot(1-\sqrt{y}) = (1-\sqrt{y})^n$$
+
+Therefore, we can now calculate the expectation of $Y$, which is:
+\begin{align}
+\mathbb{E}(Y^2) =
+\int_0^1 \mathbb{P}(Y^2>y)\,dy =
+\int_0^1 (1-\sqrt{y})^n \,dy
+\end{align}
+
+Now, we first use the substitution $u = 1 - \sqrt{y}$, and so:
+$du = -\frac{1}{2}y^{-\frac{1}{2}}\, dy$, which can be transformed into:
+$dy = -2\sqrt{y}\ du = (2u-2)\, du$. Also, the bounds of the integrals changes with $u = 0$ as $y = 1$, and $u = 1$ as $y = 0$. Thus, we can continue to evaluate Eq. (1) as:
+
+$$
+\mathbb{E}(Y^2) =
+\int_1^0 u^n \cdot (2u-2)\, du =
+\int_1^0 2 u^{n+1} - 2 u^n\, du =
+\big(\frac{2}{n+2} u^{n+2} - \frac{2}{n+1} u^{n+1}\big) \Big|_1^0 $$
+$$\Longrightarrow \mathbb{E}(Y^2) =
+0 - (\frac{2}{n+2} - \frac{2}{n+1}) =
+\frac{2}{(n+1)(n+2)} $$
+
+Therefore, we can calculate the variance of $Y$ by definition:
+$$\text{var}(Y) = \mathbb{E}(Y^2) - \mathbb{E}(Y)^2 =
+\frac{2}{(n+1)(n+2)} - (\frac{1}{n+1})^2 =
+\frac{n}{(n+1)^2\,(n+2)}
+$$
+
+\end{document}

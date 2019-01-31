@@ -46,9 +46,12 @@ $$\Longrightarrow \mathbb{P}[E] =
 	(\frac{1}{2} - \frac{1}{2}\cos\theta)
 		(\frac{1}{2} - \frac{1}{2}\sin\theta) =
 1 - \sin\theta - \cos\theta + \sin\theta\cos\theta
-$$
-{\color{red} (b)
-$\mathbb{P}[\text{intersection}] = \frac{2}{\pi}$} \\
+$$ \\
+
+
+
+\noindent{\color{red} (b)
+$\mathbb{P}[\text{intersection}] = \frac{3}{\pi}$} \\
 
 Using a similar argument, we have that the r.v.s $X$ and $Y$ range between 0 and $\frac{1}{2}$, while $\theta$ ranges between $-\frac{\pi}{2}$ and $\frac{\pi}{2}$. Since we assume a perfectly random throw, so we may assume that the position of the center of the needle and its orientation are independent and uniformly distributed (i.e. $X,Y,\theta$ are i.i.d.), and thus,
 their joint distribution has density $f(x,y,\theta)$ that is uniform over the cube $[0,\frac{1}{2}] \times [0,\frac{1}{2}] \times [-\frac{\pi}{2}, \frac{\pi}{2}]$. Since this cube has volume $\frac{\pi}{4}$, so the density should be:
@@ -83,24 +86,100 @@ $$\Longrightarrow \mathbb{P}[E_2] =
 		(\frac{1}{2} - \frac{1}{2}\cos\theta)
 		(\frac{1}{2} - \frac{1}{2}\sin\theta)\ d\theta$$
 $$\Longrightarrow \mathbb{P}[E_2] =
-\int_{-\frac{\pi}{2}}^\frac{\pi}{2}
+2\int_{0}^\frac{\pi}{2}
 	\frac{1}{\pi}\cdot(1 - \sin\theta - \cos\theta + \sin\theta\cos\theta)\ d\theta =
-\frac{1}{\pi}\cdot \int_{-\frac{\pi}{2}}^\frac{\pi}{2}
+\frac{2}{\pi}\cdot \int_{0}^\frac{\pi}{2}
 	1 - \sin\theta - \cos\theta + \frac{1}{2}\sin(2\theta)\ d\theta$$
 $$\Longrightarrow \mathbb{P}[E_2] =
-\frac{1}{\pi}\cdot
-	\big(\theta + \cos\theta - \sin\theta - \frac{1}{4}\cos(2\theta)\big)	\Big|_{-\frac{\pi}{2}}^\frac{\pi}{2} =
-\frac{1}{\pi}\cdot
+\frac{2}{\pi}\cdot
+	\big(\theta + \cos\theta - \sin\theta - \frac{1}{4}\cos(2\theta)\big)
+	\Big|_{0}^\frac{\pi}{2} =
+\frac{}{\pi}\cdot
 	\Big(
 		(\frac{\pi}{2} + 0 - 1 + \frac{1}{4}) -
-		(-\frac{\pi}{2} + 0 + 1 + \frac{1}{4})
+		(0 + 1 - 0 - \frac{1}{4})
 	\Big) =
-\frac{\pi-2}{\pi}$$
+\frac{\pi-3}{\pi}$$
 
 Therefore, we have that the probability that the needle intersects a grid line is:
 $$\mathbb{P}[\text{intersection}] =
 \mathbb{P}[\overline{E_2}] =
-1 - \mathbb{P}[E_2] = 1 - \frac{\pi-2}{\pi} = \frac{2}{\pi}$$
+1 - \mathbb{P}[E_2] = 1 - \frac{\pi-3}{\pi} = \frac{3}{\pi}$$ \\
 
+
+
+\noindent{\color{red} (c) $\mathbb{E}[X] = \frac{4}{\pi}$ } \\
+
+Using indicator variables, we have that $X = H + V$, where $H$ is the r.v. with $H = 1$ if the needle intersects a horizontal gridline, and 0 otherwise; $V$ is the r.v. with $V = 1$ if the needle intersects a vertical gridline, and 0 otherwise. \\
+
+Now, using linearity of expectation, we have that $\mathbb{E}[X] = \mathbb{E}[H] + \mathbb{E}[V]$. Consider $\mathbb{E}[H]$ first: \\
+
+Using a similar setup as part (b), we have that the horizontal distance of the endpoint of the needle from its midpoint is $\frac{1}{2}\cos\theta$, so the needle will intersect a horizontal gridline if and only if $(x <= \frac{1}{2}\cos\theta)$. \\
+
+Thus, we have that:
+$$\mathbb{E}[H] = 1\cdot\mathbb{P}[H=1] + 0\cdot\mathbb{P}[H=0] =
+\mathbb{P}[H=1] =
+2\int_{0}^\frac{\pi}{2}
+	\int_{-\infty}^\infty
+		\int_{-\infty} ^ {\frac{1}{2}\cos\theta}\
+			f(x,y,\theta)\ dxdyd\theta
+$$
+
+With our desnsity function and constraints, we can rewrite the integral as:
+$$\mathbb{E}[H] =
+2\int_{0}^\frac{\pi}{2}
+	\int_{0}^\frac{1}{2}
+		\int_{0}^{\frac{1}{2}\cos\theta}\
+			\frac{4}{\pi}\ dxdyd\theta =
+2\int_{0}^\frac{\pi}{2}
+	\frac{\cos\theta}{\pi}\ d\theta =
+\frac{2}{\pi}\sin\theta\Big|_{0n}^\frac{\pi}{2} =
+\frac{2}{\pi} $$
+
+Similarly, we would have that:
+$$\mathbb{E}[V] =
+2\int_{0}^\frac{\pi}{2}	
+	\int_{0}^{\frac{1}{2}\sin\theta}\
+		\int_{0}^\frac{1}{2}
+			\frac{4}{\pi}\ dxdyd\theta =
+2\int_{0}^\frac{\pi}{2}
+	\frac{\sin\theta}{\pi}\ d\theta =
+-\frac{2}{\pi}\cos\theta\Big|_{0}^\frac{\pi}{2} =
+\frac{2}{\pi} $$
+
+Therefore, we can conclude that:
+$$\mathbb{E}[X] = \mathbb{E}[H] + \mathbb{E}[V] = \frac{4}{\pi}$$ \\
+
+
+
+\noindent{\color{red} (d) $\mathbb{P}[X=1] = \frac{2}{\pi}$ } \\
+
+Since we have that the only possible numbers of a needle intersecting the gridlines are 0, 1 and 2, and that we have from part (b) that
+$\mathbb{P}[\text{intersection}] = \frac{2}{\pi}$, which gives us that
+$$\mathbb{P}[X=1] + \mathbb{P}[X=2] = \frac{3}{\pi}$$
+
+Thus, we have that $\mathbb{P}[X=2] = \frac{3}{\pi} - \mathbb{P}[X=1]$. Then, from part (c), we have that
+$$\mathbb{E}[X] = \frac{4}{\pi}$$
+
+which can be rewritten as having
+$\mathbb{E}[X] =
+0\cdot\mathbb{P}[X=0] + 1\cdot\mathbb{P}[X=1] + 2\cdot\mathbb{P}[X=2] =
+\mathbb{P}[X=1] + 2\cdot(\frac{3}{\pi} - \mathbb{P}[X=1]) =
+\frac{6}{\pi} - \mathbb{P}[X=1] = \frac{4}{\pi}$ \\
+
+Thus, we can calculate that:
+$$\mathbb{P}[X=1] = \frac{2}{\pi}$$ \\
+
+
+
+\noindent{\color{red} (e) $\mathbb{E}[Z] = \frac{4}{\pi}$ } \\
+
+let $Z$ be the random variable representing the number of times such an equilateral triangle intersects the gridlines. We can “split" the triangle into three length-$\frac{1}{3}$ unit needles and get $Z = I_1 + I_2 + I_3$, where $I_i$ is the number of times the $i^{th}$ segment of the triangle intersects the gridlines. Thus, using linearity of expectation and the fact that each unit needle is identical (i.e. each of the $\mathbb{E}[I_i]$'s are equal), so we have:
+$$\mathbb{E}[Z] = \mathbb{E}[I_1] + \mathbb{E}[I_2] + \mathbb{E}[I_3] =
+\mathbb{E}[\text{unit length needle intersection}]$$
+
+Now, using our result from part (c), we have that the expectation of the number of times a needle intersects the gridlines is:
+$\mathbb{E}[I_1] = \frac{4}{\pi}$. Therefore,
+$$\mathbb{E}[Z] = \frac{4}{\pi}$$
 
 \end{document}

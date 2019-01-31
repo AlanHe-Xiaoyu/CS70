@@ -1,0 +1,124 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=3cm]{geometry}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{xcolor}
+\begin{document}
+
+{\Large 3 Erasures, Bounds, and Probabilities} \\[.5cm]
+{\color{red} (1)
+$p \leq 2\cdot 10^{-7}$ } \\
+
+We're given that Alice is sending 1000 bits to Bob,
+the probability that a bit gets erased is $p$,
+the erasure of each bit is independent of the others, and that
+Alice is using a scheme that can tolerate up to one-fifth of the bits being erased. \\
+
+Let $X$ be the r.v. indicating the number of bits being lost, so $0\leq X\leq 1000$, and thus, as we identify $X\sim\text{Bin}(1000,p)$, so by Theorem ???:
+$$\mathbb{E}[X] = 1000p$$
+
+Thus, we can use the Markov's inequality since $X$ is non-negative with a finite mean
+$$\mathbb{P}[X\geq200] \leq \frac{\mathbb{E}[X]}{200} = 5p$$
+
+Then, since we wish to have the probability of a communications breakdown being at most $10^{-6}$, i.e. $\mathbb{P}[X\geq200] \leq 10^{-6}$. Therefore, we would have
+$$\mathbb{P}[X\geq200] \leq 5p \leq 10^{-6}$$
+1
+which gives us an upper bound of $p$:
+$$p \leq 2\cdot 10^{-7} $$ \\
+
+
+
+\noindent{\color{red} (2)
+$p \leq 4.00 \cdot 10^{-5}$ } \\
+
+Similarly to part (a) and using its results, with $X\sim\text{Bin}(1000,p)$, so we have that:
+$$\mu = \mathbb{E}[X] = 1000p$$
+$$\text{var}(X) = 1000\,p(1-p)$$
+
+Now, we have that:
+$$\mathbb{P}[X \geq 200]\ =\
+\mathbb{P}[X-\mu \geq 200-\mu]\ \leq\
+\mathbb{P}\big[|X-\mu| \geq |200-\mu|\big] $$
+
+Thus, using Chebyshev's Inequality, we could set up another equation:
+$$\mathbb{P}[X \geq 200]\ \leq\
+\mathbb{P}\big[|X-\mu] \geq |200-\mu|\big]\ \leq\
+	\frac{\text{var}(X)}{(|200-\mu|)^2}\ =\
+\frac{1000\,p(1-p)}{(200-1000p)^2} $$
+
+Again, since we wish to have the probability of a communications breakdown being at most $10^{-6}$, i.e. $\mathbb{P}[X\geq200] \leq 10^{-6}$. Therefore, we would have
+$$\mathbb{P}[X \geq 200]\ \leq\
+\frac{1000\,p(1-p)}{(200-1000p)^2}\ \leq\
+10^{-6}$$
+
+Well, using a calculator, we have an upper bound of $p$:
+$$ p \leq 4.00 \cdot 10^{-5} $$ \\
+
+
+
+\noindent{\color{red} (3)
+$p \leq 0.1468$ } \\
+
+Let $X = X_1 + X_2 + \dots + X_1000$, where each $X_i = 1$ if the $i^{th}$ bit gets erased and 0 otherwise. We're told that all the $X_i$'s are i.i.d. random variables, and they have common finite expectation:
+$$\mu = \mathbb{E}[X_i] = 1\cdot p + 0\cdot(1-p) = p$$
+
+and finite variance:
+$$\sigma^2 = \text{var}(X_I) =
+\mathbb{E}[X_i^2] - \mathbb{E}[X_i]^2 =
+p - p^2 $$
+
+which also gives us that $\sigma = \sqrt{p-p^2}$. \\
+
+Now, let $S_n = \sum\limits_{i=1}^n X_i$, then for very large $n$ (i.e. when $n=1000$), the Central Limit Theorem gives us that:
+\begin{align}
+\mathbb{P}\big[
+	\frac{S_{1000} - 1000\mu}{\sigma\sqrt{1000}}
+		\leq \frac{200-1000\mu}{\sigma\sqrt{1000}} \big]
+\rightarrow
+\frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\frac{200-1000\mu}{\sigma\sqrt{1000}}}
+	e^{-x^2/2} \, dx
+\end{align}
+
+Now, since we wish to have the probability of a communications breakdown being at most $10^{-6}$, i.e. $\mathbb{P}[S_{1000} \geq 200] \leq 10^{-6}$, which is equivalent to
+$\mathbb{P}[S_{1000} < 200] =
+\mathbb{P}[\overline{S_{1000} \geq 200}] \geq 1 - 10^{-6}$.
+Then, since
+$$\mathbb{P}[S_{1000} < 200]\ =\
+\mathbb{P}\big[
+	\frac{S_{1000} - 1000\mu}{\sigma\sqrt{1000}}
+		< \frac{200-1000\mu}{\sigma\sqrt{1000}} \big]\ \leq\
+\mathbb{P}\big[
+	\frac{S_{1000} - 1000\mu}{\sigma\sqrt{1000}}
+		\leq \frac{200-1000\mu}{\sigma\sqrt{1000}} \big] $$
+
+Thus, for $\mathbb{P}[S_{1000} < 200] \geq 1 - 10^{-6}$, we need
+$$\mathbb{P}\big[
+	\frac{S_{1000} - 1000\mu}{\sigma\sqrt{1000}}
+		\leq \frac{200-1000\mu}{\sigma\sqrt{1000}} \big]\ \geq\ 1 - 10^{-6}$$
+
+which, by Eq. (1) and our setup of $\mu$ and $\sigma$, is (approximately) equivalent to having:
+$$\mathbb{P}\big[
+	\frac{S_{1000} - 1000\mu}{\sigma\sqrt{1000}}
+		\leq \frac{200-1000\mu}{\sigma\sqrt{1000}} \big] \rightarrow
+\frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\frac{200-1000p}{\sqrt{1000(p-p^2)}}}
+	e^{-x^2/2} \, dx
+\ \geq\ 1 - 10^{-6}$$
+$$\Longrightarrow
+\int_{-\infty}^{\frac{200-1000p}{\sqrt{1000(p-p^2)}}}
+	e^{-x^2/2} \, dx
+\ \geq\
+(1 - 10^{-6})\cdot\sqrt{2\pi}$$
+
+Again, using a calculator, and defining
+$a = \frac{200-1000p}{\sqrt{1000(p-p^2)}}$ for simplicity in format,
+so we have an inequality that looks like...
+$$ \text{erf}(\frac{a}{\sqrt{2}}) \geq \frac{499,999}{500,000}$$
+
+which gives us an approximate bound:
+$$\frac{200-1000p}{\sqrt{1000(p-p^2)}} = a \geq 4.75243$$
+
+Thus, using the calculator, we have an approximate upper bound for $p$ (with CLT) as:
+$$p \leq 0.1468$$
+
+\end{document}

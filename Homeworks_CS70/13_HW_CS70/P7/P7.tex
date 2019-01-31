@@ -1,0 +1,107 @@
+\documentclass{article}
+\usepackage[left=3cm, right=3cm, top=3cm]{geometry}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{xcolor}
+\begin{document}
+
+{\Large 7 Boba in a Straw} \\[.5cm]
+{\color{red} (a) $\tau = (1 - p)(1 + \tau) +
+	p \cdot \big(2p + (1 - p)(2 + \tau)\big) $} \\
+
+With the given setup, action happens every second, and the probability of a new boba entering the bottom component is $p$, and we can set up an equation for hitting time with the concept of Markov chain as:
+$$\tau = (1 - p)(1 + \tau) +
+	p \cdot \big(2p + (1 - p)(2 + \tau)\big) $$
+
+
+
+\noindent{\color{red} (b) $\tau = (1 - p)(1 + \tau) +
+p \cdot \Big(1 +
+	3p +
+	(1-p) \cdot \big(1 +
+		3p +
+		(1-p) \cdot \tau
+		\big)
+	\Big) $} \\
+
+With the given new setup, action still happens every second but might take longer, and the probability of a new boba entering the bottom component is still $\mathbb{P}[B] = p$, and we can set up an equation (based on the information) for hitting time with the concept of Markov chain as:
+$$\tau =
+(1 - p)(1 + \tau) +
+p \cdot \Big(1 +
+	p \cdot 3 +
+	(1-p) \cdot \big(1 +
+		p \cdot 3 +
+		(1-p) \cdot \tau
+		\big)
+	\Big)
+$$
+
+
+
+\noindent{\color{red} (c) $10p$ } \\
+
+Define our Markov chain to be the pair of numbers demonstrating whether of boba exist in each component of the straw, with the first number indicating the top component and the second number indicating the bottom component, so there are four possible states: \\
+
+(0) State 0: (0,0) i.e. empty straw
+
+(1) State 1: (0,1) i.e. boba in bottom only
+
+(2) State 2: (1,0) i.e. boba in top only
+
+(3) State 3: (1,1) i.e. full straw \\
+
+With the probability of a new boba entering the bottom component being $p$,
+so we first write out the transition probability matrix for the given Markov chain condition as:
+$$ \mathbf{P} =
+\begin{bmatrix}
+	P_{00} & P_{01} & P_{02} & P_{03} \\
+	P_{10} & P_{11} & P_{12} & P_{13} \\
+	P_{20} & P_{21} & P_{22} & P_{23} \\
+	P_{30} & P_{31} & P_{32} & P_{33}
+\end{bmatrix} =
+\begin{bmatrix}
+	1-p & p & 0 & 0 \\
+	0 & 0 & 1-p & p \\
+	1-p & p & 0 & 0 \\
+	0 & 0 & 1-p & p
+\end{bmatrix} $$
+
+Then, we have that the balance equations can be set up with $\pi\mathbf{P} = \pi$, and so
+$$[\pi_0, \pi_1, \pi_2, \pi_3] = [\pi_0, \pi_1, \pi_2, \pi_3] \cdot
+\begin{bmatrix}
+	1-p & p & 0 & 0 \\
+	0 & 0 & 1-p & p \\
+	1-p & p & 0 & 0 \\
+	0 & 0 & 1-p & p
+\end{bmatrix} $$
+
+Then, since the components of $\pi$ sum up to one, so we have 5 linear equations in total:
+$$(1-p)\pi_0 + (1-p)\pi_2 = \pi_0 $$
+$$p\pi_0 + p\pi_2 = \pi_1 $$
+$$(1-p)\pi_1 + (1-p)\pi_3 = \pi_2 $$
+$$p\pi_1 + p\pi_3 = \pi_3 $$
+$$\pi_0 + \pi_1 + \pi_2 + \pi_3 = 1$$
+
+We could then solve them to get the invariant distribution as:
+$$\pi_0 = (1-p)^2$$
+$$\pi_1 = p - p^2$$
+$$\pi_2 = p - p^2$$
+$$\pi_3 = p^2$$
+
+Thus, the long-run average rate of Jonathan's boba consumption (i.e. expectation of bobas in the top component) is:
+$$0\cdot\pi_0 + 0\cdot\pi_1 + 1\cdot\pi_2 + 1\cdot\pi_3 = p$$
+
+Therefore, with each boba being roughly 10 calories, so the long-run average rate of Jonathan's calorie consumption is $10p$. \\
+
+
+
+\noindent{\color{red} (d) $2p$ } \\
+
+Using our results from part (c), we have solved the invariant distribution of my Markov chain, which gives us that the long-run average number of boba which can be found inside the straw is:
+$$0\cdot\pi_0 + 1\cdot\pi_1 + 1\cdot\pi_2 + 2\cdot\pi_3 = 2p$$
+
+
+
+
+\end{document}
